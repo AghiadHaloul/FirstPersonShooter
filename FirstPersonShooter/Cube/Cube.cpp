@@ -5,7 +5,8 @@
 
 Cube::Cube(string TexturePath,int TextUnit,vec3 Translate, vec3 Scale)
 {
-	CubeTexture = unique_ptr<Texture>(new Texture(TexturePath, TextUnit));
+	mSquare = new TexturedModel();
+	mSquare->texture = new Texture(TexturePath, TextUnit);
     
 	CubeModelMatrix = scale(Scale)*translate(Translate);
 }
@@ -18,38 +19,37 @@ Cube::~Cube(void)
 void Cube::Initialize()
 {
 
-	mSquare = Model();
-	mSquare.VertexData.push_back(vec3(-1.0f, -1.0f, 0.0f));
-	mSquare.VertexData.push_back(vec3(1.0f, -1.0f, 0.0f));
-	mSquare.VertexData.push_back(vec3( 1.0f,  1.0f, 0.0f));
-	mSquare.VertexData.push_back(vec3( -1.0f,  1.0f, 0.0f));
+	mSquare->VertexData.push_back(vec3(-1.0f, -1.0f, 0.0f));
+	mSquare->VertexData.push_back(vec3(1.0f, -1.0f, 0.0f));
+	mSquare->VertexData.push_back(vec3( 1.0f,  1.0f, 0.0f));
+	mSquare->VertexData.push_back(vec3( -1.0f,  1.0f, 0.0f));
 	//we want a gray cube cube.
-	mSquare.ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	mSquare.ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	mSquare.ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	mSquare.ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	mSquare->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	mSquare->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	mSquare->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	mSquare->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	//first.riangle.
-	mSquare.IndicesData.push_back(0);
-	mSquare.IndicesData.push_back(1);
-	mSquare.IndicesData.push_back(3);
+	mSquare->IndicesData.push_back(0);
+	mSquare->IndicesData.push_back(1);
+	mSquare->IndicesData.push_back(3);
 	//secon.triangle.
-	mSquare.IndicesData.push_back(1);
-	mSquare.IndicesData.push_back(2);
-	mSquare.IndicesData.push_back(3);
+	mSquare->IndicesData.push_back(1);
+	mSquare->IndicesData.push_back(2);
+	mSquare->IndicesData.push_back(3);
 	
-	mSquare.UVData.push_back(glm::vec2(0.0f, 0.0f));
-	mSquare.UVData.push_back(glm::vec2(1.0f, 0.0f));
-	mSquare.UVData.push_back(glm::vec2(1.0f, 1.0f));
-	mSquare.UVData.push_back(glm::vec2(0.0f, 1.0f));
+	mSquare->UVData.push_back(glm::vec2(0.0f, 0.0f));
+	mSquare->UVData.push_back(glm::vec2(1.0f, 0.0f));
+	mSquare->UVData.push_back(glm::vec2(1.0f, 1.0f));
+	mSquare->UVData.push_back(glm::vec2(0.0f, 1.0f));
 
-	mSquare.NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-	mSquare.NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-	mSquare.NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-	mSquare.NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	mSquare->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	mSquare->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	mSquare->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	mSquare->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
 
 
 	
-	mSquare.Initialize();
+	mSquare->Initialize();
 
 
 
@@ -75,12 +75,12 @@ void Cube::Initialize()
 
 void Cube::Draw(ShaderProgram &shader)
 {
-	CubeTexture->Bind();
+	mSquare->texture->Bind();
 	for (int i = 0; i < mFacesModelMatrices.size(); i++)
 	{
 		glm::mat4 model = CubeModelMatrix * mFacesModelMatrices[i];
 		shader.BindModelMatrix(&model[0][0]);
 		//shader.BindVPMatrix(&VP[0][0]);
-		mSquare.Draw();
+		mSquare->Draw();
 	}
 }

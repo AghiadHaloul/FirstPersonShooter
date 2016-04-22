@@ -1,10 +1,34 @@
-﻿Build started 4/22/2016 9:18:06 AM.
+﻿Build started 4/22/2016 11:08:21 AM.
      1>Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Renderer\Renderer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "Application Manager\ApplicationManager.cpp" Cube\Cube.cpp Renderer\Renderer.cpp Scene\Model3D.cpp Scene\ModelNode.cpp Scene\TexturedModel.cpp main.cpp
+         Model3D.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(53): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(58): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(88): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(102): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(121): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(125): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(134): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(158): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(162): warning C4018: '<' : signed/unsigned mismatch
+         Cube.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\cube\cube.cpp(79): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(64): warning C4715: 'Model3D::LoadFromFile' : not all control paths return a value
+         Compiling...
+         main.cpp
+         TexturedModel.cpp
+         ModelNode.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(18): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(22): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(35): warning C4018: '<' : signed/unsigned mismatch
          Renderer.cpp
      1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(189): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
      1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(190): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         ApplicationManager.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\application manager\applicationmanager.cpp(141): warning C4805: '==' : unsafe mix of type 'int' and type 'bool' in operation
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\lib opengl32.lib glew32.lib glfw3.lib assimp.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.lib" /MACHINE:X86 Debug\ApplicationManager.obj
          Debug\Cube.obj
@@ -20,9 +44,10 @@
          Debug\shader.obj
          Debug\stb_image.obj
          Debug\texture.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
          FirstPersonShooter.vcxproj -> D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe
      1>Done Building Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.42
+Time Elapsed 00:00:09.86

@@ -8,13 +8,13 @@
 #include <string>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "Scene/TexturedModel.h"
 using namespace std;
 using namespace glm;
 class Cube
 {
-	Model mSquare;
+	TexturedModel* mSquare;
 	vector<mat4> mFacesModelMatrices;
-	unique_ptr<Texture> CubeTexture;
 public:
 	Cube(string TexturePath,int TextUnit,vec3 Translate, vec3 Scale);
 	~Cube(void);
