@@ -30,12 +30,16 @@ void Renderer::Initialize()
 	
 	//second triangle.
 	
-	SkyBox = unique_ptr<Cube> (new Cube("data/textures/bricks.jpg",1,vec3(0,-10,-1),vec3(20,0.5,20))); 
-	SkyBox->Initialize();
-	//////////////////////////////////////////////////////////////////////////
-	
+	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100)); 
+	Game_SkyBox->Initialize();
 	//////////////////////////////////////////////////////////////////////////
 
+	//////////////////////////////////////////////////////////////////////////
+	soldier = std::unique_ptr<Model3D>(new Model3D());
+	//read model and it's textures from HDD.
+	soldier->LoadFromFile("data/models/Soldier/Soldier_Mask05.obj",true);
+	//send the meshes to the GPU.
+	soldier->Initialize();
 	
 
 	//////////////////////////////////////////////////////////////////////////
@@ -80,7 +84,7 @@ void Renderer::Initialize()
 
 	//////////////////////////////////////////////////////////////////////////
 	// Projection matrix : 
-	myCamera->SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,100.0f);
+	myCamera->SetPerspectiveProjection(90.0f,4.0f/3.0f,0.1f,500.0f);
 
 	// View matrix : 
 	myCamera->Reset(0.0,1.0,5.0 ,0,0,0, 0,1,0);	
@@ -99,26 +103,12 @@ void Renderer::Draw()
 		glm::mat4 VP = myCamera->GetProjectionMatrix() * myCamera->GetViewMatrix();
 		shader.BindVPMatrix(&VP[0][0]);
 
-		SkyBox->Draw(shader);
-		//1st triangle
-
-		/*glm::mat4 triangle1MVP =   VP * triangle1M; 
-		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &triangle1MVP[0][0]);*/
-
-		//we need to send the model matrix to transform the normals too.
-		//glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &triangle1M[0][0]);
-		//the floor
-		//we need to send the model matrix to transform the normals too.
-		//glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &floorM[0][0]);
+		Game_SkyBox->Draw(shader);
 		
+		mat4 modelmat = translate(vec3(0,-2,-1))*scale(vec3(0.05,0.05,0.05))*rotate(90.f,vec3(1,0,0));
+		//shader.BindModelMatrix(&modelmat[0][0]);
+	//	soldier->Render(&shader,modelmat);
 
-	
-
-		////////////////////////////////////////////////////////////////////////////
-		////Draw the cube.
-		//glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &myCube->CubeModelMatrix[0][0]);
-		//myCube->Draw(MatrixID,VP);
-		////////////////////////////////////////////////////////////////////////////
 }
 
 void Renderer::Cleanup()

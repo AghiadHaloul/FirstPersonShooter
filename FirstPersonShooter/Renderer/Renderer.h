@@ -15,6 +15,7 @@
 #include "Texture/texture.h"
 #include "ShaderProgram/ShaderProgram.h"
 #include "Scene/Model3D.h"
+#include"SkyBox/SkyBox.h"
 using namespace std;
 class Renderer
 {
@@ -29,8 +30,8 @@ class Renderer
 	GLuint LightPositionID;
 	GLuint EyePositionID;
 
-	std::unique_ptr<Cube> SkyBox;
-	
+	std::unique_ptr<SkyBox> Game_SkyBox;
+	unique_ptr<Model3D> soldier;
 
 	std::unique_ptr<EulerCamera> myCamera;
 

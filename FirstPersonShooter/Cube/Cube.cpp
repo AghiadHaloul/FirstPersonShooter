@@ -8,7 +8,7 @@ Cube::Cube(string TexturePath,int TextUnit,vec3 Translate, vec3 Scale)
 	mSquare = new TexturedModel();
 	mSquare->texture = new Texture(TexturePath, TextUnit);
     
-	CubeModelMatrix = scale(Scale)*translate(Translate);
+	CubeModelMatrix = translate(Translate)*scale(Scale);
 }
 
 
@@ -19,10 +19,10 @@ Cube::~Cube(void)
 void Cube::Initialize()
 {
 
-	mSquare->VertexData.push_back(vec3(-1.0f, -1.0f, 0.0f));
-	mSquare->VertexData.push_back(vec3(1.0f, -1.0f, 0.0f));
-	mSquare->VertexData.push_back(vec3( 1.0f,  1.0f, 0.0f));
-	mSquare->VertexData.push_back(vec3( -1.0f,  1.0f, 0.0f));
+	mSquare->VertexData.push_back(vec3(-0.5f, -0.5f, 0.0f));
+	mSquare->VertexData.push_back(vec3(0.5f, -0.5f, 0.0f));
+	mSquare->VertexData.push_back(vec3( 0.5f,  0.5f, 0.0f));
+	mSquare->VertexData.push_back(vec3( -0.5f,  0.5f, 0.0f));
 	//we want a gray cube cube.
 	mSquare->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	mSquare->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
@@ -57,17 +57,17 @@ void Cube::Initialize()
 	mFacesModelMatrices.resize(numberOfFaces);
 	
 	//bottom
-	mFacesModelMatrices[0] = glm::translate(0.0f,-1.0f,0.0f)*glm::rotate(90.0f,glm::vec3(1.0f,0.0f,0.0f));
+	mFacesModelMatrices[0] = glm::translate(0.0f,-0.5f,0.0f)*glm::rotate(90.0f,glm::vec3(1.0f,0.0f,0.0f));
 	//top
-	mFacesModelMatrices[1] = glm::translate(0.0f,1.0f,0.0f)*glm::rotate(-90.0f,glm::vec3(1.0f,0.0f,0.0f));
+	mFacesModelMatrices[1] = glm::translate(0.0f,0.5f,0.0f)*glm::rotate(-90.0f,glm::vec3(1.0f,0.0f,0.0f));
 	//front
-	mFacesModelMatrices[2] = glm::translate(0.0f,0.0f,1.0f);
+	mFacesModelMatrices[2] = glm::translate(0.0f,0.0f,0.5f);
 	//back
-	mFacesModelMatrices[3] = glm::translate(0.0f,0.0f,-1.0f)*glm::rotate(180.0f,glm::vec3(1.0f,0.0f,0.0f));
+	mFacesModelMatrices[3] = glm::translate(0.0f,0.0f,-0.5f)*glm::rotate(180.0f,glm::vec3(1.0f,0.0f,0.0f));
 	//left
-	mFacesModelMatrices[4] = glm::translate(-1.0f,0.0f,0.0f)*glm::rotate(-90.0f,glm::vec3(0.0f,1.0f,0.0f));
+	mFacesModelMatrices[4] = glm::translate(-0.5f,0.0f,0.0f)*glm::rotate(-90.0f,glm::vec3(0.0f,1.0f,0.0f));
 	//right
-    mFacesModelMatrices[5] = glm::translate(1.0f,0.0f,0.0f)*glm::rotate(90.0f,glm::vec3(0.0f,1.0f,0.0f));
+    mFacesModelMatrices[5] = glm::translate(0.5f,0.0f,0.0f)*glm::rotate(90.0f,glm::vec3(0.0f,1.0f,0.0f));
 	
 	//this transformation is applied on the whole cube!!!
 	
