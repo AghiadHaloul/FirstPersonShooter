@@ -8,6 +8,7 @@ Model3D::~Model3D(void)
 {
 }
 
+
 glm::mat4 Model3D::aiMat4x4ToglmMat4(aiMatrix4x4 aimat)
 {
 	glm::mat4 gmat;
@@ -21,6 +22,7 @@ glm::mat4 Model3D::aiMat4x4ToglmMat4(aiMatrix4x4 aimat)
 	}
 	return gmat;
 }
+
 
 std::string Model3D::GetDirectoryPath(std::string sFilePath)
 {

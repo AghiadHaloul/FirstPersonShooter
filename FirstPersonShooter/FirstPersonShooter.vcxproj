@@ -91,6 +91,7 @@
     <ClCompile Include="Scene\TexturedModel.cpp" />
     <ClCompile Include="ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="Shaders\shader.cpp" />
+    <ClCompile Include="SkyBox\SkyBox.cpp" />
     <ClCompile Include="Texture\Texture Loader\stb_image.c" />
     <ClCompile Include="Texture\texture.cpp" />
   </ItemGroup>
@@ -110,6 +111,7 @@
     <ClInclude Include="Scene\TexturedModel.h" />
     <ClInclude Include="ShaderProgram\ShaderProgram.h" />
     <ClInclude Include="Shaders\shader.hpp" />
+    <ClInclude Include="SkyBox\SkyBox.h" />
     <ClInclude Include="Texture\Texture Loader\stb_image.h" />
     <ClInclude Include="Texture\texture.h" />
   </ItemGroup>

@@ -49,6 +49,9 @@
     <Filter Include="Texture\Texture Loader">
       <UniqueIdentifier>{28d0593d-380e-448e-b824-1046f2074a4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Skybox">
+      <UniqueIdentifier>{50222ca9-3d51-4c36-b3ca-68bcf73b8c0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="Texture\Texture Loader\stb_image.c">
       <Filter>Texture\Texture Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox\SkyBox.cpp">
+      <Filter>Skybox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="Texture\Texture Loader\stb_image.h">
       <Filter>Texture\Texture Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox\SkyBox.h">
+      <Filter>Skybox</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
