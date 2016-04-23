@@ -17,20 +17,9 @@ Renderer::~Renderer()
 
 void Renderer::Initialize()
 {
-	myCamera = std::unique_ptr<EulerCamera>(new EulerCamera());
-	//calculate the normal of the triangle.
-
-
-	//since the triangle is not connected to anything else, so the normal is constant on all the vertices.
-
-	//drawing a square.
-
-
-	//first triangle.
-	
-	//second triangle.
-	
-	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100)); 
+    myCamera = std::unique_ptr<EulerCamera>(new EulerCamera());
+    
+    Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(200));
 	Game_SkyBox->Initialize();
 	//////////////////////////////////////////////////////////////////////////
 
@@ -105,9 +94,9 @@ void Renderer::Draw()
 
 		Game_SkyBox->Draw(shader);
 		
-		mat4 modelmat = translate(vec3(0,-2,-1))*scale(vec3(0.05,0.05,0.05))*rotate(90.f,vec3(1,0,0));
+		//mat4 modelmat = translate(vec3(0,-2,-1))*scale(vec3(0.05,0.05,0.05))*rotate(90.f,vec3(1,0,0));
 		//shader.BindModelMatrix(&modelmat[0][0]);
-	//	soldier->Render(&shader,modelmat);
+        //soldier->Render(&shader,modelmat);
 
 }
 
@@ -123,6 +112,11 @@ void Renderer::Update(double deltaTime)
 
 void Renderer::HandleKeyboardInput(int key)
 {
+    glm::vec3 position = myCamera->GetEyePosition();
+    
+    if(CheckCameraPosition(position, Game_SkyBox->unitSize, key) == false)
+        return;
+    
 	switch (key)
 	{
 		//Moving forward
@@ -183,3 +177,43 @@ void Renderer::HandleMouse(double deltaX,double deltaY)
 	glUniform3fv(EyePositionID,1, &myCamera->GetEyePosition()[0]);
 }
 
+
+bool Renderer::CheckCameraPosition(glm::vec3 camPosition, GLuint skyboxUnitSize, int key)
+{
+    switch (key)
+    {
+            //Moving forward
+        case GLFW_KEY_UP:
+        case GLFW_KEY_W:
+            return -camPosition.z*2+skyboxUnitSize/2 < skyboxUnitSize;
+            
+            //Moving backword
+        case GLFW_KEY_DOWN:
+        case GLFW_KEY_S:
+            return camPosition.z*2+skyboxUnitSize/2 < skyboxUnitSize;
+            
+            // Moving right
+        case GLFW_KEY_RIGHT:
+        case GLFW_KEY_D:
+            return camPosition.x*2+skyboxUnitSize/2 < skyboxUnitSize;
+            
+            // Moving left
+        case GLFW_KEY_LEFT:
+        case GLFW_KEY_A:
+            return -camPosition.x*2+skyboxUnitSize/2 < skyboxUnitSize;
+            
+            // Moving up
+        case GLFW_KEY_SPACE:
+        case GLFW_KEY_R:
+            return camPosition.y*2+skyboxUnitSize/2 < skyboxUnitSize;
+            
+            // Moving down
+        case GLFW_KEY_LEFT_CONTROL:
+        case GLFW_KEY_F:
+            return -camPosition.y*2+skyboxUnitSize/2 < skyboxUnitSize;
+            
+        default:
+            break;
+    }
+    return true;
+}

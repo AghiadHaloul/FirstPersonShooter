@@ -42,6 +42,7 @@ public:
     Renderer();
     ~Renderer();
     
+    bool CheckCameraPosition(glm::vec3,GLuint,int);
     void Initialize();
     void Draw();
 	void HandleKeyboardInput(int key);

@@ -2,6 +2,7 @@
 
 SkyBox::SkyBox(GLint unitsize)
 {
+    this->unitSize = unitsize;
 	walls = new unique_ptr<Cube>[6];
 	//bottom - earth
 	GLfloat wall_width = 0.05;
