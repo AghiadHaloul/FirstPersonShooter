@@ -10,7 +10,7 @@ ShaderProgram::~ShaderProgram()
 
 void ShaderProgram::LoadProgram()
 {
-	programID = LoadShaders( "SimpleTransformWithColor.vertexshader", "MultiColor.fragmentshader");
+	programID = LoadShaders( "SimpleTransformWithColor.vertexshader", "TextureLighting.fragmentshader");
 
 	modelMatrixID = glGetUniformLocation(programID, "ModelMatrix");
 

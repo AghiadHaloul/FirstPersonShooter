@@ -3,11 +3,14 @@ class SkyBox
 {
 
 private:
-	unique_ptr<Cube>* walls; 
+	unique_ptr<TexturedModel>* walls;
+	
 public:
-	SkyBox(GLint unitsize);
+	GLfloat Unitsize;
+	SkyBox(GLfloat unitsize);
 	~SkyBox();
 	void Draw(ShaderProgram &shader);
 	void Initialize();
+	void Cleanup();
 };
 

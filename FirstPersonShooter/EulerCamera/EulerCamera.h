@@ -1,12 +1,13 @@
 #ifndef EulerCamera_h__
 #define EulerCamera_h__
-
+#include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
-
+using namespace glm;
+using namespace std;
 //Note: this camera assumes left hand rule.
 class EulerCamera
 {
@@ -20,7 +21,7 @@ class EulerCamera
 	double mAngleX,mAngleY;
 
 	glm::vec3 GetLookDirection();
-
+	float CameraBoundry;
 public:
 	EulerCamera(void);
 	~EulerCamera(void);
@@ -30,10 +31,12 @@ public:
 	void SetPerspectiveProjection(float FOV, float aspectRatio, float near, float far);
 	glm::mat4 GetProjectionMatrix();
 	glm::vec3 GetEyePosition();
+	float Get_CameraBoundry() const { return CameraBoundry; }
+	void Set_CameraBoundry(float val) { CameraBoundry = val-1; }
 
 	void Reset(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);
 	void Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3  &up);
-
+	bool vaildboundry(float dist,glm::vec3 dir);
 
 #pragma region Rotations
 	/// <summary>
@@ -82,6 +85,6 @@ public:
 	/// along the vector N.
 	/// </summary>
 	void Slide(float stepR, float stepU, float stepD);
-};
+	};
 #endif // EulerCamera_h__
 

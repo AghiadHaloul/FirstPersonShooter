@@ -15,9 +15,10 @@
 #include "ModelNode.h"
 #include "Texture/texture.h"
 #include "ShaderProgram\ShaderProgram.h"
+#include "CollisionDetection\CollidableModel.h"
 
 //represents a scenegraph.
-class Model3D
+class Model3D : public CollidableModel
 {
 	//can be considered as the scenegraph's leafs
 	std::vector<TexturedModel*> meshes;
@@ -33,11 +34,12 @@ public:
 	Model3D();
 	~Model3D();
 	bool LoadFromFile(std::string modelFileName, bool flipUVs = true);
+	std::vector<glm::vec3> GetVertices();
 	void Initialize();
-	void Render(ShaderProgram* shaderProgram);
-	void Render(ShaderProgram* shaderProgram, glm::mat4 transformationMatrix);
+	void Render(ShaderProgram* shaderProgram, glm::mat4 Wheel_Rotation);
+	void Render(ShaderProgram* shaderProgram, glm::mat4 transformationMatrix, glm::mat4 Wheel_Rotation);
 	void Cleanup();
-
+	virtual void Collided(ObjectType _ObjectType);
 };
 #endif // Model3D_h__
 

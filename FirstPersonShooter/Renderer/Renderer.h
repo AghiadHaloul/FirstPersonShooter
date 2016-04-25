@@ -16,11 +16,21 @@
 #include "ShaderProgram/ShaderProgram.h"
 #include "Scene/Model3D.h"
 #include"SkyBox/SkyBox.h"
+#include "MD2Model/md2model.h"
+#include "CollisionDetection/CollisionManager.h"
+#include "GameComponents/Hero.h"
 using namespace std;
 class Renderer
-{
-
-
+{//removed later
+	//CMD2Model blade;
+	//animState_t bladeAnimationState;
+	std::unique_ptr<CollisionManager> collisionManager;
+	//glm::mat4 bladeM;
+	KeyFrameAnimationShader animatedModelShader;
+	unique_ptr<Model3D> house;
+	glm::mat4 houseM;
+	//
+unique_ptr<Hero> hero;
     GLuint programID;
     ShaderProgram shader;
 	// Transformation
@@ -31,6 +41,8 @@ class Renderer
 	GLuint EyePositionID;
 
 	std::unique_ptr<SkyBox> Game_SkyBox;
+	
+
 	unique_ptr<Model3D> soldier;
 
 	std::unique_ptr<EulerCamera> myCamera;

@@ -22,7 +22,7 @@ class ShaderProgram
 	//calls glUseProgram.
 	void UseProgram();
 	//load shaders from files.
-	void LoadProgram();
+	virtual void LoadProgram();
 	void CleanUp();
 };
 

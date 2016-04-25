@@ -12,7 +12,7 @@
 
 class ModelNode
 {
-	
+
 public:
 	std::string name;
 	ModelNode* parent;
@@ -24,7 +24,8 @@ public:
 	ModelNode();
 	~ModelNode();
 
-	void Render(ShaderProgram* shaderProgram, glm::mat4 parentTransforms);
+	void Render(ShaderProgram* shaderProgram, glm::mat4 parentTransforms, glm::mat4 Wheel_Trans);
+	std::vector<glm::vec3> GetVertices(glm::mat4 parentTransforms = (glm::mat4(1)));
 	ModelNode* FindNode(std::string name);
 };
 

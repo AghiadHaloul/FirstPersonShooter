@@ -9,6 +9,7 @@ EulerCamera::EulerCamera(void)
 		0, 1, 0);
 
 	SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,100.0f);
+	this->Set_CameraBoundry(1000.0f);
 }
 
 EulerCamera::~EulerCamera(void)
@@ -45,6 +46,12 @@ void EulerCamera::Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3
 
 	mViewMatrix = glm::lookAt(mPosition,center,mUp);
 	//UpdateViewMatrix();
+}
+
+bool EulerCamera::vaildboundry(float dist,glm::vec3 dir)
+{
+	vec3 NextPosition = mPosition+dist*dir;
+	return(abs(NextPosition.x) < Get_CameraBoundry() && abs(NextPosition.y) < Get_CameraBoundry()&&abs(NextPosition.z) < Get_CameraBoundry());   
 }
 
 glm::mat4 EulerCamera::GetViewMatrix()
@@ -115,16 +122,19 @@ void EulerCamera::Roll(float angleDegrees)
 
 void EulerCamera::Walk(float dist)
 {
-	mPosition += dist * mDirection;
+	if (vaildboundry(dist,mDirection))
+		mPosition += dist * mDirection;
 }
 
 void EulerCamera::Strafe(float dist)
 {
-	mPosition += dist *mRight;
+	if (vaildboundry(dist,mRight))
+		mPosition += dist *mRight;
 }
 
 void EulerCamera::Fly(float dist)
 {
+	if (vaildboundry(dist,mUp))
 	mPosition += dist * mUp;
 }
 

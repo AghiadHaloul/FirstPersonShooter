@@ -47,7 +47,6 @@ void Cube::Initialize()
 	mSquare->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
 	mSquare->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
 
-
 	
 	mSquare->Initialize();
 

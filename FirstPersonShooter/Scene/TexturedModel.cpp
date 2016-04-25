@@ -5,6 +5,11 @@ TexturedModel::TexturedModel(void)
 {
 }
 
+TexturedModel::TexturedModel(string TexturePath,int TextUnit)
+{
+	texture = new Texture(TexturePath, TextUnit);
+}
+
 
 TexturedModel::~TexturedModel(void)
 {

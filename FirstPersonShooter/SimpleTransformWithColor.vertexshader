@@ -23,8 +23,6 @@ void main(){
 	//this is not the optimal solution, but we will work with this for now.
 	gl_Position =  VP * ModelMatrix * vec4(vertexPosition_modelspace,1);
 	position_worldspace = vec3(ModelMatrix * vec4(vertexPosition_modelspace,1));
-	//normal_worldspace = normalize(vec3(ModelMatrix * vec4(vertexPosition_modelspace,1)));
-	
 	normal_worldspace = normalize(vec3(ModelMatrix * vec4(vertexNormal_modelspace,0)));
 	fragmentColor =  inputColor;
 	TexCoord = texCoord;

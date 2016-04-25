@@ -2,12 +2,12 @@
 
 Model3D::Model3D(void)
 {
+	_ObjectType = ObjectType::_Model3D;
 }
 
 Model3D::~Model3D(void)
 {
 }
-
 
 glm::mat4 Model3D::aiMat4x4ToglmMat4(aiMatrix4x4 aimat)
 {
@@ -22,7 +22,6 @@ glm::mat4 Model3D::aiMat4x4ToglmMat4(aiMatrix4x4 aimat)
 	}
 	return gmat;
 }
-
 
 std::string Model3D::GetDirectoryPath(std::string sFilePath)
 {
@@ -139,9 +138,9 @@ void Model3D::Initialize()
 	}
 }
 
-void Model3D::Render(ShaderProgram* shaderProgram, glm::mat4 transformationMatrix)
+void Model3D::Render(ShaderProgram* shaderProgram, glm::mat4 transformationMatrix ,glm::mat4 Wheel_Rotation)
 {
-	rootNode->Render(shaderProgram, transformationMatrix);
+	rootNode->Render(shaderProgram, transformationMatrix, Wheel_Rotation);
 
 	// Render meshes ignoring nodes structure
 	/*for (int i = 0; i < meshes.size(); i++)
@@ -150,9 +149,9 @@ void Model3D::Render(ShaderProgram* shaderProgram, glm::mat4 transformationMatri
 	}*/
 }
 
-void Model3D::Render(ShaderProgram* shaderProgram)
+void Model3D::Render(ShaderProgram* shaderProgram, glm::mat4 Wheel_Rotation)
 {
-	rootNode->Render(shaderProgram, glm::mat4(1.0f));
+	rootNode->Render(shaderProgram, glm::mat4(1.0f), Wheel_Rotation);
 }
 
 void Model3D::Cleanup()
@@ -165,4 +164,14 @@ void Model3D::Cleanup()
 	{
 		delete textures[i];
 	}
+}
+
+std::vector<glm::vec3> Model3D::GetVertices()
+{
+	return this->rootNode->GetVertices();
+}
+void Model3D::Collided(ObjectType _ObjectType)
+{
+	if(_ObjectType == ObjectType::MD2model)
+	printf("3d model is collided with md2 \n");
 }
