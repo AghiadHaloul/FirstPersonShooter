@@ -8,6 +8,7 @@ private:
 public:
 	GLfloat Unitsize;
 	SkyBox(GLfloat unitsize);
+
 	~SkyBox();
 	void Draw(ShaderProgram &shader);
 	void Initialize();

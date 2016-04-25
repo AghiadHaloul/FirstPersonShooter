@@ -1,18 +1,87 @@
-﻿Build started 4/25/2016 9:18:24 PM.
-     1>Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/25/2016 9:36:04 PM.
+     1>Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "Application Manager\ApplicationManager.cpp" GameComponents\Hero.cpp Renderer\Renderer.cpp main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "Application Manager\ApplicationManager.cpp" CollisionDetection\AABoundingBox.cpp CollisionDetection\CollidableModel.cpp CollisionDetection\CollisionManager.cpp Cube\Cube.cpp EulerCamera\EulerCamera.cpp GameComponents\GameObject.cpp GameComponents\Hero.cpp main.cpp MD2Model\md2model.cpp MD2Model\vertexBufferObject.cpp Model\Model.cpp OBJLoader\objloader.cpp Renderer\Renderer.cpp Scene\Model3D.cpp Scene\ModelNode.cpp Scene\TexturedModel.cpp ShaderProgram\KeyFrameAnimationShader.cpp ShaderProgram\ShaderProgram.cpp Shaders\shader.cpp SkyBox\SkyBox.cpp Texture\texture.cpp
+         texture.cpp
+         SkyBox.cpp
+         shader.cpp
+         ShaderProgram.cpp
+         KeyFrameAnimationShader.cpp
+         TexturedModel.cpp
+         ModelNode.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(23): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(27): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(40): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(53): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(55): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\modelnode.cpp(62): warning C4018: '<' : signed/unsigned mismatch
+         Model3D.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(54): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(59): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(89): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(103): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(122): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(126): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(135): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(159): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(163): warning C4018: '<' : signed/unsigned mismatch
+         Renderer.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(157): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(227): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(228): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         objloader.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\objloader\objloader.cpp(34): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\objloader\objloader.cpp(45): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\objloader\objloader.cpp(53): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\objloader\objloader.cpp(57): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\objloader\objloader.cpp(62): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\objloader\objloader.cpp(67): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
+         Model.cpp
+         vertexBufferObject.cpp
+         md2model.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\md2model\md2model.cpp(60): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\md2model\md2model.cpp(237): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\md2model\md2model.cpp(394): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\md2model\md2model.cpp(423): warning C4018: '<' : signed/unsigned mismatch
+         main.cpp
+         Hero.cpp
+         GameObject.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamecomponents\gameobject.cpp(31): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         EulerCamera.cpp
+         Cube.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\cube\cube.cpp(78): warning C4018: '<' : signed/unsigned mismatch
+         CollisionManager.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\collisiondetection\collisionmanager.cpp(15): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\collisiondetection\collisionmanager.cpp(17): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\collisiondetection\collisionmanager.cpp(45): warning C4018: '<' : signed/unsigned mismatch
+         CollidableModel.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\collisiondetection\collidablemodel.cpp(18): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\scene\model3d.cpp(65): warning C4715: 'Model3D::LoadFromFile' : not all control paths return a value
+         Compiling...
+         AABoundingBox.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\collisiondetection\aaboundingbox.cpp(85): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\collisiondetection\aaboundingbox.cpp(93): warning C4018: '<' : signed/unsigned mismatch
          ApplicationManager.cpp
      1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\application manager\applicationmanager.cpp(141): warning C4805: '==' : unsafe mix of type 'int' and type 'bool' in operation
          Generating Code...
-         Compiling...
-         main.cpp
-         Renderer.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(154): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(223): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(224): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         Hero.cpp
-         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt "Texture\Texture Loader\stb_image.c"
+         stb_image.c
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\texture\texture loader\stb_image.c(300): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\texture\texture loader\stb_image.c(362): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\texture\texture loader\stb_image.c(400): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\texture\texture loader\stb_image.c(4293): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\lib opengl32.lib glew32.lib glfw3.lib assimp.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.lib" /MACHINE:X86 Debug\ApplicationManager.obj
          Debug\AABoundingBox.obj
@@ -37,9 +106,10 @@
          Debug\SkyBox.obj
          Debug\stb_image.obj
          Debug\texture.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
          FirstPersonShooter.vcxproj -> D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe
-     1>Done Building Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" (Build target(s)).
+     1>Done Building Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.20
+Time Elapsed 00:00:16.77

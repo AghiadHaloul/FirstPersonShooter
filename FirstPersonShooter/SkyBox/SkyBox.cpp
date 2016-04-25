@@ -8,6 +8,7 @@ SkyBox::SkyBox(GLfloat unitsize)
 
 
 	walls = new unique_ptr<TexturedModel>[6];
+
 	//bottom - earth
 	//GLfloat wall_width = 0.05;
 	

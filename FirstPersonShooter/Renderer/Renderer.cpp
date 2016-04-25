@@ -17,6 +17,7 @@ Renderer::~Renderer()
 
 void Renderer::Initialize()
 {
+
 	//calculate the normal of the triangle.
 	collisionManager = std::unique_ptr<CollisionManager>( new CollisionManager());
 	shader.LoadProgram();
@@ -130,6 +131,7 @@ void Renderer::Draw()
 		Game_SkyBox->Draw(shader);
 		//house->Render(&shader,houseM);
 		
+
 		hero->Render(VP);
 	//	mat4 modelmat = translate(vec3(0,-2,-1))*scale(vec3(0.05,0.05,0.05))*rotate(90.f,vec3(1,0,0));
 		//shader.BindModelMatrix(&modelmat[0][0]);
@@ -140,6 +142,7 @@ void Renderer::Draw()
 		animatedModelShader.BindModelMatrix(&bladeM[0][0]);
 		blade.RenderModel(&bladeAnimationState,&animatedModelShader);
 		*/
+
 
 }
 
@@ -158,6 +161,7 @@ void Renderer::Update(double deltaTime)
 
 void Renderer::HandleKeyboardInput(int key)
 {
+    
 	switch (key)
 	{
 		//Moving forward
@@ -226,4 +230,5 @@ void Renderer::HandleMouse(double deltaX,double deltaY)
 	//update the eye position uniform.
 	glUniform3fv(EyePositionID,1, &myCamera->GetEyePosition()[0]);
 }
+
 

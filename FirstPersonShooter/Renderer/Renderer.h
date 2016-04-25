@@ -30,7 +30,7 @@ class Renderer
 	unique_ptr<Model3D> house;
 	glm::mat4 houseM;
 	//
-unique_ptr<Hero> hero;
+    unique_ptr<Hero> hero;
     GLuint programID;
     ShaderProgram shader;
 	// Transformation
