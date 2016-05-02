@@ -501,13 +501,6 @@ vector<glm::vec3> CMD2Model::GetVertices()
 
 CMD2Model::CMD2Model()
 {
-	_ObjectType = ObjectType::MD2model;
+	//_ObjectType = _ObjectType_::MD2model;
 	//IsAnimationFinished = true;
-}
-
-void CMD2Model::Collided(ObjectType _ObjectType)
-{
-	if(_ObjectType == ObjectType::_Model3D)
-	printf("MD2 model collided with md3 \n");
-
 }

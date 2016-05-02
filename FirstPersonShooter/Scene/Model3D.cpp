@@ -2,7 +2,6 @@
 
 Model3D::Model3D(void)
 {
-	_ObjectType = ObjectType::_Model3D;
 }
 
 Model3D::~Model3D(void)
@@ -169,9 +168,4 @@ void Model3D::Cleanup()
 std::vector<glm::vec3> Model3D::GetVertices()
 {
 	return this->rootNode->GetVertices();
-}
-void Model3D::Collided(ObjectType _ObjectType)
-{
-	if(_ObjectType == ObjectType::MD2model)
-	printf("3d model is collided with md2 \n");
 }

@@ -9,7 +9,7 @@ EulerCamera::EulerCamera(void)
 		0, 1, 0);
 
 	SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,100.0f);
-	this->Set_CameraBoundry(1000.0f);
+	this->Set_CameraBoundry(100.0f);
 }
 
 EulerCamera::~EulerCamera(void)
@@ -70,12 +70,11 @@ void EulerCamera::UpdateViewMatrix()
 
 	mDirection = glm::normalize(mDirection);
 
-
 	mRight = glm::cross(mDirection,glm::vec3(0,1,0));
 
 	mUp = glm::cross(mRight,mDirection);
 
-	glm::vec3 center = mPosition + mDirection;
+	glm::vec3 center = mPosition + mDirection*0.1f;
 	mViewMatrix = glm::lookAt(mPosition,center,mUp);
 
 	//glm::mat4 view = glm::mat4(	mRight.x,		mRight.y,		mRight.z,		-glm::dot(mPosition,mRight),
@@ -84,6 +83,7 @@ void EulerCamera::UpdateViewMatrix()
 	//	0,				0,				0,				1);
 	//mViewMatrix = glm::transpose(view);
 }
+
 
 glm::mat4 EulerCamera::GetProjectionMatrix()
 {
@@ -123,13 +123,13 @@ void EulerCamera::Roll(float angleDegrees)
 void EulerCamera::Walk(float dist)
 {
 	if (vaildboundry(dist,mDirection))
-		mPosition += dist * mDirection;
+		mPosition += dist *vec3( mDirection.x,0,mDirection.z); //ignore y component of right dir
 }
 
 void EulerCamera::Strafe(float dist)
 {
 	if (vaildboundry(dist,mRight))
-		mPosition += dist *mRight;
+		mPosition += dist *vec3( mRight.x,0,mRight.z); //ignore y component of right dir
 }
 
 void EulerCamera::Fly(float dist)

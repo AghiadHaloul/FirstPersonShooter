@@ -148,7 +148,6 @@ class CMD2Model : public CollidableModel
 public:
   //  bool IsAnimationFinished;
 	CMD2Model();
-	virtual void Collided(ObjectType _ObjectType);
 	void LoadModel(char* sFilename, bool flipUVCoords = false);
 
 	void RenderModel(animState_t* animState,KeyFrameAnimationShader* shader);

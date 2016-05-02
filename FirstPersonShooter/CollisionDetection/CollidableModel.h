@@ -7,19 +7,24 @@
 
 class CollidableModel
 {
-
-	AABoundingBox boundingBox;
-
 public:
-	enum ObjectType{MD2model, _Model3D };
+	enum ObjectType{MD2model, _Model3D,HeroBullet,EnemyBullet,Hero,Enemy};
+
+private:
+	AABoundingBox boundingBox;
 	ObjectType _ObjectType;
+public:
+
 	CollidableModel(void);
 	~CollidableModel(void);
+	
+	ObjectType Get_ObjectType() const { return _ObjectType; }
+	void Set_ObjectType(ObjectType val) { _ObjectType = val; }
+
 	void SetBoundingBox(AABoundingBox fBoundingBox) { boundingBox = fBoundingBox;}
 	AABoundingBox GetBoundingBox(){ return boundingBox;}
 	//calculates the bounding box of a set of vertices. the box's size can be increased/decreased using the parameter boxOffset.
 	static AABoundingBox CalculateBoundingBox(std::vector<glm::vec3> vertices, float boxOffset = 0.0f);
-
 	//handles collision, is virtual since each derived class handle collision differently.
 	virtual void Collided(ObjectType _ObjectType);
 };

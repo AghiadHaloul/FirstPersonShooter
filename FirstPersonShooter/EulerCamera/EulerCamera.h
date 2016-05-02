@@ -85,6 +85,12 @@ public:
 	/// along the vector N.
 	/// </summary>
 	void Slide(float stepR, float stepU, float stepD);
-	};
+	glm::vec3 Get_mDirection() const { return mDirection; }
+	//void Set_mDirection(glm::vec3 val) { mDirection = val; }
+	glm::vec3 Get_mRight() const { return mRight; }
+	//void Set_mRight(glm::vec3 val) { mRight = val; }
+	glm::vec3 Get_mUp() const { return mUp; }
+	//void SetmUp(glm::vec3 val) { mUp = val; }
+};
 #endif // EulerCamera_h__
 

@@ -39,7 +39,7 @@ public:
 	void Render(ShaderProgram* shaderProgram, glm::mat4 Wheel_Rotation);
 	void Render(ShaderProgram* shaderProgram, glm::mat4 transformationMatrix, glm::mat4 Wheel_Rotation);
 	void Cleanup();
-	virtual void Collided(ObjectType _ObjectType);
+	
 };
 #endif // Model3D_h__
 

@@ -6,8 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <memory>
-
-
+#include "GameComponents/Enemy.h"
 #include "Shaders/shader.hpp"
 #include "Model/Model.h"
 #include "EulerCamera/EulerCamera.h"
@@ -19,6 +18,8 @@
 #include "MD2Model/md2model.h"
 #include "CollisionDetection/CollisionManager.h"
 #include "GameComponents/Hero.h"
+#include "GameComponents/Bullet.h"
+#include "CollisionDetection/CollidableModel.h"
 using namespace std;
 class Renderer
 {//removed later
@@ -30,7 +31,10 @@ class Renderer
 	unique_ptr<Model3D> house;
 	glm::mat4 houseM;
 	//
+	
     unique_ptr<Hero> hero;
+	unique_ptr<Enemy> enemy;
+
     GLuint programID;
     ShaderProgram shader;
 	// Transformation
@@ -45,7 +49,7 @@ class Renderer
 
 	unique_ptr<Model3D> soldier;
 
-	std::unique_ptr<EulerCamera> myCamera;
+	//std::unique_ptr<EulerCamera> myCamera;
 
 	glm::vec3 ambientLight;
 	glm::vec3 lightPosition;

@@ -132,6 +132,12 @@
     <ClCompile Include="GameComponents\Hero.cpp">
       <Filter>GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponents\Bullet.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Enemy.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application Manager\ApplicationManager.h">
@@ -198,6 +204,12 @@
       <Filter>GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\Hero.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Bullet.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Enemy.h">
       <Filter>GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
