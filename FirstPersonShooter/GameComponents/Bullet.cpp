@@ -78,7 +78,7 @@ void Bullet::Collided(ObjectType _ObjectType)
 	   printf("i'm  the hero bullet and you collided with enemy and i'm gonna be destroyed now bye bye  \n");
 	   GameObject::SetIsdestroied(true);   
 	}
-	else if (_ObjectType == ObjectType::Hero && CollidableModel::Get_ObjectType()==ObjectType::Enemy)
+	else if (_ObjectType == ObjectType::Hero && CollidableModel::Get_ObjectType()==ObjectType::EnemyBullet)
 	printf("i'm  the enemy bullet and you collided with hero \n");
 
 }

@@ -5,7 +5,7 @@
 #endif // Bullet_h__
 
 #include "GameComponents/GameObject.h"
-#include "Scene/TexturedModel.h"
+#include "Model/TexturedModel.h"
 #include "CollisionDetection/CollidableModel.h"
 #include <vector>
 #include "OBJLoader/objloader.hpp"

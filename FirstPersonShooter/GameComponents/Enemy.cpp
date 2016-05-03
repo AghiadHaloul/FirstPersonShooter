@@ -31,15 +31,20 @@ void Enemy::Initialize()
 	this->UpdateBoundingbox();
 }
 
-void Enemy::Render(KeyFrameAnimationShader *shader,mat4 VP)
+void Enemy::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *AnimationShader,mat4 VP)
 {
-	if(!GameObject::GetIsdestroied())
+
+		AnimationShader->UseProgram();
+		AnimationShader->BindVPMatrix(&VP[0][0]);
+		AnimationShader->BindModelMatrix(&GameObject::Get_ModelMatrix()[0][0]);
+		CMD2Model::RenderModel(&AnimationState,AnimationShader);
+
+
+	for (int Index = 0; Index < Ammo.size() ; Index++)
 	{
-	shader->UseProgram();
-	shader->BindVPMatrix(&VP[0][0]);
-	shader->BindModelMatrix(&GameObject::Get_ModelMatrix()[0][0]);
-	CMD2Model::RenderModel(&AnimationState,shader);
+		Ammo[Index]->Render(StaticShader,VP);
 	}
+
 }
 
 
@@ -58,6 +63,31 @@ void Enemy::Collided(ObjectType _ObjectType)
 	else if (_ObjectType == ObjectType::Hero)
 	printf("i'm your enemy and i collided with hero  \n");
 
+}
+
+void Enemy::Fire(unique_ptr<CollisionManager>& collisionManager)
+{
+	Bullet* fired_bullet = new Bullet(GameObject::GetPosition(),GameObject::GetDirection(),ObjectType::EnemyBullet); 
+	Ammo.push_back(fired_bullet);
+	collisionManager->AddCollidableModel((CollidableModel*) fired_bullet);
+}
+
+void Enemy::Update(unique_ptr<CollisionManager>&collisionManager,float deltaTime)
+{
+	for (int Index = 0; Index < Ammo.size() ; Index++)
+	{
+		Ammo[Index]->Update(deltaTime);
+
+		//erasing destroyed bullet
+		if(Ammo[Index]->GetIsdestroied())
+		{
+			collisionManager->RemoveCollidableModel((CollidableModel*)Ammo[Index]);
+			delete Ammo[Index];//to be tested
+			Ammo.erase(Ammo.begin()+Index);
+
+			cout<<"erased enemy bullet " << endl;
+		}	
+	}
 }
 
 Enemy::~Enemy(void)

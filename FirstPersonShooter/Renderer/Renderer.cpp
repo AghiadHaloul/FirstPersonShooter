@@ -1,8 +1,5 @@
 ﻿#include "Renderer.h"
 
-#include <glm/gtc/matrix_transform.hpp> 
-#include <glm/gtx/transform.hpp>
-#include "OBJLoader/objloader.hpp"
 
 
 Renderer::Renderer()
@@ -19,27 +16,29 @@ void Renderer::Initialize()
 {
 
 	//calculate the normal of the triangle.
-	collisionManager = std::unique_ptr<CollisionManager>( new CollisionManager());
 	shader.LoadProgram();
 	animatedModelShader.LoadProgram();
+/////////////////////////////////
 
-
+	collisionManager = std::unique_ptr<CollisionManager>( new CollisionManager());
 	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100.0f)); 
 	Game_SkyBox->Initialize();
 
-	//////////////////////////////////////////////////////////////////////////
-	hero = unique_ptr<Hero>(new Hero());
+
+	hero = unique_ptr<Hero>(new Hero(vec3(0,-98.7,0),vec3(0,0,-1)));
 	collisionManager->AddCollidableModel((CollidableModel*) hero.get());
 
-	enemy = unique_ptr<Enemy>(new Enemy(vec3(3,0,-3),vec3(-1,0,0)));
-	collisionManager->AddCollidableModel((CollidableModel*) enemy.get());
+	Firstlevel = unique_ptr<Level1>(new Level1(collisionManager));
 	
+
+	/////////////////////////
+	
+	
+
 	//MatrixID = glGetUniformLocation(shader.programID, "MVP");
 	ModelMatrixID = glGetUniformLocation(shader.programID, "ModelMatrix");
 	// Use our shader
 	//glUseProgram(programID);
-
-
 	shader.UseProgram();
 	//////////////////////////////////////////////////////////////////////////
 	// Configure the light.
@@ -86,7 +85,7 @@ void Renderer::Draw()
 		shader.BindVPMatrix(&VP[0][0]);	
 		Game_SkyBox->Draw(shader);
         hero->Render(&shader,VP);	
-		enemy->Render(&animatedModelShader,VP);
+		Firstlevel->Render(&shader,&animatedModelShader,VP);
 	
 
 }
@@ -100,6 +99,8 @@ void Renderer::Update(double deltaTime)
 {
 	collisionManager->UpdateCollisions();
 	hero->Update(collisionManager,deltaTime/1000);
+	Firstlevel->Update(collisionManager,deltaTime/1000);
+
 }
 
 void Renderer::HandleKeyboardInput(int key)
@@ -135,25 +136,21 @@ void Renderer::HandleKeyboardInput(int key)
 		// Moving up
 	case GLFW_KEY_SPACE:
 	case GLFW_KEY_R:
-		hero->HeroCam->Fly(1);
+		hero->HeroCam->Fly(0.1);
 		break;
 
 		// Moving down
 	case GLFW_KEY_LEFT_CONTROL:
 	case GLFW_KEY_F:
-		hero->HeroCam->Fly(-1);
+		hero->HeroCam->Fly(-0.1);
 		break;
 	case GLFW_KEY_B:
 		hero->Fire(collisionManager);
 		break;
+
 	default:
 		break;
 	}
-
-
-	//continue the remaining movements.
-
-	hero->HeroCam->UpdateViewMatrix();
 
 	//update the eye position uniform.
 	glUniform3fv(EyePositionID,1, &hero->HeroCam->GetEyePosition()[0]);

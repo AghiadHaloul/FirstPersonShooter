@@ -8,7 +8,7 @@
 #include <string>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Scene/TexturedModel.h"
+#include "Model/TexturedModel.h"
 using namespace std;
 using namespace glm;
 class Cube

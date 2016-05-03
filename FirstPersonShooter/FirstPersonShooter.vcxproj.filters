@@ -34,9 +34,6 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{0ca400be-a18a-4331-8a10-8d02ae2586b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{4092f99c-b2b5-417b-b083-dadd6225b961}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ShaderProgram">
       <UniqueIdentifier>{7fe544ab-6218-46f1-a6df-ee2bf4408296}</UniqueIdentifier>
     </Filter>
@@ -61,6 +58,15 @@
     <Filter Include="GameComponents">
       <UniqueIdentifier>{781940e5-19ef-438d-9927-b5c5e1341899}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model3D">
+      <UniqueIdentifier>{4092f99c-b2b5-417b-b083-dadd6225b961}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{f562895f-cd43-4460-a975-b0846185c020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{3541f32b-c05b-42ab-a84c-4b02014490bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,15 +89,6 @@
     </ClCompile>
     <ClCompile Include="Renderer\Renderer.cpp">
       <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Model3D.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\ModelNode.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\TexturedModel.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Texture\texture.cpp">
       <Filter>Texture</Filter>
@@ -138,6 +135,24 @@
     <ClCompile Include="GameComponents\Enemy.cpp">
       <Filter>GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="Model\TexturedModel.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model3D\Model3D.cpp">
+      <Filter>Model3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Model3D\ModelNode.cpp">
+      <Filter>Model3D</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\GameScene.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Level1.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\MapObject.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application Manager\ApplicationManager.h">
@@ -157,15 +172,6 @@
     </ClInclude>
     <ClInclude Include="Renderer\Renderer.h">
       <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Model3D.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\ModelNode.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\TexturedModel.h">
-      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Texture\texture.h">
       <Filter>Texture</Filter>
@@ -211,6 +217,24 @@
     </ClInclude>
     <ClInclude Include="GameComponents\Enemy.h">
       <Filter>GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\TexturedModel.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model3D\Model3D.h">
+      <Filter>Model3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Model3D\ModelNode.h">
+      <Filter>Model3D</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\GameScene.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Level1.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\MapObject.h">
+      <Filter>Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

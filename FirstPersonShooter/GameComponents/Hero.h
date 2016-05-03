@@ -6,7 +6,7 @@
 #include "GameComponents/GameObject.h"
 #include "MD2Model/md2model.h"
 #include <memory>
-#include "Scene/Model3D.h"
+#include "Model3D/Model3D.h"
 #include "GameComponents/Bullet.h"
 #include <iostream>
 #include <vector>
@@ -19,7 +19,6 @@ class Hero : public CMD2Model , public GameObject
 	animState_t AnimationState;
 	float step;
 
-    
 	void UpdateBoundingbox();
 	void Move();
 	

@@ -15,6 +15,7 @@ void ShaderProgram::LoadProgram()
 	modelMatrixID = glGetUniformLocation(programID, "ModelMatrix");
 
 	vpMatrixID = glGetUniformLocation(programID, "VP");
+
 }
 
 void ShaderProgram::BindModelMatrix(GLfloat* value)

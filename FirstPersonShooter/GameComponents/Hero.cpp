@@ -23,7 +23,7 @@ Hero::Hero(vec3 mPosition,vec3 mDirection):GameObject(mPosition,mDirection)
 	//cam initialization
 	this->HeroCam = unique_ptr<EulerCamera>(new EulerCamera());
 	this->HeroCam->Set_CameraBoundry(100);//try to take it from sky box
-	this->HeroCam->Reset(mPosition,vec3(0), vec3(0,1,0));
+	this->HeroCam->Reset(mPosition,mDirection, vec3(0,1,0));
 	this->HeroCam->SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,4000.0f);
 
 
@@ -38,7 +38,7 @@ void Hero::UpdateAnimation(float deltaTime)
 
 void Hero::Initialize()
 {
-	this->step = 1.0f;
+	this->step = 0.5f;
 
 	CMD2Model::LoadModel("data/models/hero/soldier.md2");
 	AnimationState = CMD2Model::StartAnimation(animType_t::STAND);
@@ -70,7 +70,7 @@ void Hero::Update(unique_ptr<CollisionManager>& collisionManager,float deltaTime
 			  delete Ammo[Index];//to be tested
 			  Ammo.erase(Ammo.begin()+Index);
 
-             cout<<"ammo erased " << endl;
+             cout<<"erased hero bullet " << endl;
 		  }	
 	}
 }
@@ -107,11 +107,14 @@ void Hero::UpdateBoundingbox()
 void Hero::Move()
 {
   GameObject::SetPosition(get_heropos());
-  GameObject::UpdateModelMatrix();
   GameObject::SetDirection(vec3(0));
-  //to be tested
-  this->UpdateBoundingbox();
+
+  GameObject::UpdateModelMatrix();
+  
+  this->UpdateBoundingbox(); //to be optimized 
+  this->HeroCam->UpdateViewMatrix();
  
+  
   //****************** 
   // if(CMD2Model::IsAnimationFinished)
  // AnimationState = CMD2Model::StartAnimation(animType_t::RUN);
@@ -120,30 +123,26 @@ void Hero::Move()
 
 void Hero::Walk_Forward()
 {
-   HeroCam->Walk(step);
+   this->HeroCam->Walk(step);
    this->Move();
 }
 
 void Hero::Walk_Backward()
 {
-	HeroCam->Walk(-step);
-	//vec3 HeroDirection = vec3(HeroCam->Get_mDirection().x,0,HeroCam->Get_mDirection().z);
+	this->HeroCam->Walk(-step);
 	this->Move();
 }
 
 void Hero::Straf_Right()
 {
   this->HeroCam->Strafe(step);
- // vec3 HeroDirection = vec3(HeroCam->Get_mRight().x,0,HeroCam->Get_mRight().z);
   this->Move();
-
 }
 
 
 void Hero::Straf_Left()
 {
 	this->HeroCam->Strafe(-step);
-//	vec3 HeroDirection = vec3(HeroCam->Get_mRight().x,0,HeroCam->Get_mRight().z);
 	this->Move();
 }
 
@@ -160,7 +159,6 @@ void Hero::Pitch(double deltaY)
 	this->HeroCam->Pitch(deltaY);
 	this->HeroCam->UpdateViewMatrix();
 	this->Move();
-	
 }
 
 vec3 Hero::get_heropos()
