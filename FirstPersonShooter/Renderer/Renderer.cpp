@@ -25,7 +25,7 @@ void Renderer::Initialize()
 	Game_SkyBox->Initialize();
 
 
-	hero = unique_ptr<Hero>(new Hero(vec3(0,-98.7,0),vec3(0,0,-1)));
+	hero = unique_ptr<Hero>(new Hero(vec3(0,-98.7,0),vec3(0,0,-1),Game_SkyBox->Unitsize));
 	collisionManager->AddCollidableModel((CollidableModel*) hero.get());
 
 	Firstlevel = unique_ptr<Level1>(new Level1(collisionManager));

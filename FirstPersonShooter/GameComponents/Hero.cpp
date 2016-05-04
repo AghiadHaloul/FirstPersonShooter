@@ -4,17 +4,17 @@ Hero::Hero():GameObject()
 {
 	
 	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,1.0f,0.0f,0.0f) * glm::scale(0.01f,0.01f,0.01f));
-	CMD2Model::Set_ObjectType(ObjectType::Hero);
-	this->Initialize();    
+	CMD2Model::Set_ObjectType(ObjectType::Hero); 
 	//cam initialization
 	this->HeroCam = unique_ptr<EulerCamera>(new EulerCamera());
 	this->HeroCam->Set_CameraBoundry(100);
 	this->HeroCam->Reset(0, 0, 0,   0, 0, -1,   0, 1, 0);;
 	this->HeroCam->SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,4000.0f);
+    HeroCross = new CrossHair(HeroCam->GetEyePosition());
 }
 
 
-Hero::Hero(vec3 mPosition,vec3 mDirection):GameObject(mPosition,mDirection)
+Hero::Hero(vec3 mPosition,vec3 mDirection,float boundry):GameObject(mPosition,mDirection)
 {
 	
 	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,0.0f,1.0f,0.0f) * glm::scale(0.01f,0.01f,0.01f));
@@ -22,11 +22,11 @@ Hero::Hero(vec3 mPosition,vec3 mDirection):GameObject(mPosition,mDirection)
 
 	//cam initialization
 	this->HeroCam = unique_ptr<EulerCamera>(new EulerCamera());
-	this->HeroCam->Set_CameraBoundry(100);//try to take it from sky box
+	this->HeroCam->Set_CameraBoundry(boundry);//try to take it from sky box
 	this->HeroCam->Reset(mPosition,mDirection, vec3(0,1,0));
 	this->HeroCam->SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,4000.0f);
-
-
+	//under testing 
+	//HeroCross = new CrossHair(mPosition+mDirection);
 }
 
 
@@ -54,6 +54,9 @@ void Hero::Render(ShaderProgram * shader,mat4 VP)
 	{
 		Ammo[Index]->Render(shader,VP);
 	}
+
+	//under testing
+	//HeroCross->Render(shader,VP);
 }
 
 
@@ -110,10 +113,11 @@ void Hero::Move()
   GameObject::SetDirection(vec3(0));
 
   GameObject::UpdateModelMatrix();
-  
   this->UpdateBoundingbox(); //to be optimized 
   this->HeroCam->UpdateViewMatrix();
  
+  //under testing 
+ // HeroCross->Move(HeroCam->GetEyePosition()+HeroCam->Get_mDirection(),HeroCam->Get_mDirection());
   
   //****************** 
   // if(CMD2Model::IsAnimationFinished)

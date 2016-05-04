@@ -19,7 +19,9 @@ private:
 	vec3 Direction;
 	vec3 Position;
 	float XZ_DirectionAngle;
-	float YZ_DirectionAngle; 
+	float YZ_DirectionAngle;
+	float XY_DirectionAngle; 
+
 	bool isdestroied;
  public:
 	 GameObject::GameObject(vec3,vec3 );
@@ -40,5 +42,7 @@ private:
 	void Set_YZ_DirectionAngle(float val) { YZ_DirectionAngle = val; }
 	float Get_XZ_DirectionAngle() const { return XZ_DirectionAngle; }
 	void Set_XZ_DirectionAngle(float val) { XZ_DirectionAngle = val; }
+	//float Get_XY_DirectionAngle() const { return XY_DirectionAngle; }
+	//void Set_XY_DirectionAngle(float val) { XY_DirectionAngle = val; }
 };
 

@@ -4,6 +4,7 @@
 Level1::Level1(unique_ptr<CollisionManager>& collisionManager):GameScene()
 {
 	MapObject::Set_Model();
+	Enemy::Set_EnemyModel();
 	Initialize(collisionManager);
 }
 
@@ -29,12 +30,47 @@ void Level1::Update(unique_ptr<CollisionManager>& collisionManager,float deltati
 
 void Level1::Initialize_Enemies(unique_ptr<CollisionManager>& collisionManager)
 {
-	for (int i = 0; i < 1; i++)
-	{
+	
 		Enemy* tmp_enemy= new Enemy(vec3(-3,-99,0),vec3(-1,0,0)); 
         Enemies.push_back(tmp_enemy);
 		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-	}
+	     
+	    tmp_enemy = new Enemy(vec3(9,-99,0),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+
+
+		tmp_enemy = new Enemy(vec3(50,-99,50),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+
+		tmp_enemy = new Enemy(vec3(30,-99,10),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+
+		tmp_enemy = new Enemy(vec3(10,-99,13),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+
+		tmp_enemy = new Enemy(vec3(17,-99,35),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+
+		tmp_enemy = new Enemy(vec3(7,-99,18),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+
+		tmp_enemy = new Enemy(vec3(18,-99,70),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+		
+		tmp_enemy = new Enemy(vec3(3,-99,18),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+
+		tmp_enemy = new Enemy(vec3(10,-99,60),vec3(1,0,0)); 
+		Enemies.push_back(tmp_enemy);
+		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
 }
 
 void Level1::Update_Enemies(unique_ptr<CollisionManager>& collisionManager,float deltatime)

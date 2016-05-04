@@ -11,23 +11,24 @@
 #include "GameComponents/Bullet.h"
 using namespace std;
 
-class Enemy : public GameObject , public CMD2Model
+class Enemy : public GameObject , public CollidableModel
 {
 
 	animState_t AnimationState;
 	void UpdateBoundingbox();
 	vector<Bullet*>Ammo;
-
+	static CMD2Model  EnemyModel;
 	//float step;
 	//void Move();
 public:
+	Enemy(vec3 mPosition,vec3 mDirection );
 	void Initialize();
 	void Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *AnimationShader,mat4 VP);
 	void UpdateAnimation(float deltaTime);
 	virtual void Collided(ObjectType _ObjectType);
 	void Fire(unique_ptr<CollisionManager>& collisionManager);
 	void Update(unique_ptr<CollisionManager>&collisionManager,float deltaTime);
-	Enemy(vec3 mPosition,vec3 mDirection );
+	static void Set_EnemyModel();
 	~Enemy(void);
 };
 

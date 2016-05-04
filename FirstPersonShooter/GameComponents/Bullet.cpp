@@ -4,16 +4,16 @@
 Bullet::Bullet(vec3 mPosition,vec3 Direction,ObjectType BulletType)
 	:GameObject(mPosition,Direction)
 {
-	Speed = 0.5;
+	Speed = 10.0;
 	Distance = 0;
 
-   GameObject::Set_InitialTransformation(scale(0.01f,0.01f,0.01f));
+   GameObject::Set_InitialTransformation(scale(0.001f,0.001f,0.001f));
    CollidableModel::Set_ObjectType(BulletType);
    
    //calculating bullet bounding box
    CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(BulletModel->VertexData));
    auto tmpboundingbox = CollidableModel::GetBoundingBox();
-   tmpboundingbox.Scale(0.01f,0.01f,0.01f);
+   tmpboundingbox.Scale(0.001f,0.001,0.001);
    tmpboundingbox.SetCenter(GameObject::GetPosition());
    CollidableModel::SetBoundingBox(tmpboundingbox); 
 

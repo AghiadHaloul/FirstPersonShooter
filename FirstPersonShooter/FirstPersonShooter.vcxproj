@@ -86,6 +86,7 @@
     <ClCompile Include="Cube\Cube.cpp" />
     <ClCompile Include="EulerCamera\EulerCamera.cpp" />
     <ClCompile Include="GameComponents\Bullet.cpp" />
+    <ClCompile Include="GameComponents\CrossHair.cpp" />
     <ClCompile Include="GameComponents\Enemy.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Hero.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="Cube\Cube.h" />
     <ClInclude Include="EulerCamera\EulerCamera.h" />
     <ClInclude Include="GameComponents\Bullet.h" />
+    <ClInclude Include="GameComponents\CrossHair.h" />
     <ClInclude Include="GameComponents\Enemy.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Hero.h" />

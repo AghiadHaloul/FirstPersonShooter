@@ -153,6 +153,9 @@
     <ClCompile Include="Map\MapObject.cpp">
       <Filter>Map</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponents\CrossHair.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application Manager\ApplicationManager.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="Map\MapObject.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\CrossHair.h">
+      <Filter>GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

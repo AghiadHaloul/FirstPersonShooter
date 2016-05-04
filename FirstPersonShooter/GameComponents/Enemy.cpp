@@ -4,31 +4,32 @@
 
 Enemy::Enemy(vec3 mPosition,vec3 mDirection):GameObject(mPosition,mDirection)
 {
-	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,1.0f,0.0f,0.0f) * glm::scale(0.01f,0.01f,0.01f));
-	CMD2Model::Set_ObjectType(ObjectType::Enemy);
+	
 	Initialize();
 }
 
 
+
+void Enemy::Initialize()
+{
+	//this->step = 0.5f;
+	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,1.0f,0.0f,0.0f) * glm::scale(0.01f,0.01f,0.01f));
+	CollidableModel::Set_ObjectType(ObjectType::Enemy);
+	AnimationState = EnemyModel.StartAnimation(animType_t::STAND);
+	GameObject::UpdateModelMatrix();
+	this->UpdateBoundingbox();
+}
+
 void Enemy::UpdateBoundingbox()
 {
-	CMD2Model::SetBoundingBox(CollidableModel::CalculateBoundingBox(CMD2Model::GetVertices()));
-	auto tmpboundingbox = CMD2Model::GetBoundingBox();
+	CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(EnemyModel.GetVertices()));
+	auto tmpboundingbox = CollidableModel::GetBoundingBox();
 	tmpboundingbox.Scale(0.01f,0.01f,0.01f);
 	tmpboundingbox.Rotate(-90.0f,1.0f,0.0f,0.0f);
 	tmpboundingbox.Rotate(GameObject::Get_XZ_DirectionAngle(),0.0f,1.0f,0.0f);
 	tmpboundingbox.Rotate(GameObject::Get_YZ_DirectionAngle(),1.0f,0.0f,0.0f);
 	tmpboundingbox.Translate(GameObject::GetPosition());
-	CMD2Model::SetBoundingBox(tmpboundingbox);
-}
-
-void Enemy::Initialize()
-{
-	//this->step = 0.5f;
-	CMD2Model::LoadModel("data/models/enemy/robot.md2");
-	AnimationState = CMD2Model::StartAnimation(animType_t::STAND);
-	 GameObject::UpdateModelMatrix();
-	this->UpdateBoundingbox();
+	CollidableModel::SetBoundingBox(tmpboundingbox);
 }
 
 void Enemy::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *AnimationShader,mat4 VP)
@@ -37,7 +38,7 @@ void Enemy::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *Animation
 		AnimationShader->UseProgram();
 		AnimationShader->BindVPMatrix(&VP[0][0]);
 		AnimationShader->BindModelMatrix(&GameObject::Get_ModelMatrix()[0][0]);
-		CMD2Model::RenderModel(&AnimationState,AnimationShader);
+		EnemyModel.RenderModel(&AnimationState,AnimationShader);
 
 
 	for (int Index = 0; Index < Ammo.size() ; Index++)
@@ -50,7 +51,7 @@ void Enemy::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *Animation
 
 void Enemy::UpdateAnimation(float deltaTime)
 {
-	 CMD2Model::UpdateAnimation(&AnimationState,deltaTime);
+	 EnemyModel.UpdateAnimation(&AnimationState,deltaTime);
 }
 
 void Enemy::Collided(ObjectType _ObjectType)
@@ -90,6 +91,13 @@ void Enemy::Update(unique_ptr<CollisionManager>&collisionManager,float deltaTime
 	}
 }
 
+void Enemy::Set_EnemyModel()
+{
+	EnemyModel.LoadModel("data/models/enemy/robot.md2");
+	
+}
+CMD2Model Enemy::EnemyModel;
 Enemy::~Enemy(void)
 {
+
 }

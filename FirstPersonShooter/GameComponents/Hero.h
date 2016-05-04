@@ -11,21 +11,22 @@
 #include <iostream>
 #include <vector>
 #include "CollisionDetection/CollisionManager.h"
+#include "GameComponents/CrossHair.h"
 using namespace std;
 
 class Hero : public CMD2Model , public GameObject
 {
     vector<Bullet*>Ammo;
+	CrossHair * HeroCross; //under testing 
 	animState_t AnimationState;
 	float step;
-
 	void UpdateBoundingbox();
 	void Move();
 	
 public:
 	unique_ptr<EulerCamera> HeroCam;
 	Hero();
-	Hero(vec3 mPosition,vec3 mDirection);
+	Hero(vec3 mPosition,vec3 mDirection,float boundry);
 	
 	void Initialize();
 	void Render(ShaderProgram * shader,mat4 VP);
