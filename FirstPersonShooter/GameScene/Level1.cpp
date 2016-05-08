@@ -1,18 +1,17 @@
 #include "Level1.h"
-
-
-Level1::Level1(unique_ptr<CollisionManager>& collisionManager):GameScene()
+#include "Helper.h"
+Level1::Level1() :GameScene()
 {
 	MapObject::Set_Model();
 	Enemy::Set_EnemyModel();
-	Initialize(collisionManager);
+	Initialize();
 }
 
 
-void Level1::Initialize(unique_ptr<CollisionManager>& collisionManager)
+void Level1::Initialize()
 {
-	Initialize_Enemies(collisionManager);
-	Initialize_MapObjects(collisionManager);
+	Initialize_Enemies();
+	Initialize_MapObjects();
 }
 
 void Level1::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *AnimationShader,mat4 VP)
@@ -21,68 +20,38 @@ void Level1::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *Animatio
   Render_MapObjects(StaticShader,VP);
 }
 
-void Level1::Update(unique_ptr<CollisionManager>& collisionManager,float deltatime)
+void Level1::Update(float deltatime)
 {
-  Update_Enemies(collisionManager,deltatime);
+  Update_Enemies(deltatime);
+ // vec3 dir =HelperMethods::Get_Random_Direction();
+  //cout << "X :" << (float)dir.x<< " Y :" <<dir.y<<" Z :"<<dir.z << endl;
 }
 
 
 
-void Level1::Initialize_Enemies(unique_ptr<CollisionManager>& collisionManager)
+void Level1::Initialize_Enemies()
 {
 	
-		Enemy* tmp_enemy= new Enemy(vec3(-3,-99,0),vec3(-1,0,0)); 
+	for (int i = 0; i < 10; i++)
+	{
+		vec3 Random_direction =HelperMethods::Get_Random_Direction();
+		cout << "X :" << (float)Random_direction.x<< " Y :" <<Random_direction.y<<" Z :"<<Random_direction.z << endl;
+		Enemy* tmp_enemy= new Enemy(vec3(50,-99,2),Random_direction); 
         Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-	     
-	    tmp_enemy = new Enemy(vec3(9,-99,0),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-
-
-		tmp_enemy = new Enemy(vec3(50,-99,50),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-
-		tmp_enemy = new Enemy(vec3(30,-99,10),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-
-		tmp_enemy = new Enemy(vec3(10,-99,13),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-
-		tmp_enemy = new Enemy(vec3(17,-99,35),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-
-		tmp_enemy = new Enemy(vec3(7,-99,18),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-
-		tmp_enemy = new Enemy(vec3(18,-99,70),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-		
-		tmp_enemy = new Enemy(vec3(3,-99,18),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
-
-		tmp_enemy = new Enemy(vec3(10,-99,60),vec3(1,0,0)); 
-		Enemies.push_back(tmp_enemy);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
+	}    
 }
 
-void Level1::Update_Enemies(unique_ptr<CollisionManager>& collisionManager,float deltatime)
+void Level1::Update_Enemies(float deltatime)
 {
 	for (int Index = 0; Index < GameScene::Enemies.size() ; Index++)
 	{
-		Enemies[Index]->Update(collisionManager,deltatime);
+		Enemies[Index]->Update(deltatime);
 
 		//erasing destroyed enemy
 		if(Enemies[Index]->GetIsdestroied())
 		{
-			collisionManager->RemoveCollidableModel((CollidableModel*)Enemies[Index]);
+			StaticComponent::collisionManager->RemoveCollidableModel((CollidableModel*)Enemies[Index]);
 			delete Enemies[Index];//to be tested
 			Enemies.erase(Enemies.begin()+Index);
 
@@ -101,17 +70,17 @@ void Level1::Render_Enemies(ShaderProgram*StaticShader,KeyFrameAnimationShader *
 
 
 
-void Level1::Initialize_MapObjects(unique_ptr<CollisionManager>& collisionManager)
+void Level1::Initialize_MapObjects()
 {
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 0; i++)
 	{
 		MapObject* tmp_mapObject= new MapObject(vec3(-2,-99,0),vec3(-1,0,0)); 
 		MapObjects.push_back(tmp_mapObject);
-		collisionManager->AddCollidableModel((CollidableModel*) tmp_mapObject);
+		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) tmp_mapObject);
 	}
 }
 
-void Level1::Update_MapObjects(unique_ptr<CollisionManager>& collisionManager)
+void Level1::Update_MapObjects()
 {
 
 }

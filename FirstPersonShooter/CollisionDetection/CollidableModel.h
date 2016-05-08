@@ -8,7 +8,7 @@
 class CollidableModel
 {
 public:
-	enum ObjectType{MD2model,MapObject,HeroBullet,EnemyBullet,Hero,Enemy};
+	enum ObjectType{EnemySensor,MapObject,HeroBullet,EnemyBullet,Hero,Enemy};
 
 private:
 	AABoundingBox boundingBox;

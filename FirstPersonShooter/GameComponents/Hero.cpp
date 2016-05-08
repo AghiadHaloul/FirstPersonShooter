@@ -1,5 +1,5 @@
 #include "Hero.h"
-
+#include "CollisionDetection/sensor.h"
 Hero::Hero():GameObject()
 {
 	
@@ -19,14 +19,14 @@ Hero::Hero(vec3 mPosition,vec3 mDirection,float boundry):GameObject(mPosition,mD
 	
 	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,0.0f,1.0f,0.0f) * glm::scale(0.01f,0.01f,0.01f));
 	this->Initialize();
-
+	CMD2Model::Set_ObjectType(ObjectType::Hero); 
 	//cam initialization
 	this->HeroCam = unique_ptr<EulerCamera>(new EulerCamera());
 	this->HeroCam->Set_CameraBoundry(boundry);//try to take it from sky box
 	this->HeroCam->Reset(mPosition,mDirection, vec3(0,1,0));
 	this->HeroCam->SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,4000.0f);
 	//under testing 
-	//HeroCross = new CrossHair(mPosition+mDirection);
+	HeroCross = new CrossHair(mPosition+mDirection);
 }
 
 
@@ -38,52 +38,37 @@ void Hero::UpdateAnimation(float deltaTime)
 
 void Hero::Initialize()
 {
-	this->step = 0.5f;
+	this->step = 0.6f;
 
 	CMD2Model::LoadModel("data/models/hero/soldier.md2");
 	AnimationState = CMD2Model::StartAnimation(animType_t::STAND);
 	//calculate AABBboundingbox
 	this->UpdateBoundingbox();
 	Bullet::Set_BulletModel();
+	firehold = 0;
 }
 
 void Hero::Render(ShaderProgram * shader,mat4 VP)
 { 
-	
-	for (int Index = 0; Index < Ammo.size() ; Index++)
-	{
-		Ammo[Index]->Render(shader,VP);
-	}
-
 	//under testing
-	//HeroCross->Render(shader,VP);
+	HeroCross->Render(shader,VP);
 }
 
 
-void Hero::Update(unique_ptr<CollisionManager>& collisionManager,float deltaTime)
+void Hero::Update(float deltaTime)
 {
-	for (int Index = 0; Index < Ammo.size() ; Index++)
+	firehold+=deltaTime;
+}
+
+
+void Hero::Fire()
+{
+	if(firehold > 0.5)
 	{
-		Ammo[Index]->Update(deltaTime);
-
-		//erasing destroyed bullet
-		if(Ammo[Index]->GetIsdestroied())
-		  {
-			  collisionManager->RemoveCollidableModel((CollidableModel*)Ammo[Index]);
-			  delete Ammo[Index];//to be tested
-			  Ammo.erase(Ammo.begin()+Index);
-
-             cout<<"erased hero bullet " << endl;
-		  }	
-	}
-}
-
-
-void Hero::Fire(unique_ptr<CollisionManager> &collisionManager)
-{
 	Bullet* fired_bullet = new Bullet(HeroCam->GetEyePosition(),HeroCam->Get_mDirection(),ObjectType::HeroBullet); 
-    Ammo.push_back(fired_bullet);
-	collisionManager->AddCollidableModel((CollidableModel*) fired_bullet);
+    StaticComponent::sceneBullets->AddBullet(fired_bullet);
+	firehold = 0;
+	}
 }
 
 void Hero::Collided(ObjectType _ObjectType)
@@ -92,6 +77,8 @@ void Hero::Collided(ObjectType _ObjectType)
 		printf("i'm your hero and i collided with hero bullet baaaaaaaaaad\n");
 	else if (_ObjectType == ObjectType::Enemy)
 		printf("i'm your hero and i collided with enemy \n");
+	else if (_ObjectType == ObjectType::MapObject)
+		printf("i'm your hero and i collided with Mapobject \n");
 }
 
 void Hero::UpdateBoundingbox()
@@ -102,7 +89,6 @@ void Hero::UpdateBoundingbox()
 	tmpboundingbox.Scale(0.01f,0.01f,0.01f);
 	tmpboundingbox.Rotate(-90.0f,1.0f,0.0f,0.0f);
 	tmpboundingbox.Rotate(GameObject::Get_XZ_DirectionAngle(),0.0f,1.0f,0.0f);
-	tmpboundingbox.Rotate(GameObject::Get_YZ_DirectionAngle(),1.0f,0.0f,0.0f);
 	tmpboundingbox.Translate(GameObject::GetPosition());
 	CMD2Model::SetBoundingBox(tmpboundingbox);
 }
@@ -110,14 +96,14 @@ void Hero::UpdateBoundingbox()
 void Hero::Move()
 {
   GameObject::SetPosition(get_heropos());
-  GameObject::SetDirection(vec3(0));
-
+  GameObject::SetDirection(HeroCam->Get_mDirection());
+  Sensor::HeroPostion = vec3(get_heropos().x,0,get_heropos().z); //sensor(enemy) must be aware of hero direction
   GameObject::UpdateModelMatrix();
   this->UpdateBoundingbox(); //to be optimized 
   this->HeroCam->UpdateViewMatrix();
  
   //under testing 
- // HeroCross->Move(HeroCam->GetEyePosition()+HeroCam->Get_mDirection(),HeroCam->Get_mDirection());
+ HeroCross->Move(HeroCam->GetEyePosition()+HeroCam->Get_mDirection());
   
   //****************** 
   // if(CMD2Model::IsAnimationFinished)

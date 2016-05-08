@@ -83,6 +83,7 @@
     <ClCompile Include="CollisionDetection\AABoundingBox.cpp" />
     <ClCompile Include="CollisionDetection\CollidableModel.cpp" />
     <ClCompile Include="CollisionDetection\CollisionManager.cpp" />
+    <ClCompile Include="CollisionDetection\sensor.cpp" />
     <ClCompile Include="Cube\Cube.cpp" />
     <ClCompile Include="EulerCamera\EulerCamera.cpp" />
     <ClCompile Include="GameComponents\Bullet.cpp" />
@@ -90,6 +91,7 @@
     <ClCompile Include="GameComponents\Enemy.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Hero.cpp" />
+    <ClCompile Include="GameComponents\StaticComponent.cpp" />
     <ClCompile Include="GameScene\GameScene.cpp" />
     <ClCompile Include="GameScene\Level1.cpp" />
     <ClCompile Include="main.cpp" />
@@ -102,8 +104,17 @@
     <ClCompile Include="Model\TexturedModel.cpp" />
     <ClCompile Include="OBJLoader\objloader.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Screen\CreditsScreen.cpp" />
+    <ClCompile Include="Screen\GameScreen.cpp" />
+    <ClCompile Include="Screen\LoadingScreen.cpp" />
+    <ClCompile Include="Screen\OptionScreen.cpp" />
+    <ClCompile Include="Screen\PauseScreen.cpp" />
+    <ClCompile Include="Screen\Screen.cpp" />
+    <ClCompile Include="Screen\ScreenManger.cpp" />
+    <ClCompile Include="Screen\StartScreen.cpp" />
     <ClCompile Include="ShaderProgram\KeyFrameAnimationShader.cpp" />
     <ClCompile Include="ShaderProgram\ShaderProgram.cpp" />
+    <ClCompile Include="ShaderProgram\SimpleShaderProgram.cpp" />
     <ClCompile Include="Shaders\shader.cpp" />
     <ClCompile Include="SkyBox\SkyBox.cpp" />
     <ClCompile Include="Texture\Texture Loader\stb_image.c" />
@@ -114,6 +125,7 @@
     <ClInclude Include="CollisionDetection\AABoundingBox.h" />
     <ClInclude Include="CollisionDetection\CollidableModel.h" />
     <ClInclude Include="CollisionDetection\CollisionManager.h" />
+    <ClInclude Include="CollisionDetection\sensor.h" />
     <ClInclude Include="Cube\Cube.h" />
     <ClInclude Include="EulerCamera\EulerCamera.h" />
     <ClInclude Include="GameComponents\Bullet.h" />
@@ -121,8 +133,10 @@
     <ClInclude Include="GameComponents\Enemy.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Hero.h" />
+    <ClInclude Include="GameComponents\StaticComponent.h" />
     <ClInclude Include="GameScene\GameScene.h" />
     <ClInclude Include="GameScene\Level1.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="Map\MapObject.h" />
     <ClInclude Include="MD2Model\md2model.h" />
     <ClInclude Include="MD2Model\vertexBufferObject.h" />
@@ -132,8 +146,17 @@
     <ClInclude Include="Model\TexturedModel.h" />
     <ClInclude Include="OBJLoader\objloader.hpp" />
     <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="Screen\CreditsScreen.h" />
+    <ClInclude Include="Screen\GameScreen.h" />
+    <ClInclude Include="Screen\LoadingScreen.h" />
+    <ClInclude Include="Screen\OptionScreen.h" />
+    <ClInclude Include="Screen\PauseScreen.h" />
+    <ClInclude Include="Screen\Screen.h" />
+    <ClInclude Include="Screen\ScreenManger.h" />
+    <ClInclude Include="Screen\StartScreen.h" />
     <ClInclude Include="ShaderProgram\KeyFrameAnimationShader.h" />
     <ClInclude Include="ShaderProgram\ShaderProgram.h" />
+    <ClInclude Include="ShaderProgram\SimpleShaderProgram.h" />
     <ClInclude Include="Shaders\shader.hpp" />
     <ClInclude Include="SkyBox\SkyBox.h" />
     <ClInclude Include="Texture\Texture Loader\stb_image.h" />
@@ -141,7 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="KeyframeAnimation.vertexshader" />
+    <None Include="SimpleTextureShader.fragmentshader" />
     <None Include="SimpleTransformWithColor.vertexshader" />
+    <None Include="SimpleVertexShader.vertexshader" />
     <None Include="TextureLighting.fragmentshader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

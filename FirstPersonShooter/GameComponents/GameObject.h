@@ -4,6 +4,7 @@
 #endif // GameObject_h__
 #include <glm/glm.hpp>
 #include<glm/gtx/transform.hpp>
+#include<glm/gtx/vector_angle.hpp>
 #include <math.h>
 #include <iostream>
 using namespace std;
@@ -16,20 +17,21 @@ protected:
 	mat4 ModelMatrix;
 	mat4 InitialTransformation; //resize the object to fit in our game
 private:
-	vec3 Direction;
-	vec3 Position;
+	
 	float XZ_DirectionAngle;
 	float YZ_DirectionAngle;
 	float XY_DirectionAngle; 
 
 	bool isdestroied;
  public:
+	 vec3 Direction;
+	 vec3 Position;
 	 GameObject::GameObject(vec3,vec3 );
 	GameObject(void);
 	~GameObject(void);
 	void UpdateModelMatrix();
 	glm::vec3 GetDirection() const { return Direction; }
-	void SetDirection(glm::vec3 val) { Direction = val; }
+	void SetDirection(glm::vec3 val) { Direction = normalize(val); }
 	glm::vec3 GetPosition() const { return Position; }
 	void SetPosition(glm::vec3 val) { Position = val; }
 	bool GetIsdestroied() const { return isdestroied; }

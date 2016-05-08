@@ -15,23 +15,15 @@
 using namespace std;
 class Renderer
 {
-	std::unique_ptr<CollisionManager> collisionManager;
+	
 	unique_ptr<Hero> hero;
 	std::unique_ptr<SkyBox> Game_SkyBox;
 
 	unique_ptr<Level1> Firstlevel;
 
 
-    GLuint programID;
     KeyFrameAnimationShader animatedModelShader;
 	ShaderProgram shader;
-	// Transformation
-	//GLuint MatrixID;
-	GLuint ModelMatrixID;
-	GLuint AmbientLightID;
-	GLuint LightPositionID;
-	GLuint EyePositionID;
-	//std::unique_ptr<EulerCamera> myCamera;
 
 	glm::vec3 ambientLight;
 	glm::vec3 lightPosition;

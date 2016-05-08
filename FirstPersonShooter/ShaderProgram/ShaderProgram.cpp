@@ -16,6 +16,14 @@ void ShaderProgram::LoadProgram()
 
 	vpMatrixID = glGetUniformLocation(programID, "VP");
 
+
+	LightPositionID = glGetUniformLocation(programID,"LightPosition_worldspace");
+
+	AmbientLightID = glGetUniformLocation(programID,"ambientLight");
+	
+	EyePositionID = glGetUniformLocation(programID,"EyePosition_worldspace");
+	
+
 }
 
 void ShaderProgram::BindModelMatrix(GLfloat* value)
@@ -26,6 +34,25 @@ void ShaderProgram::BindModelMatrix(GLfloat* value)
 void ShaderProgram::BindVPMatrix(GLfloat* value)
 {
 	glUniformMatrix4fv(vpMatrixID, 1, GL_FALSE, value);
+}
+
+
+void ShaderProgram::BindEyePosition(GLfloat* value)
+{
+	glUniform3fv(EyePositionID,1, value);
+
+}
+
+
+void ShaderProgram::BindAmbientLight(GLfloat* value)
+{
+	glUniform3fv(AmbientLightID,1, value);
+}
+
+
+void ShaderProgram::BindLightPosition(GLfloat* value)
+{
+	glUniform3fv(LightPositionID,1, value);
 }
 
 void ShaderProgram::UseProgram()

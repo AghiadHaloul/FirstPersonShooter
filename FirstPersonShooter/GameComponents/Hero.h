@@ -12,17 +12,18 @@
 #include <vector>
 #include "CollisionDetection/CollisionManager.h"
 #include "GameComponents/CrossHair.h"
+#include "GameScene/GameScene.h"
 using namespace std;
 
 class Hero : public CMD2Model , public GameObject
 {
-    vector<Bullet*>Ammo;
+  
 	CrossHair * HeroCross; //under testing 
 	animState_t AnimationState;
 	float step;
 	void UpdateBoundingbox();
 	void Move();
-	
+	float firehold;
 public:
 	unique_ptr<EulerCamera> HeroCam;
 	Hero();
@@ -30,8 +31,8 @@ public:
 	
 	void Initialize();
 	void Render(ShaderProgram * shader,mat4 VP);
-	void Update(unique_ptr<CollisionManager>&collisionManager,float deltaTime);
-	void Fire(unique_ptr<CollisionManager>& collisionManager);
+	void Update(float deltaTime);
+	void Fire();
 	virtual void Collided(ObjectType _ObjectType);
 	void UpdateAnimation(float deltaTime);
 

@@ -4,16 +4,16 @@
 Bullet::Bullet(vec3 mPosition,vec3 Direction,ObjectType BulletType)
 	:GameObject(mPosition,Direction)
 {
-	Speed = 10.0;
+	Speed = 20.0;
 	Distance = 0;
 
-   GameObject::Set_InitialTransformation(scale(0.001f,0.001f,0.001f));
+   GameObject::Set_InitialTransformation(scale(0.009f,0.009f,0.009f));
    CollidableModel::Set_ObjectType(BulletType);
    
    //calculating bullet bounding box
    CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(BulletModel->VertexData));
    auto tmpboundingbox = CollidableModel::GetBoundingBox();
-   tmpboundingbox.Scale(0.001f,0.001,0.001);
+   tmpboundingbox.Scale(0.009f,0.009f,0.009f);
    tmpboundingbox.SetCenter(GameObject::GetPosition());
    CollidableModel::SetBoundingBox(tmpboundingbox); 
 
@@ -50,7 +50,7 @@ void Bullet::Render(ShaderProgram * Shader, mat4 VP)
 
 void Bullet::Set_BulletModel()
 {
-	BulletModel = new TexturedModel("data/models/Bullet/sphere/sphere.bmp",10);
+	BulletModel = new TexturedModel("data/models/Bullet/sphere/spheregold.bmp",10);
 	vector<vec3> vertices;
 	vector<vec2> UVData;
 	vector<vec3> normals;
@@ -75,11 +75,14 @@ void Bullet::Collided(ObjectType _ObjectType)
 {
 	if (_ObjectType == ObjectType::Enemy && CollidableModel::Get_ObjectType()==ObjectType::HeroBullet)
     {
-	   printf("i'm  the hero bullet and you collided with enemy and i'm gonna be destroyed now bye bye  \n");
+	   printf("i'm  the hero bullet and I collided with enemy and i'm gonna be destroyed now bye bye  \n");
 	   GameObject::SetIsdestroied(true);   
 	}
 	else if (_ObjectType == ObjectType::Hero && CollidableModel::Get_ObjectType()==ObjectType::EnemyBullet)
 	printf("i'm  the enemy bullet and you collided with hero \n");
+
+	else if (_ObjectType == ObjectType::MapObject && CollidableModel::Get_ObjectType()==ObjectType::HeroBullet)
+		printf("i'm  the hero bullet and you collided with map object \n");
 
 }
 

@@ -74,7 +74,7 @@ void EulerCamera::UpdateViewMatrix()
 
 	mUp = glm::cross(mRight,mDirection);
 
-	glm::vec3 center = mPosition + mDirection*0.1f;
+	glm::vec3 center = mPosition + mDirection;
 	mViewMatrix = glm::lookAt(mPosition,center,mUp);
 
 	//glm::mat4 view = glm::mat4(	mRight.x,		mRight.y,		mRight.z,		-glm::dot(mPosition,mRight),

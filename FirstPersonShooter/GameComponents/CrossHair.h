@@ -10,7 +10,7 @@ public:
 	CrossHair(vec3 mpostion);
 	void Initialize();
 	void Render(ShaderProgram* StaticShader,mat4 VP);
-	void Move(vec3 mpostion,vec3 Direction);
+	void Move(vec3 mpostion);
 	~CrossHair(void);
 };
 

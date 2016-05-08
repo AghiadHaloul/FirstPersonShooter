@@ -14,7 +14,7 @@ using namespace glm;
 // dont forget try to edit in updating bounding box  and make the model static
 class Bullet :public GameObject , public CollidableModel
 {
-  #define  MaxDistance 50
+  #define  MaxDistance 100
   float Speed;
   float Damage;
   float Distance;

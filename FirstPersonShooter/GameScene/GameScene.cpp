@@ -7,7 +7,7 @@ GameScene::GameScene()
 
 }
 
-void GameScene::Initialize(unique_ptr<CollisionManager>& collisionManager)
+void GameScene::Initialize()
 {
 
 }
@@ -17,17 +17,17 @@ void GameScene::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *Anima
 
 }
 
-void GameScene::Update(unique_ptr<CollisionManager>& collisionManager,float deltatime)
+void GameScene::Update(float deltatime)
 {
 
 }
 
-void GameScene::Initialize_Enemies(unique_ptr<CollisionManager>& collisionManager)
+void GameScene::Initialize_Enemies()
 {
 	
 }
 
-void GameScene::Update_Enemies(unique_ptr<CollisionManager>& collisionManager,float deltatime)
+void GameScene::Update_Enemies(float deltatime)
 {
 
 }
@@ -37,12 +37,12 @@ void GameScene::Render_Enemies(ShaderProgram*StaticShader,KeyFrameAnimationShade
 
 }
 
-void GameScene::Initialize_MapObjects(unique_ptr<CollisionManager>& collisionManager)
+void GameScene::Initialize_MapObjects()
 {
 
 }
 
-void GameScene::Update_MapObjects(unique_ptr<CollisionManager>& collisionManager)
+void GameScene::Update_MapObjects()
 {
 
 }

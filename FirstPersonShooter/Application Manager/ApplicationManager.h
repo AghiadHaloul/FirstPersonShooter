@@ -4,8 +4,8 @@
 #include <gl/glew.h>
 #include <gl/glfw3.h>
 #include <memory>
-#include "Renderer/Renderer.h"
-
+#include "Screen/ScreenManger.h"
+#include "Screen/StartScreen.h"
 class ApplicationManager
 {
 
@@ -14,7 +14,7 @@ class ApplicationManager
 	double mTime;
 
 	GLFWwindow* mWindow; //Why didn't we use smart pointers here? google it! ;)
-	std::unique_ptr<Renderer> mRenderer;
+//	std::unique_ptr<Renderer> mRenderer;
 
 	void InitializeComponents();
 	void HandleKeyboardInput();
@@ -24,15 +24,17 @@ class ApplicationManager
 	static void MouseMoved(GLFWwindow* window, double xpos, double ypos);
 	static void WindowResized(GLFWwindow* window, int width, int height);
 
-	static int KeyPressed; //Keep the code of the pressed key
-	static double MouseXPos; //Keep the x-value of the mouse position
-	static double MouseYPos; //Keep the y-value of the mouse position
 	static int WindowSizeWidth; 
 	static int WindowSizeHeight;
 
 public:
+	static bool exitLoop;
+	static int KeyPressed; //Keep the code of the pressed key
 
-
+	static double movedDistanceX;
+	static double movedDistanceY;
+	static double MouseXPos; //Keep the x-value of the mouse position
+	static double MouseYPos; //Keep the y-value of the mouse position
 
 	ApplicationManager(int pOpenGLMajorVersion, int pOpenGLMinorVersion);
 

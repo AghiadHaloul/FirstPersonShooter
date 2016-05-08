@@ -13,27 +13,33 @@ SkyBox::SkyBox(GLfloat unitsize)
 	//GLfloat wall_width = 0.05;
 	
 	walls[0] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/Side1.png",0)); 
+		new TexturedModel("data/textures/sky/negy.jpg",0)); 
+	    //new TexturedModel("data/textures/sky/Side1.png",0)); 
 	
 
 	//front wall 
 	walls[1] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/Side2.png",1)); 
+		new TexturedModel("data/textures/sky/posz.jpg",1)); 
+	//new TexturedModel("data/textures/sky/Side2.png",1)); 
 	
 	// right wall
 	walls[2] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/Side3.png",2)); 
+		new TexturedModel("data/textures/sky/posx.jpg",2)); 
+	//new TexturedModel("data/textures/sky/Side3.png",2)); 
 	
 	// back wall
 	walls[3] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/Side4.png",3)); 
+		new TexturedModel("data/textures/sky/negz.jpg",3)); 
+	//new TexturedModel("data/textures/sky/Side4.png",3)); 
 
 	// left wall
 	walls[4] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/Side5.png",4)); 
+		new TexturedModel("data/textures/sky/negx.jpg",4)); 
+	//new TexturedModel("data/textures/sky/Side5.png",4)); 
 	// top - sky
     walls[5] =  unique_ptr<TexturedModel> (
-	    new TexturedModel("data/textures/sky/Side6.png",5)); 
+		new TexturedModel("data/textures/sky/posy.jpg",5)); 
+	//new TexturedModel("data/textures/sky/Side6.png",5)); 
 	
 }
 
@@ -45,7 +51,7 @@ SkyBox::~SkyBox()
 
 void SkyBox::Initialize()
 {
-	
+	//float high = -90;
 	// bottom - floor
 	walls[0]->VertexData.push_back(vec3(Unitsize, -Unitsize, Unitsize));
 	walls[0]->VertexData.push_back(vec3(-Unitsize, -Unitsize, Unitsize));

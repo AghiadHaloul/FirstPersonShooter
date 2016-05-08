@@ -19,6 +19,12 @@ void KeyFrameAnimationShader::LoadProgram()
 	vpMatrixID = glGetUniformLocation(programID, "VP");
 
 	interpolationID = glGetUniformLocation(programID, "Interpolation");
+
+	LightPositionID = glGetUniformLocation(programID,"LightPosition_worldspace");
+
+	AmbientLightID = glGetUniformLocation(programID,"ambientLight");
+
+	EyePositionID = glGetUniformLocation(programID,"EyePosition_worldspace");
 }
 
 void KeyFrameAnimationShader::SetInterpolation(float interpolation)

@@ -6,7 +6,9 @@ double ApplicationManager::MouseXPos = -1.0;
 double ApplicationManager::MouseYPos = -1.0;
 int ApplicationManager::WindowSizeWidth = 0;
 int ApplicationManager::WindowSizeHeight = 0;
-
+ double ApplicationManager::movedDistanceX = 0;
+ double ApplicationManager::movedDistanceY = 0;
+ bool ApplicationManager::exitLoop = false;
 ApplicationManager::ApplicationManager(int pOpenGLMajorVersion, int pOpenGLMinorVersion)
 {
 	mOpenGLMajorVersion = pOpenGLMajorVersion;
@@ -60,6 +62,7 @@ bool ApplicationManager::InitalizeApplication(int pWindowSizeWidth, int pWindowS
 	glfwGetWindowSize(mWindow,&WindowSizeWidth,&WindowSizeHeight);
 
 	//initialize a value for the mouse position.
+	glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	MouseXPos = WindowSizeWidth/2;
 	MouseYPos = WindowSizeHeight/2;
 	glfwSetCursorPos(mWindow,MouseXPos,MouseYPos);
@@ -80,30 +83,32 @@ bool ApplicationManager::InitalizeApplication(int pWindowSizeWidth, int pWindowS
 void ApplicationManager::InitializeComponents()
 {
 	// Rendere will be responsible for all drawings.
-	mRenderer =  std::unique_ptr<Renderer>(new Renderer());
 
+	StartScreen*startScreen= new StartScreen();
+	ScreenManger::AddScreen(startScreen);
 	// Initialize primitives/models data (send data to OpenGL buffers)
-	mRenderer->Initialize();
+	
 }
 
 void ApplicationManager::StartMainLoop()
 {
-	bool exitLoop = false;
+	
 	do 
 	{
+	
+
 		//clear the color buffer, and the depth buffer each frame.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//handle window resize.
 	
 		//Draw scene.
-		mRenderer->Draw();
-
+		 ScreenManger::Draw();
 		//call the handle keyboard only when a button is pressed.
-		if (ApplicationManager::KeyPressed != -1)
+		 if (ApplicationManager::KeyPressed != -1)
 		{
-			mRenderer->HandleKeyboardInput(KeyPressed);
-			//reset the pressed key.
-			KeyPressed = -1;
+			ScreenManger::HandleKeyboardInput(ApplicationManager::KeyPressed);
+		
+		   ApplicationManager::KeyPressed = -1;
 		}
 		
 		// check if a mouse moved
@@ -111,27 +116,25 @@ void ApplicationManager::StartMainLoop()
 		 || ApplicationManager::MouseYPos != ApplicationManager::WindowSizeHeight/2)
 		{
 			double mouseSpeed = 0.005; //it is just there to speed up or slow down the movements.
-			double movedDistanceX;
-			double movedDistanceY;
+			
 
 			//  the distance (old position - new position)
 			// in other words:  how far is the mouse from the center of the window ? The bigger this value, the more we want to turn.
 			// note that the old position (x_old, y_old) is fixed in this application (x_old = WindoSizeWidth/2, y_old = WindowSizeHeight/2)
 			movedDistanceX = double(WindowSizeWidth/2 - MouseXPos)*mouseSpeed;
 			movedDistanceY = double(WindowSizeHeight/2 - MouseYPos)*mouseSpeed;
-
 			// Pass the two distances to the Renderer (our drawings)
-			mRenderer->HandleMouse( movedDistanceX, movedDistanceY);
+			ScreenManger::HandleMouse( movedDistanceX, movedDistanceY);
 			
 			//Force the new position of the mouse to be in the middle of the window
 			MouseXPos = WindowSizeWidth/2;
 			MouseYPos = WindowSizeHeight/2;
 			glfwSetCursorPos(mWindow,MouseXPos,MouseYPos); 
+			
 		}
 		
 		//Update everything every frame (time related).
 		this->Update();
-
 		// Swap buffers
 		glfwSwapBuffers(mWindow); //Displaying our finished scene
 		glfwPollEvents(); 
@@ -156,7 +159,15 @@ void ApplicationManager::CloseApplication()
 // Keyboard pressing event
 void ApplicationManager::SpecialKeyPressed(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	ApplicationManager::KeyPressed = key;
+	if (action == GLFW_PRESS) 
+		ApplicationManager::KeyPressed = key; 
+ 	else if (action == GLFW_RELEASE) 
+		ApplicationManager::KeyPressed = -1; 
+	else if (action==GLFW_REPEAT)
+		ApplicationManager::KeyPressed = key; 
+	
+	
+
 }
 
 // Mouse movement event
@@ -182,6 +193,6 @@ void ApplicationManager::Update()
 	double deltaTime = (currentTime - mTime)*1000; //subtract the previous recorded time (mTime value)* 1000 to convert from nanoseconds to seconds.
 	mTime = currentTime; //set the mTime with current (for calculating the next frame)
 
-	mRenderer->Update(deltaTime);
+	 ScreenManger::Update(deltaTime);
 
 }
