@@ -66,6 +66,9 @@
     <Filter Include="Screen">
       <UniqueIdentifier>{de582aba-880a-4458-98c1-6ed4ecf5ebaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{9882d552-50e3-4d15-9b66-dcc176f698f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -187,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="Screen\CreditsScreen.cpp">
       <Filter>Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="text2D.cpp">
+      <Filter>Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +316,9 @@
     <ClInclude Include="Screen\CreditsScreen.h">
       <Filter>Screen</Filter>
     </ClInclude>
+    <ClInclude Include="text2D.hpp">
+      <Filter>Text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="KeyframeAnimation.vertexshader" />
@@ -317,5 +326,16 @@
     <None Include="TextureLighting.fragmentshader" />
     <None Include="SimpleTextureShader.fragmentshader" />
     <None Include="SimpleVertexShader.vertexshader" />
+    <None Include="TextVertexShader.fragmentshader">
+      <Filter>Text</Filter>
+    </None>
+    <None Include="TextVertexShader.vertexshader">
+      <Filter>Text</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Holstein.DDS">
+      <Filter>Text</Filter>
+    </Image>
   </ItemGroup>
 </Project>

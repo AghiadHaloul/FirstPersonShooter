@@ -12,20 +12,19 @@
 //#include "LoadingScreen.h"
 using namespace std;
 using namespace glm;
-class StartScreen :
-	public Screen
+class StartScreen : public Screen
 {
 public:
-	enum StartScreenchoice{ PlayGame,Options,Credits,Quit,Nochoice};
+	enum StartScreenchoice{PlayGame,Options,Credits,Quit,Nochoice};
 private:
 	StartScreenchoice Choice;
 	SimpleShaderProgram shader;
 	unique_ptr<TexturedModel> background;
-	mat4 backgroundModel;
-   void handel_UPkey();
-   void handel_Downkey();
-    void handel_Enterkey();
-	public:
+
+	void handel_UPkey();
+	void handel_Downkey();
+	void handel_Enterkey();
+public:
 	StartScreen(void);
 	virtual void Initialize();
 	virtual void draw();

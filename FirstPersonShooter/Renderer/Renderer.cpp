@@ -1,5 +1,11 @@
 ﻿#include "Renderer.h"
 //#include "Application Manager/ApplicationManager.h"
+#include "ShaderProgram/SimpleShaderProgram.h"
+
+SimpleShaderProgram simpleshader;
+
+
+
 
 Renderer::Renderer()
 {
@@ -13,10 +19,12 @@ Renderer::~Renderer()
 
 void Renderer::Initialize()
 {
+	initText2D("Holstein.DDS");
 
 	//calculate the normal of the triangle.
 	shader.LoadProgram();
 	animatedModelShader.LoadProgram();
+	simpleshader.LoadProgram();
 /////////////////////////////////
 
 	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100.0f)); 
@@ -28,14 +36,6 @@ void Renderer::Initialize()
 	Firstlevel = unique_ptr<Level1>(new Level1());
 	
 
-	/////////////////////////
-	
-	
-
-	//MatrixID = glGetUniformLocation(shader.programID, "MVP");
-//	ModelMatrixID = glGetUniformLocation(shader.programID, "ModelMatrix");
-	// Use our shader
-	//glUseProgram(programID);
 	shader.UseProgram();
 	//////////////////////////////////////////////////////////////////////////
 	// Configure the light.
@@ -48,8 +48,6 @@ void Renderer::Initialize()
 	//setup the eye position.
 	shader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 
-	//////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////
 	animatedModelShader.UseProgram();
@@ -64,23 +62,92 @@ void Renderer::Initialize()
 	animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 
 
+	///cross hair
+	background = unique_ptr<TexturedModel>(new TexturedModel("data/textures/cross.png",27));
 
+	background->VertexData.push_back(glm::vec3(-0.1f, -0.1f, 0.0f));
+	background->VertexData.push_back(glm::vec3(0.1f ,-0.1f ,0.0f));
+	background->VertexData.push_back(glm::vec3( 0.1f ,0.1f, 0.0f));
+	background->VertexData.push_back(glm::vec3( -0.1f , 0.1f, 0.0f));
+
+	background->UVData.push_back(glm::vec2(0.0f,1.0f));
+	background->UVData.push_back(glm::vec2(1.0f,1.0f));
+	background->UVData.push_back(glm::vec2(1.0f,0.0f));
+	background->UVData.push_back(glm::vec2(0.0f,0.0f));
+
+	//first triangle.
+	background->IndicesData.push_back(0);
+	background->IndicesData.push_back(1);
+	background->IndicesData.push_back(3);
+	//second triangle.
+	background->IndicesData.push_back(1);
+	background->IndicesData.push_back(2);
+	background->IndicesData.push_back(3);
+	background->Initialize();
+ 
+
+	fix_Error2();
 }
 
 void Renderer::Draw()
 {		
+	    glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_LESS);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		shader.UseProgram();
-
+		
 		// Send our transformation to the currently bound shader, 
 		// in the "MVP" uniform
 		glm::mat4 VP = hero->HeroCam->GetProjectionMatrix() * hero->HeroCam->GetViewMatrix();
 		shader.BindVPMatrix(&VP[0][0]);	
-		
-
 		Game_SkyBox->Draw(shader);
-        hero->Render(&shader,VP); //render nothing till now	
+		
+		hero->Render(&shader,VP); //render nothing till now	
+		
 		Firstlevel->Render(&shader,&animatedModelShader,VP);
 	    StaticComponent::sceneBullets->Render(&shader,VP);
+		glDisable(GL_DEPTH_TEST);
+
+
+		
+		simpleshader.UseProgram();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		background->Draw();
+		glDisable(GL_BLEND);
+	
+		DrawText();
+}
+
+
+void Renderer::DrawText()
+{
+	fix_Error();
+	printText2D("my name islam",0,0,60);
+	printText2D("allah yaslam",0,200,60);
+
+}
+void Renderer::fix_Error()
+{
+	shader.UseProgram();
+    background2->Draw();
+}
+
+
+void Renderer::fix_Error2()
+{
+	background2 = unique_ptr<TexturedModel>(new TexturedModel("data/textures/cross.png",27));
+
+	background2->VertexData.push_back(glm::vec3(-0.1f, -0.1f, 0.0f));
+	background2->VertexData.push_back(glm::vec3(0.1f ,-0.1f ,0.0f));
+	background2->VertexData.push_back(glm::vec3( 0.1f ,0.1f, 0.0f));
+
+	background2->UVData.push_back(glm::vec2(0.0f,1.0f));
+	background2->UVData.push_back(glm::vec2(1.0f,1.0f));
+	background2->UVData.push_back(glm::vec2(1.0f,0.0f));
+
+	//first triangle.
+	background2->Initialize();
 }
 
 void Renderer::Cleanup()
@@ -105,10 +172,10 @@ void Renderer::HandleKeyboardInput(int key)
 	{
 		//Moving forward
 	case GLFW_KEY_UP:
-	
 	case GLFW_KEY_W:
 		hero->Walk_Forward();
 		break;
+
 		//Moving backword
 	case GLFW_KEY_DOWN:
 	case GLFW_KEY_S:
@@ -117,7 +184,6 @@ void Renderer::HandleKeyboardInput(int key)
 
 		// Moving right
 	case GLFW_KEY_RIGHT:
-	
 	case GLFW_KEY_D:
 		hero->Straf_Right();
 		break;
@@ -129,19 +195,19 @@ void Renderer::HandleKeyboardInput(int key)
 		break;
 
 		// Moving up
-	case GLFW_KEY_SPACE:
 	case GLFW_KEY_R:
 		hero->HeroCam->Fly(0.1);
 		break;
 
 		// Moving down
-	case GLFW_KEY_LEFT_CONTROL:
 	case GLFW_KEY_F:
 		hero->HeroCam->Fly(-0.1);
 		break;
-	case GLFW_KEY_RIGHT_CONTROL:
+
+	case GLFW_KEY_SPACE:
 		hero->Fire();
 		break;
+	
 	default:
 		break;
 	}
@@ -158,5 +224,4 @@ void Renderer::HandleMouse(double deltaX,double deltaY)
 	shader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 	animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 }
-
 

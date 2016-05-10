@@ -18,7 +18,7 @@ using namespace std;
 class Hero : public CMD2Model , public GameObject
 {
   
-	CrossHair * HeroCross; //under testing 
+	//CrossHair * HeroCross; //under testing 
 	animState_t AnimationState;
 	float step;
 	void UpdateBoundingbox();

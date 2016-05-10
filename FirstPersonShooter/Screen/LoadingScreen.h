@@ -11,7 +11,7 @@ class LoadingScreen :
 {
 	SimpleShaderProgram shader;
 	unique_ptr<TexturedModel> background;
-	mat4 backgroundModel;
+
 	float loadtimer;
 public:
 	virtual void Initialize();

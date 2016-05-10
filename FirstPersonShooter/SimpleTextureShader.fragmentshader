@@ -9,13 +9,14 @@ uniform sampler2D myTextureSampler;
 
 
 // Ouput data
-out vec3 color;
+out vec4 color;
 
 
 void main()
 {
 
-	vec3 textureColor = texture( myTextureSampler, TexCoord ).rgb;
-	color = textureColor;
+	vec4 textureColor = texture( myTextureSampler, TexCoord );
+	color.rgb = textureColor.rgb;
+	color.a =   textureColor.a;
 }
 

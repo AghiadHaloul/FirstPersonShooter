@@ -6,12 +6,12 @@
 #include <gl\glew.h>
 class Model
 {
-	
-	
+
+
 
 	//VAO
 	GLuint mVertexArrayObjectID;
-	
+
 	//VBOs
 	GLuint mVertexDataBufferID;
 	GLuint mColorDataBufferID;
@@ -29,9 +29,9 @@ public:
 	std::vector<unsigned short> IndicesData;
 	std::vector<glm::vec2> UVData;
 	std::vector<glm::vec3> NormalsData;
-	 void Initialize();
+	void Initialize();
 	virtual void Draw();
-	 void Cleanup();
+	void Cleanup();
 
 };
 #endif // Model_h__

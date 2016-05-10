@@ -10,7 +10,7 @@ Hero::Hero():GameObject()
 	this->HeroCam->Set_CameraBoundry(100);
 	this->HeroCam->Reset(0, 0, 0,   0, 0, -1,   0, 1, 0);;
 	this->HeroCam->SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,4000.0f);
-    HeroCross = new CrossHair(HeroCam->GetEyePosition());
+ //   HeroCross = new CrossHair(HeroCam->GetEyePosition());
 }
 
 
@@ -26,7 +26,7 @@ Hero::Hero(vec3 mPosition,vec3 mDirection,float boundry):GameObject(mPosition,mD
 	this->HeroCam->Reset(mPosition,mDirection, vec3(0,1,0));
 	this->HeroCam->SetPerspectiveProjection(45.0f,4.0f/3.0f,0.1f,4000.0f);
 	//under testing 
-	HeroCross = new CrossHair(mPosition+mDirection);
+//	HeroCross = new CrossHair(mPosition+mDirection);
 }
 
 
@@ -51,7 +51,7 @@ void Hero::Initialize()
 void Hero::Render(ShaderProgram * shader,mat4 VP)
 { 
 	//under testing
-	HeroCross->Render(shader,VP);
+//	HeroCross->Render(shader,VP);
 }
 
 
@@ -103,7 +103,7 @@ void Hero::Move()
   this->HeroCam->UpdateViewMatrix();
  
   //under testing 
- HeroCross->Move(HeroCam->GetEyePosition()+HeroCam->Get_mDirection());
+ //HeroCross->Move(HeroCam->GetEyePosition()+HeroCam->Get_mDirection());
   
   //****************** 
   // if(CMD2Model::IsAnimationFinished)

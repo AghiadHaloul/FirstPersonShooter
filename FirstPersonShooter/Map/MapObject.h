@@ -12,10 +12,16 @@ using namespace glm;
 
 class MapObject : public GameObject , public CollidableModel
 {
-    //static TexturedModel* MapObjectModel;
-    static Model3D MapObjectModel;
 public:
-    MapObject(vec3 Position,vec3 Direction);
+	enum MapObjectType{tree, building1, building2};
+
+private:
+	MapObjectType MapObjectType_;
+	static Model3D BuildingModel;
+	static TexturedModel* TreeModel;
+
+public:
+    MapObject(vec3 Position,vec3 Direction,MapObjectType);
     void Render(ShaderProgram*, mat4);
     static void Set_Model();
     virtual void Collided(ObjectType);

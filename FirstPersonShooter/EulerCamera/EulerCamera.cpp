@@ -48,7 +48,7 @@ void EulerCamera::Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3
 	//UpdateViewMatrix();
 }
 
-bool EulerCamera::vaildboundry(float dist,glm::vec3 dir)
+bool EulerCamera::validboundry(float dist,glm::vec3 dir)
 {
 	vec3 NextPosition = mPosition+dist*dir;
 	return(abs(NextPosition.x) < Get_CameraBoundry() && abs(NextPosition.y) < Get_CameraBoundry()&&abs(NextPosition.z) < Get_CameraBoundry());   
@@ -122,19 +122,19 @@ void EulerCamera::Roll(float angleDegrees)
 
 void EulerCamera::Walk(float dist)
 {
-	if (vaildboundry(dist,mDirection))
+	if (validboundry(dist,mDirection))
 		mPosition += dist *vec3( mDirection.x,0,mDirection.z); //ignore y component of right dir
 }
 
 void EulerCamera::Strafe(float dist)
 {
-	if (vaildboundry(dist,mRight))
+	if (validboundry(dist,mRight))
 		mPosition += dist *vec3( mRight.x,0,mRight.z); //ignore y component of right dir
 }
 
 void EulerCamera::Fly(float dist)
 {
-	if (vaildboundry(dist,mUp))
+	if (validboundry(dist,mUp))
 	mPosition += dist * mUp;
 }
 

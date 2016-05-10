@@ -10,7 +10,7 @@ class CreditsScreen :
 {
 	SimpleShaderProgram shader;
 	unique_ptr<TexturedModel> background;
-	mat4 backgroundModel;
+	
 
 public:
 	virtual void Initialize();

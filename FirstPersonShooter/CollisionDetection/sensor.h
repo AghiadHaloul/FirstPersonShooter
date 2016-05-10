@@ -9,14 +9,15 @@ using namespace glm;
 using namespace std;
 class Sensor:public CollidableModel
 {
-	vec3*Position;
-	vec3*Direction;
+	vec3* Position;
+	vec3* Direction;
 	bool* EnableFire;
+	bool* isMoving;
 	static Model* sensormodel;
 	
 public:
 	static vec3 HeroPostion;
-	Sensor(vec3*position, vec3*direction,bool* enableFire);
+	Sensor(vec3*position, vec3*direction,bool* enableFire,bool*);
 	~Sensor(void);
      virtual void Collided(ObjectType _ObjectType);
 	 static void Set_Model();

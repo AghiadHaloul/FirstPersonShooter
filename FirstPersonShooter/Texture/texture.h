@@ -24,3 +24,5 @@ private:
 
 #endif
 //GLuint loadBMP_custom(const char * imagepath);
+// static GLuint loadDDS(const char * imagepath, int texUnit);
+

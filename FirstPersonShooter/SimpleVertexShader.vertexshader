@@ -7,8 +7,7 @@ layout(location = 1) in vec3 inputColor;
 layout(location = 2) in vec2 texCoord;
 
 // Values that stay constant for the whole mesh.
-uniform mat4 VP;
-uniform mat4 ModelMatrix;
+
 
 
 out vec3 fragmentColor;
@@ -19,7 +18,7 @@ void main(){
 
 	// Output position of the vertex, in clip space : MVP * position
 	//this is not the optimal solution, but we will work with this for now.
-	gl_Position =  VP * ModelMatrix * vec4(vertexPosition_modelspace,1);
+	gl_Position =   vec4(vertexPosition_modelspace,1);
 	fragmentColor =  inputColor;
 	TexCoord = texCoord;
 }

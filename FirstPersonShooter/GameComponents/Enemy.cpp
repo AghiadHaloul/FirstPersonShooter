@@ -5,8 +5,8 @@
 Enemy::Enemy(vec3 mPosition,vec3 mDirection):GameObject(mPosition,mDirection)
 {
 	Initialize();
-	enemySensor=unique_ptr<Sensor>(new Sensor(&(GameObject::Position),&(GameObject::Direction),&FireEnable));
-    StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)enemySensor.get());
+	enemySensor=unique_ptr<Sensor>(new Sensor(&(GameObject::Position),&(GameObject::Direction),&FireEnable,&isMoving));
+	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)enemySensor.get());
 }
 
 
@@ -16,6 +16,7 @@ void Enemy::Initialize()
 	this->Speed = 5.0f;
 	this->MaxDist = 50;
 	this->Distance = 0;
+	this->isMoving = true;
 	FireEnable = false;
 	firehold = 0;
 	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,1.0f,0.0f,0.0f) * glm::scale(0.05f,0.05f,0.05f));
@@ -39,7 +40,7 @@ void Enemy::InitializeBoundingbox()
 
 void Enemy::UpdateBoundingbox()
 {
-    auto tmpboundingbox = CollidableModel::GetBoundingBox();
+	auto tmpboundingbox = CollidableModel::GetBoundingBox();
 	tmpboundingbox.SetCenter(GameObject::GetPosition());
 	CollidableModel::SetBoundingBox(tmpboundingbox);
 	enemySensor->Update_BoundingBox();
@@ -48,24 +49,32 @@ void Enemy::UpdateBoundingbox()
 void Enemy::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *AnimationShader,mat4 VP)
 {
 
-		AnimationShader->UseProgram();
-		AnimationShader->BindVPMatrix(&VP[0][0]);
-		AnimationShader->BindModelMatrix(&GameObject::Get_ModelMatrix()[0][0]);
-		EnemyModel.RenderModel(&AnimationState,AnimationShader);
+	AnimationShader->UseProgram();
+	AnimationShader->BindVPMatrix(&VP[0][0]);
+	AnimationShader->BindModelMatrix(&GameObject::Get_ModelMatrix()[0][0]);
+	EnemyModel.RenderModel(&AnimationState,AnimationShader);
 
 }
 
 
 void Enemy::Update(float deltaTime)
 {
-    UpdateAnimation(deltaTime);
-	Move(deltaTime);
+	UpdateAnimation(deltaTime);
+	if(isMoving)
+	{
+		Move(deltaTime);
+	}
+	else
+	{
+		UpdateModelMatrix();
+	}
 	if(FireEnable)
 	{
 		Fire();
 		FireEnable=false;
 	}
 	firehold+=deltaTime;
+	isMoving = true;
 }
 
 void Enemy::UpdateAnimation(float deltaTime)
@@ -73,14 +82,13 @@ void Enemy::UpdateAnimation(float deltaTime)
 	EnemyModel.UpdateAnimation(&AnimationState,deltaTime);
 }
 
-
 void Enemy::Move(float deltaTime)
 {
 	float step = Speed*deltaTime;
 	vec3 newpos = GameObject::GetPosition()+GameObject::GetDirection()*step; 
 	GameObject::SetPosition(newpos);
 	Distance += step;
-	if (Distance >= MaxDist ||stupid_bounding())
+	if (Distance >= MaxDist || stupid_bounding())
 	{
 		GameObject::SetDirection(HelperMethods::Get_Random_Direction());
 		Distance = 0;
@@ -94,9 +102,9 @@ void Enemy::Fire()
 
 	if(firehold > 0.5)
 	{
-	Bullet* fired_bullet = new Bullet(GameObject::GetPosition(),GameObject::GetDirection(),ObjectType::EnemyBullet); 
-    StaticComponent::sceneBullets->AddBullet(fired_bullet);
-	firehold = 0;
+		Bullet* fired_bullet = new Bullet(GameObject::GetPosition(),GameObject::GetDirection(),ObjectType::EnemyBullet); 
+		StaticComponent::sceneBullets->AddBullet(fired_bullet);
+		firehold = 0;
 	}
 }
 
@@ -116,7 +124,7 @@ void Enemy::Collided(ObjectType _ObjectType)
 		printf("i'm your enemy and i collided with hero  \n");
 
 	if(GameObject::GetIsdestroied())
-		 StaticComponent::collisionManager->RemoveCollidableModel((CollidableModel*)enemySensor.get());
+		StaticComponent::collisionManager->RemoveCollidableModel((CollidableModel*)enemySensor.get());
 }
 
 

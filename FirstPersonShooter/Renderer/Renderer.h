@@ -12,28 +12,32 @@
 #include "CollisionDetection/CollisionManager.h"
 #include "GameComponents/Hero.h"
 #include "GameScene/Level1.h"
+#include "text2D.hpp"
 using namespace std;
 class Renderer
 {
 	
 	unique_ptr<Hero> hero;
 	std::unique_ptr<SkyBox> Game_SkyBox;
-
 	unique_ptr<Level1> Firstlevel;
-
 
     KeyFrameAnimationShader animatedModelShader;
 	ShaderProgram shader;
-
+	
 	glm::vec3 ambientLight;
 	glm::vec3 lightPosition;
 
+	unique_ptr<TexturedModel> background;
+	unique_ptr<TexturedModel> background2;
+ void fix_Error();
+ void fix_Error2();
 public:
     Renderer();
     ~Renderer();
     
     void Initialize();
     void Draw();
+	void DrawText();
 	void HandleKeyboardInput(int key);
 	void HandleMouse(double deltaX,double deltaY);
 	void Update(double deltaTime);

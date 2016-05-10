@@ -13,19 +13,16 @@ public:
 	}
 
 	~HelperMethods()
-	{
-	}
+	{}
 	static vec3 Get_Random_Direction()
 	{
 		time_t seconds ;
 		time(&seconds);
-		srand(seconds+rand()%10000000000000);
+		srand(seconds+rand()%(long long)1e13);
 		float RandZ = 2 * (double)rand() / (double)RAND_MAX - 1;
 		float RandX = 2 * (double)rand() / (double)RAND_MAX - 1;
 		
 		return vec3(RandX,0,RandZ);
 	}
-
-
 };
 

@@ -117,6 +117,7 @@
     <ClCompile Include="ShaderProgram\SimpleShaderProgram.cpp" />
     <ClCompile Include="Shaders\shader.cpp" />
     <ClCompile Include="SkyBox\SkyBox.cpp" />
+    <ClCompile Include="text2D.cpp" />
     <ClCompile Include="Texture\Texture Loader\stb_image.c" />
     <ClCompile Include="Texture\texture.cpp" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="ShaderProgram\SimpleShaderProgram.h" />
     <ClInclude Include="Shaders\shader.hpp" />
     <ClInclude Include="SkyBox\SkyBox.h" />
+    <ClInclude Include="text2D.hpp" />
     <ClInclude Include="Texture\Texture Loader\stb_image.h" />
     <ClInclude Include="Texture\texture.h" />
   </ItemGroup>
@@ -168,6 +170,11 @@
     <None Include="SimpleTransformWithColor.vertexshader" />
     <None Include="SimpleVertexShader.vertexshader" />
     <None Include="TextureLighting.fragmentshader" />
+    <None Include="TextVertexShader.fragmentshader" />
+    <None Include="TextVertexShader.vertexshader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Holstein.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

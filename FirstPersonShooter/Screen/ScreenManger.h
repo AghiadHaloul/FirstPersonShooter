@@ -1,5 +1,5 @@
 #pragma once
-#include<stack>
+#include <stack>
 #include "Screen/Screen.h"
 using namespace std;
 class ScreenManger
@@ -16,4 +16,3 @@ public:
 	ScreenManger(void);
 	~ScreenManger(void);
 };
-

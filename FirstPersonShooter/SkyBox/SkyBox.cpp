@@ -159,11 +159,11 @@ void SkyBox::Initialize()
 	walls[3]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	walls[3]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	walls[3]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.riangle.
+	//first.triangle.
 	walls[3]->IndicesData.push_back(0);
 	walls[3]->IndicesData.push_back(1);
 	walls[3]->IndicesData.push_back(3);
-	//secon.triangle.
+	//second.triangle.
 	walls[3]->IndicesData.push_back(1);
 	walls[3]->IndicesData.push_back(2);
 	walls[3]->IndicesData.push_back(3);
@@ -185,7 +185,7 @@ void SkyBox::Initialize()
 	walls[4]->VertexData.push_back(vec3(-Unitsize, -Unitsize, Unitsize));
 	walls[4]->VertexData.push_back(vec3( -Unitsize,  Unitsize, Unitsize));
 	walls[4]->VertexData.push_back(vec3( -Unitsize,  Unitsize, -Unitsize));
-	//we want a gray cube cube.
+	
 	walls[4]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	walls[4]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	walls[4]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
@@ -216,12 +216,12 @@ void SkyBox::Initialize()
 	walls[5]->VertexData.push_back(vec3(Unitsize, Unitsize, Unitsize));
 	walls[5]->VertexData.push_back(vec3( Unitsize,  Unitsize, -Unitsize));
 	walls[5]->VertexData.push_back(vec3( -Unitsize,  Unitsize, -Unitsize));
-	//we want a gray cube cube.
+
 	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
 	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.riangle.
+	//first.triangle.
 	walls[5]->IndicesData.push_back(0);
 	walls[5]->IndicesData.push_back(1);
 	walls[5]->IndicesData.push_back(3);
@@ -251,6 +251,7 @@ void SkyBox::Draw(ShaderProgram &shader)
 {
 	//mSquare->texture->Bind();
 	mat4 I = mat4();//glm::rotate(90.f,vec3(0.0,0.0,1.0));
+	shader.UseProgram();
 	shader.BindModelMatrix(&I[0][0]);
 	//mSquare->Draw();
 	

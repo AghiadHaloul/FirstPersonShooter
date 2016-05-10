@@ -32,21 +32,17 @@ void LoadingScreen::Initialize()
 void LoadingScreen::draw()
 {
 	shader.UseProgram();
-	mat4 VP  = mat4(1);
-	backgroundModel = mat4(1);
-	shader.BindVPMatrix(&VP[0][0]);
-	shader.BindModelMatrix(&backgroundModel[0][0]);
 	background->Draw();
-	
+
 }
 
 void LoadingScreen::Update(float deltaTime)
 {
 	loadtimer+=deltaTime;
-	if(loadtimer>1000)
+	if(loadtimer>500)
 	{
-	GameScreen* gameScreen= new GameScreen();
-	ScreenManger::AddScreen(gameScreen);
+		GameScreen* gameScreen= new GameScreen();
+		ScreenManger::AddScreen(gameScreen);
 	}
 
 }

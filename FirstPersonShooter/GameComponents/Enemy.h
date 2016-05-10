@@ -26,7 +26,8 @@ class Enemy : public GameObject , public CollidableModel
 	unique_ptr<Sensor> enemySensor; ///enemy collider
     void Move(float deltaTime);
 	void InitializeBoundingbox();
-	
+	bool isMoving;
+
 public:
 	Enemy(vec3 mPosition,vec3 mDirection );
 	void Initialize();

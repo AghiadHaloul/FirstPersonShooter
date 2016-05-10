@@ -379,6 +379,7 @@ Result:	Renders model.
 
 void CMD2Model::RenderModel(animState_t* animState, KeyFrameAnimationShader* shader)
 {
+	
 	glBindVertexArray(uiVAO);
 
 	int iTotalOffset = 0;

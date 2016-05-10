@@ -27,28 +27,22 @@ void CreditsScreen::Initialize()
 	background->Initialize();
 
 	shader.LoadProgram();
-	
+
 }
 
 void CreditsScreen::draw()
 {
 	shader.UseProgram();
-	mat4 VP  = mat4(1);
-	backgroundModel = mat4(1);
-	shader.BindVPMatrix(&VP[0][0]);
-	shader.BindModelMatrix(&backgroundModel[0][0]);
 	background->Draw();
 
 }
 
 void CreditsScreen::Update(float deltaTime)
 {
-
 }
 
 void CreditsScreen::close()
 {
-
 }
 
 void CreditsScreen::HandleKeyboardInput(int key)

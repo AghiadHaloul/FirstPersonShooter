@@ -36,7 +36,7 @@ public:
 
 	void Reset(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);
 	void Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3  &up);
-	bool vaildboundry(float dist,glm::vec3 dir);
+	bool validboundry(float dist,glm::vec3 dir);
 
 #pragma region Rotations
 	/// <summary>

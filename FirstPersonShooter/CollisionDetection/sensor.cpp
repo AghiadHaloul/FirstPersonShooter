@@ -3,17 +3,17 @@
 
 Model* Sensor::sensormodel = nullptr;
 vec3 Sensor::HeroPostion;
-Sensor::Sensor(vec3*position, vec3*direction,bool* enableFire)
+Sensor::Sensor(vec3*position, vec3*direction,bool* enableFire, bool* isMoving)
 {
 	this->Position = position;
 	this->Direction = direction;
 	this->EnableFire = enableFire;
+	this->isMoving = isMoving;
 	Initialize_BoundingBox();
 }
 
 void Sensor::Initialize_BoundingBox()
 {
-
 	CollidableModel::Set_ObjectType(ObjectType::EnemySensor);
 	CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(sensormodel->VertexData));
 	auto boundingbox = CollidableModel::GetBoundingBox();
@@ -38,12 +38,10 @@ void Sensor::Collided(ObjectType _ObjectType)
 	{
 		//cout<<"iam a sensor colided with hero"<<endl;
 	    (*EnableFire)=true;
-
+		*this->isMoving = false;
 		vec3 Enemyposxz = vec3((*Position).x,0,(*Position).z);
 		vec3 heading = Sensor::HeroPostion-Enemyposxz ;
 		(*Direction) = normalize(heading);
-	
-
 	}
 }
 void Sensor::Set_Model()
