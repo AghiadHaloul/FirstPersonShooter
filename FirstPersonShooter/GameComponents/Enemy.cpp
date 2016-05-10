@@ -17,8 +17,10 @@ void Enemy::Initialize()
 	this->MaxDist = 50;
 	this->Distance = 0;
 	this->isMoving = true;
-	FireEnable = false;
-	firehold = 0;
+	this->FireEnable = false;
+	this->isdead = false;
+	this->fireholdTime = 0;
+	this->deathTime = 0;
 	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,1.0f,0.0f,0.0f) * glm::scale(0.05f,0.05f,0.05f));
 	CollidableModel::Set_ObjectType(ObjectType::Enemy);
 	AnimationState = EnemyModel.StartAnimation(animType_t::RUN);
@@ -60,21 +62,45 @@ void Enemy::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *Animation
 void Enemy::Update(float deltaTime)
 {
 	UpdateAnimation(deltaTime);
-	if(isMoving)
+	if(!isdead)
 	{
-		Move(deltaTime);
+		if(isMoving)
+		{
+			Move(deltaTime);
+			if(AnimationState.type != animType_t::RUN)
+				AnimationState = EnemyModel.StartAnimation(animType_t::RUN);
+		}
+		else
+		{
+			if(AnimationState.type != animType_t::ATTACK)
+				AnimationState = EnemyModel.StartAnimation(animType_t::ATTACK);
+		}
+
+		if(FireEnable)
+		{
+			Fire();
+			FireEnable=false;
+		}
 	}
 	else
 	{
-		UpdateModelMatrix();
+     Update_Death(deltaTime);
 	}
-	if(FireEnable)
-	{
-		Fire();
-		FireEnable=false;
-	}
-	firehold+=deltaTime;
+	
+	fireholdTime+=deltaTime;
 	isMoving = true;
+	GameObject::UpdateModelMatrix();
+	this->UpdateBoundingbox();
+}
+
+void Enemy::Update_Death(float deltaTime)
+{ 
+	    deathTime+=deltaTime;
+		if(AnimationState.type != animType_t::DEATH_FALLBACK)
+		AnimationState = EnemyModel.StartAnimation(animType_t::DEATH_FALLBACK);
+		//GameObject::Set_InitialTransformation(glm::rotate(-90.0f,0.0f,1.0f,0.0f) * glm::scale(0.05f,0.05f,0.05f));
+	    if(deathTime > 0.80)
+			GameObject::SetIsdestroied(true); 
 }
 
 void Enemy::UpdateAnimation(float deltaTime)
@@ -93,18 +119,16 @@ void Enemy::Move(float deltaTime)
 		GameObject::SetDirection(HelperMethods::Get_Random_Direction());
 		Distance = 0;
 	}
-	GameObject::UpdateModelMatrix();
-	this->UpdateBoundingbox();
 }
 
 void Enemy::Fire()
 {
 
-	if(firehold > 0.5)
+	if(fireholdTime > 0.5)
 	{
 		Bullet* fired_bullet = new Bullet(GameObject::GetPosition(),GameObject::GetDirection(),ObjectType::EnemyBullet); 
 		StaticComponent::sceneBullets->AddBullet(fired_bullet);
-		firehold = 0;
+		fireholdTime = 0;
 	}
 }
 
@@ -118,7 +142,8 @@ void Enemy::Collided(ObjectType _ObjectType)
 	else if (_ObjectType == ObjectType::HeroBullet)
 	{
 		printf("i'm your enemy and i collided with hero bullet and i'm gonna disappeare but still here don't for get me  \n");
-		GameObject::SetIsdestroied(true);
+		this->isdead = true;
+		this->deathTime = 0;
 	}
 	else if (_ObjectType == ObjectType::Hero)
 		printf("i'm your enemy and i collided with hero  \n");

@@ -18,7 +18,7 @@ public:
 	{
 		time_t seconds ;
 		time(&seconds);
-		srand(seconds+rand()%(long long)1e13);
+		srand(seconds+rand()%10000000000000000);
 		float RandZ = 2 * (double)rand() / (double)RAND_MAX - 1;
 		float RandX = 2 * (double)rand() / (double)RAND_MAX - 1;
 		

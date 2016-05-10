@@ -27,21 +27,23 @@ class Renderer
 	glm::vec3 ambientLight;
 	glm::vec3 lightPosition;
 
-	unique_ptr<TexturedModel> background;
-	unique_ptr<TexturedModel> background2;
- void fix_Error();
- void fix_Error2();
+	unique_ptr<TexturedModel> CorssModel;
+	
+
 public:
     Renderer();
     ~Renderer();
     
     void Initialize();
-    void Draw();
+	void Initialize_CrossHair();
+	void Draw();
 	void DrawText();
+	void Draw_CrossHair();
 	void HandleKeyboardInput(int key);
 	void HandleMouse(double deltaX,double deltaY);
 	void Update(double deltaTime);
     void Cleanup();
+	
 };
 
 #endif // Renderer_h__

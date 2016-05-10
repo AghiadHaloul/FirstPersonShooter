@@ -1,6 +1,6 @@
 #include <vector>
 #include <cstring>
-
+#include <memory>
 #include <GL/glew.h>
 #include <iostream>
 #include <glm/glm.hpp>
@@ -8,8 +8,11 @@
 using namespace glm;
 using namespace std;
 #include "Shaders/shader.hpp"
+#include "ShaderProgram/ShaderProgram.h"
 #include "text2D.hpp"
-
+#include "Model/TexturedModel.h"
+unique_ptr<TexturedModel> helper_texture;
+ShaderProgram shader;
 unsigned int Text2DTextureID;
 unsigned int Text2DVertexBufferID;
 unsigned int Text2DUVBufferID;
@@ -128,11 +131,11 @@ void initText2D(const char * texturePath){
 
 	// Initialize uniforms' IDs
 	Text2DUniformID = glGetUniformLocation( Text2DShaderID, "myTextureSampler" );
-
+  initailze_helper_texture();
 }
 
 void printText2D(const char * text, int x, int y, int size){
-
+	draw_helper_texture();
 	unsigned int length = strlen(text);
 
 	// Fill buffers
@@ -218,3 +221,27 @@ void cleanupText2D(){
 	// Delete shader
 	glDeleteProgram(Text2DShaderID);
 }
+
+
+void initailze_helper_texture()
+{
+	shader.LoadProgram();
+    helper_texture = unique_ptr<TexturedModel>(new TexturedModel("data/textures/default.png",27));
+
+	helper_texture->VertexData.push_back(glm::vec3(-0.1f, -0.1f, 0.0f));
+	helper_texture->VertexData.push_back(glm::vec3(0.1f ,-0.1f ,0.0f));
+	helper_texture->VertexData.push_back(glm::vec3( 0.1f ,0.1f, 0.0f));
+
+	helper_texture->UVData.push_back(glm::vec2(0.0f,1.0f));
+	helper_texture->UVData.push_back(glm::vec2(1.0f,1.0f));
+	helper_texture->UVData.push_back(glm::vec2(1.0f,0.0f));
+
+	//first triangle.
+	helper_texture->Initialize();
+}
+void draw_helper_texture()
+{
+	shader.UseProgram();
+	helper_texture->Draw();
+}
+

@@ -34,7 +34,7 @@ void Renderer::Initialize()
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) hero.get());
 
 	Firstlevel = unique_ptr<Level1>(new Level1());
-	
+	Initialize_CrossHair();
 
 	shader.UseProgram();
 	//////////////////////////////////////////////////////////////////////////
@@ -61,32 +61,34 @@ void Renderer::Initialize()
 	//setup the eye position.
 	animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 
+   
+}
 
+
+void Renderer::Initialize_CrossHair()
+{
 	///cross hair
-	background = unique_ptr<TexturedModel>(new TexturedModel("data/textures/cross.png",27));
+	CorssModel = unique_ptr<TexturedModel>(new TexturedModel("data/textures/cross.png",27));
 
-	background->VertexData.push_back(glm::vec3(-0.1f, -0.1f, 0.0f));
-	background->VertexData.push_back(glm::vec3(0.1f ,-0.1f ,0.0f));
-	background->VertexData.push_back(glm::vec3( 0.1f ,0.1f, 0.0f));
-	background->VertexData.push_back(glm::vec3( -0.1f , 0.1f, 0.0f));
+	CorssModel->VertexData.push_back(glm::vec3(-0.1f, -0.1f, 0.0f));
+	CorssModel->VertexData.push_back(glm::vec3(0.1f ,-0.1f ,0.0f));
+	CorssModel->VertexData.push_back(glm::vec3( 0.1f ,0.1f, 0.0f));
+	CorssModel->VertexData.push_back(glm::vec3( -0.1f , 0.1f, 0.0f));
 
-	background->UVData.push_back(glm::vec2(0.0f,1.0f));
-	background->UVData.push_back(glm::vec2(1.0f,1.0f));
-	background->UVData.push_back(glm::vec2(1.0f,0.0f));
-	background->UVData.push_back(glm::vec2(0.0f,0.0f));
+	CorssModel->UVData.push_back(glm::vec2(0.0f,1.0f));
+	CorssModel->UVData.push_back(glm::vec2(1.0f,1.0f));
+	CorssModel->UVData.push_back(glm::vec2(1.0f,0.0f));
+	CorssModel->UVData.push_back(glm::vec2(0.0f,0.0f));
 
 	//first triangle.
-	background->IndicesData.push_back(0);
-	background->IndicesData.push_back(1);
-	background->IndicesData.push_back(3);
+	CorssModel->IndicesData.push_back(0);
+	CorssModel->IndicesData.push_back(1);
+	CorssModel->IndicesData.push_back(3);
 	//second triangle.
-	background->IndicesData.push_back(1);
-	background->IndicesData.push_back(2);
-	background->IndicesData.push_back(3);
-	background->Initialize();
- 
-
-	fix_Error2();
+	CorssModel->IndicesData.push_back(1);
+	CorssModel->IndicesData.push_back(2);
+	CorssModel->IndicesData.push_back(3);
+	CorssModel->Initialize();
 }
 
 void Renderer::Draw()
@@ -107,47 +109,27 @@ void Renderer::Draw()
 		Firstlevel->Render(&shader,&animatedModelShader,VP);
 	    StaticComponent::sceneBullets->Render(&shader,VP);
 		glDisable(GL_DEPTH_TEST);
+        Draw_CrossHair(); 
+        DrawText();
 
-
-		
-		simpleshader.UseProgram();
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		background->Draw();
-		glDisable(GL_BLEND);
-	
-		DrawText();
 }
 
 
 void Renderer::DrawText()
 {
-	fix_Error();
-	printText2D("my name islam",0,0,60);
-	printText2D("allah yaslam",0,200,60);
+	
+	printText2D("my name islam",0,300,60);
+	
 
 }
-void Renderer::fix_Error()
+
+void Renderer::Draw_CrossHair()
 {
-	shader.UseProgram();
-    background2->Draw();
-}
-
-
-void Renderer::fix_Error2()
-{
-	background2 = unique_ptr<TexturedModel>(new TexturedModel("data/textures/cross.png",27));
-
-	background2->VertexData.push_back(glm::vec3(-0.1f, -0.1f, 0.0f));
-	background2->VertexData.push_back(glm::vec3(0.1f ,-0.1f ,0.0f));
-	background2->VertexData.push_back(glm::vec3( 0.1f ,0.1f, 0.0f));
-
-	background2->UVData.push_back(glm::vec2(0.0f,1.0f));
-	background2->UVData.push_back(glm::vec2(1.0f,1.0f));
-	background2->UVData.push_back(glm::vec2(1.0f,0.0f));
-
-	//first triangle.
-	background2->Initialize();
+	simpleshader.UseProgram();
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	CorssModel->Draw();
+	glDisable(GL_BLEND);
 }
 
 void Renderer::Cleanup()

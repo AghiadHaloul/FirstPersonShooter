@@ -19,14 +19,18 @@ class Enemy : public GameObject , public CollidableModel
 	float MaxDist; // max distance in specific direction 
 	float Distance;
 	bool  FireEnable;
-	float firehold;
+	float fireholdTime;
+	float deathTime;
+	bool isMoving;
+	bool isdead;
+
 	animState_t AnimationState;
 	void UpdateBoundingbox();
 	static CMD2Model  EnemyModel;
 	unique_ptr<Sensor> enemySensor; ///enemy collider
     void Move(float deltaTime);
 	void InitializeBoundingbox();
-	bool isMoving;
+	
 
 public:
 	Enemy(vec3 mPosition,vec3 mDirection );
@@ -36,6 +40,7 @@ public:
 	virtual void Collided(ObjectType _ObjectType);
 	void Fire();
 	void Update(float deltaTime);
+	void Update_Death(float deltaTime);
 	static void Set_EnemyModel();
 	~Enemy(void);
 	
