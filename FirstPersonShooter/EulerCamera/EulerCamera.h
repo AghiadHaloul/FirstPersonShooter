@@ -31,6 +31,7 @@ public:
 	void SetPerspectiveProjection(float FOV, float aspectRatio, float near, float far);
 	glm::mat4 GetProjectionMatrix();
 	glm::vec3 GetEyePosition();
+	void SetEyePosition(vec3 val);
 	float Get_CameraBoundry() const { return CameraBoundry; }
 	void Set_CameraBoundry(float val) { CameraBoundry = val-1; }
 

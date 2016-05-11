@@ -12,6 +12,11 @@ void GameScreen::draw()
 void GameScreen::Update(float deltaTime)
 {
 	this->GameRenderer->Update(deltaTime);
+	if(this->GameRenderer->GameOver)
+	{
+		GameOverScreen *gameoversecreen = new GameOverScreen();
+		ScreenManger::AddScreen(gameoversecreen);
+	}
 }
 
 void GameScreen::HandleKeyboardInput(int key)

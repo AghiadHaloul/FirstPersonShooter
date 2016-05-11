@@ -13,6 +13,7 @@ public:
 	static void Draw();
 	static void HandleKeyboardInput(int key);
 	static void HandleMouse(double deltaX,double deltaY);
+	static void StartScreenReturn();
 	ScreenManger(void);
 	~ScreenManger(void);
 };

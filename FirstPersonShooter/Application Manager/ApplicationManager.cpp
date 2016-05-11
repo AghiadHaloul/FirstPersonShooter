@@ -140,8 +140,7 @@ void ApplicationManager::StartMainLoop()
 		glfwPollEvents(); 
 
 		// Check if the window is closed to terminate
-		if ( glfwGetKey(mWindow, GLFW_KEY_ESCAPE ) == GLFW_PRESS ||
-			glfwWindowShouldClose(mWindow) == true )
+		if ( glfwWindowShouldClose(mWindow) == true )
 		{
 			exitLoop = true;
 		}

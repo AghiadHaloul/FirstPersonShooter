@@ -17,13 +17,14 @@ using namespace std;
 
 class Hero : public CMD2Model , public GameObject
 {
-  
+  #define HeroHealth 100
 	//CrossHair * HeroCross; //under testing 
 	animState_t AnimationState;
 	float step;
 	void UpdateBoundingbox();
 	void Move();
 	float firehold;
+	int health; 
 public:
 	unique_ptr<EulerCamera> HeroCam;
 	Hero();
@@ -47,5 +48,6 @@ public:
 	vec3 get_heropos();
 	~Hero(void);
 	
+	int GetHealth() const { return health; }
 };
 

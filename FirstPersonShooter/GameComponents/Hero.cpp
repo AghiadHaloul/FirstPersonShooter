@@ -39,7 +39,7 @@ void Hero::UpdateAnimation(float deltaTime)
 void Hero::Initialize()
 {
 	this->step = 0.6f;
-
+	this->health = HeroHealth;
 	CMD2Model::LoadModel("data/models/hero/soldier.md2");
 	AnimationState = CMD2Model::StartAnimation(animType_t::STAND);
 	//calculate AABBboundingbox
@@ -71,15 +71,6 @@ void Hero::Fire()
 	}
 }
 
-void Hero::Collided(ObjectType _ObjectType)
-{
-	if (_ObjectType == ObjectType::HeroBullet)
-		printf("i'm your hero and i collided with hero bullet baaaaaaaaaad\n");
-	else if (_ObjectType == ObjectType::Enemy)
-		printf("i'm your hero and i collided with enemy \n");
-	else if (_ObjectType == ObjectType::MapObject)
-		printf("i'm your hero and i collided with Mapobject \n");
-}
 
 void Hero::UpdateBoundingbox()
 {
@@ -110,6 +101,35 @@ void Hero::Move()
  // AnimationState = CMD2Model::StartAnimation(animType_t::RUN);
 }
 
+
+void Hero::Collided(ObjectType _ObjectType)
+{
+	if (_ObjectType == ObjectType::EnemyBullet)
+		{
+			this->health-=10;
+			if(health == 0)
+				GameObject::SetIsdestroied(true);
+			printf("health decreased by 10\n");
+	    }
+	else if (_ObjectType == ObjectType::Enemy)
+	{
+		vec3 back_direction = -vec3(GetDirection().x,0,GetDirection().z);
+		vec3 stepBack = back_direction*step;
+		vec3 newpos = HeroCam->GetEyePosition()+stepBack;
+		HeroCam->SetEyePosition(newpos);
+		this->Move();
+		printf("i'm your hero and i collided with enemy \n");
+	}
+	else if (_ObjectType == ObjectType::MapObject)
+	{
+		vec3 back_direction = -vec3(GetDirection().x,0,GetDirection().z);
+		vec3 stepBack = back_direction*step;
+		vec3 newpos = HeroCam->GetEyePosition()+stepBack;
+		HeroCam->SetEyePosition(newpos);
+		this->Move();
+		printf("i'm your hero and i collided with Mapobject \n");
+	}
+}
 
 void Hero::Walk_Forward()
 {

@@ -28,10 +28,12 @@ class Renderer
 	glm::vec3 lightPosition;
 
 	unique_ptr<TexturedModel> CorssModel;
-	
+    
 
 public:
-    Renderer();
+    bool GameOver;
+
+	Renderer();
     ~Renderer();
     
     void Initialize();

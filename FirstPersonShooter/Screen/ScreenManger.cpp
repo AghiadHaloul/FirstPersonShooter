@@ -33,6 +33,15 @@ void ScreenManger::HandleMouse(double deltaX,double deltaY)
 	ScreenManger::Screens.top()->HandleMouse(deltaX,deltaY);
 }
 
+void ScreenManger::StartScreenReturn()
+{
+	while (Screens.size() > 1)
+	{
+		delete Screens.top();
+		Screens.pop();
+	}
+}
+
 ScreenManger::ScreenManger(void)
 {
 }

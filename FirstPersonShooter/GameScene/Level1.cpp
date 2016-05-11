@@ -32,7 +32,7 @@ void Level1::Update(float deltatime)
 void Level1::Initialize_Enemies()
 {
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		vec3 Random_direction = HelperMethods::Get_Random_Direction();
 		cout << "X :" << (float)Random_direction.x<< " Y :" <<Random_direction.y<<" Z :"<<Random_direction.z << endl;

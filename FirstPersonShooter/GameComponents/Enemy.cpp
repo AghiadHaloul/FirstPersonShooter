@@ -100,7 +100,10 @@ void Enemy::Update_Death(float deltaTime)
 		AnimationState = EnemyModel.StartAnimation(animType_t::DEATH_FALLBACK);
 		//GameObject::Set_InitialTransformation(glm::rotate(-90.0f,0.0f,1.0f,0.0f) * glm::scale(0.05f,0.05f,0.05f));
 	    if(deathTime > 0.80)
-			GameObject::SetIsdestroied(true); 
+			{
+				GameObject::SetIsdestroied(true); 
+		        StaticComponent::collisionManager->RemoveCollidableModel((CollidableModel*)enemySensor.get());
+		    }
 }
 
 void Enemy::UpdateAnimation(float deltaTime)
@@ -114,11 +117,17 @@ void Enemy::Move(float deltaTime)
 	vec3 newpos = GameObject::GetPosition()+GameObject::GetDirection()*step; 
 	GameObject::SetPosition(newpos);
 	Distance += step;
-	if (Distance >= MaxDist || stupid_bounding())
+	if (Distance >= MaxDist )
 	{
 		GameObject::SetDirection(HelperMethods::Get_Random_Direction());
 		Distance = 0;
 	}
+	if (stupid_bounding())
+	{
+		GameObject::SetDirection(-GetDirection());
+		Distance = 0;
+	}
+
 }
 
 void Enemy::Fire()
@@ -136,8 +145,9 @@ void Enemy::Collided(ObjectType _ObjectType)
 {
 	if (_ObjectType == ObjectType::MapObject)
 	{
-		GameObject::SetDirection(HelperMethods::Get_Random_Direction());
-		//GameObject::SetDirection(-GameObject::GetDirection());
+		vec3 newpos = GameObject::GetPosition()+(-GameObject::GetDirection()); 
+		GameObject::SetPosition(newpos);
+		GameObject::SetDirection(-GameObject::GetDirection());
 	}
 	else if (_ObjectType == ObjectType::HeroBullet)
 	{
@@ -145,11 +155,7 @@ void Enemy::Collided(ObjectType _ObjectType)
 		this->isdead = true;
 		this->deathTime = 0;
 	}
-	else if (_ObjectType == ObjectType::Hero)
-		printf("i'm your enemy and i collided with hero  \n");
-
-	if(GameObject::GetIsdestroied())
-		StaticComponent::collisionManager->RemoveCollidableModel((CollidableModel*)enemySensor.get());
+	
 }
 
 

@@ -194,6 +194,9 @@
     <ClCompile Include="text2D.cpp">
       <Filter>Text</Filter>
     </ClCompile>
+    <ClCompile Include="Screen\GameOverScreen.cpp">
+      <Filter>Screen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application Manager\ApplicationManager.h">
@@ -318,6 +321,9 @@
     </ClInclude>
     <ClInclude Include="text2D.hpp">
       <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen\GameOverScreen.h">
+      <Filter>Screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

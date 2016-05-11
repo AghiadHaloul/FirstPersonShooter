@@ -9,6 +9,7 @@ SimpleShaderProgram simpleshader;
 
 Renderer::Renderer()
 {
+ 
  this->Initialize();   
 }
 
@@ -19,14 +20,8 @@ Renderer::~Renderer()
 
 void Renderer::Initialize()
 {
-	initText2D("Holstein.DDS");
 
-	//calculate the normal of the triangle.
-	shader.LoadProgram();
-	animatedModelShader.LoadProgram();
-	simpleshader.LoadProgram();
-/////////////////////////////////
-
+    this->GameOver = false;
 	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100.0f)); 
 	Game_SkyBox->Initialize();
 
@@ -36,11 +31,16 @@ void Renderer::Initialize()
 	Firstlevel = unique_ptr<Level1>(new Level1());
 	Initialize_CrossHair();
 
+
+	initText2D("Holstein.DDS");
+	shader.LoadProgram();
+	animatedModelShader.LoadProgram();
+	simpleshader.LoadProgram();
 	shader.UseProgram();
 	//////////////////////////////////////////////////////////////////////////
 	// Configure the light.
 	//setup the light position.
-	lightPosition = glm::vec3(-50,-50,-50);
+	lightPosition = glm::vec3(0,-50,0);
 	shader.BindLightPosition(&lightPosition[0]);
 	//setup the ambient light component.
 	ambientLight = glm::vec3(0.1,0.1,0.1);
@@ -117,10 +117,10 @@ void Renderer::Draw()
 
 void Renderer::DrawText()
 {
-	
-	printText2D("my name islam",0,300,60);
-	
-
+	char health[100];
+	itoa(hero->GetHealth(),health,10);
+	printText2D("HP",0,550,40);
+	printText2D(health,100,550,40);
 }
 
 void Renderer::Draw_CrossHair()
@@ -145,6 +145,7 @@ void Renderer::Update(double deltaTime)
 	hero->Update(deltaTime/1000); // update nothing till now
 	Firstlevel->Update(deltaTime/1000);
 	StaticComponent::sceneBullets->Update(deltaTime/1000);
+	this->GameOver = hero->GetIsdestroied();
 }
 
 void Renderer::HandleKeyboardInput(int key)

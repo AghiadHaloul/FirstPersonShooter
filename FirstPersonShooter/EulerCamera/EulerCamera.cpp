@@ -142,3 +142,8 @@ glm::vec3 EulerCamera::GetEyePosition()
 {
 	return mPosition;
 }
+
+void EulerCamera::SetEyePosition(vec3 val)
+{
+	mPosition = val;
+}

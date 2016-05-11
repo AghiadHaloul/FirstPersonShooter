@@ -1,11 +1,23 @@
-﻿Build started 5/11/2016 12:35:38 AM.
+﻿Build started 5/11/2016 4:35:17 AM.
      1>Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameComponents\Enemy.cpp
-         Enemy.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(21): warning C4244: 'argument' : conversion from '__int64' to 'unsigned int', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(22): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(23): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "Application Manager\ApplicationManager.cpp" Screen\CreditsScreen.cpp Screen\GameOverScreen.cpp Screen\GameScreen.cpp Screen\LoadingScreen.cpp Screen\OptionScreen.cpp Screen\StartScreen.cpp main.cpp
+         GameOverScreen.cpp
+         Generating Code...
+         Compiling...
+         main.cpp
+         StartScreen.cpp
+         OptionScreen.cpp
+         LoadingScreen.cpp
+         GameScreen.cpp
+     1>c:\program files (x86)\windows kits\8.0\include\shared\minwindef.h(130): warning C4005: 'APIENTRY' : macro redefinition
+                 d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\include\gl\glfw3.h(96) : see previous definition of 'APIENTRY'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\screen\gamescreen.cpp(30): warning C4065: switch statement contains 'default' but no 'case' labels
+         CreditsScreen.cpp
+         ApplicationManager.cpp
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\application manager\applicationmanager.cpp(143): warning C4805: '==' : unsafe mix of type 'int' and type 'bool' in operation
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\application manager\applicationmanager.cpp(195): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\lib opengl32.lib glew32.lib glfw3.lib assimp.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.lib" /MACHINE:X86 Debug\ApplicationManager.obj
          Debug\AABoundingBox.obj
@@ -33,6 +45,7 @@
          Debug\objloader.obj
          Debug\Renderer.obj
          Debug\CreditsScreen.obj
+         Debug\GameOverScreen.obj
          Debug\GameScreen.obj
          Debug\LoadingScreen.obj
          Debug\OptionScreen.obj
@@ -53,4 +66,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.73
+Time Elapsed 00:00:17.97
