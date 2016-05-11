@@ -13,9 +13,12 @@
 #include "GameComponents/Hero.h"
 #include "GameScene/Level1.h"
 #include "text2D.hpp"
+//#include "sound/SoundEngine.h"
+
 using namespace std;
 class Renderer
 {
+	
 	
 	unique_ptr<Hero> hero;
 	std::unique_ptr<SkyBox> Game_SkyBox;
@@ -28,7 +31,7 @@ class Renderer
 	glm::vec3 lightPosition;
 
 	unique_ptr<TexturedModel> CorssModel;
-    
+    //unique_ptr<SoundEngine> soundEngine;
 
 public:
     bool GameOver;

@@ -51,7 +51,8 @@ void OptionScreen::HandleKeyboardInput(int key)
 	switch (key)
 	{
 	case GLFW_KEY_BACKSPACE:
-		ScreenManger::StartScreenReturn();
+	case GLFW_KEY_ESCAPE:
+		ScreenManger::RemoveScreen();
 		break;
 	default:
 		break;

@@ -33,7 +33,7 @@ void StartScreen::Initialize()
 	
 	shader.LoadProgram();
 
-	Choice = StartScreenchoice::Nochoice;
+	Choice = StartScreenChoice::NoChoice;
 }
 
 void StartScreen::draw()	
@@ -75,23 +75,23 @@ void StartScreen::handel_UPkey()
 	switch (Choice)
 	{
 	case StartScreen::PlayGame:
-		Choice = StartScreenchoice::Quit;
+		Choice = StartScreenChoice::Quit;
 		background->texture = new Texture("data/textures/menu/mainmenu/quit.jpg",13);
 		break;
 	case StartScreen::Options:
-		Choice = StartScreenchoice::PlayGame;
+		Choice = StartScreenChoice::PlayGame;
 		background->texture = new Texture("data/textures/menu/mainmenu/playgame.jpg",13);
 		break;
 	case StartScreen::Credits:
-		Choice = StartScreenchoice::Options;
+		Choice = StartScreenChoice::Options;
 		background->texture = new Texture("data/textures/menu/mainmenu/options.jpg",13);
 		break;
 	case StartScreen::Quit:
-		Choice = StartScreenchoice::Credits;
+		Choice = StartScreenChoice::Credits;
 		background->texture = new Texture("data/textures/menu/mainmenu/credits.jpg",13);
 		break;
-	case StartScreen::Nochoice:
-		Choice = StartScreenchoice::Quit;
+	case StartScreen::NoChoice:
+		Choice = StartScreenChoice::Quit;
 		background->texture = new Texture("data/textures/menu/mainmenu/quit.jpg",13);
 		break;
 	default:
@@ -105,23 +105,23 @@ void StartScreen::handel_Downkey()
 	switch (Choice)
 	{
 	case StartScreen::PlayGame:
-		Choice = StartScreenchoice::Options;
+		Choice = StartScreenChoice::Options;
 		background->texture = new Texture("data/textures/menu/mainmenu/options.jpg",13);
 		break;
 	case StartScreen::Options:
-		Choice = StartScreenchoice::Credits;
+		Choice = StartScreenChoice::Credits;
 		background->texture = new Texture("data/textures/menu/mainmenu/credits.jpg",13);
 		break;
 	case StartScreen::Credits:
-		Choice = StartScreenchoice::Quit;
+		Choice = StartScreenChoice::Quit;
 		background->texture = new Texture("data/textures/menu/mainmenu/quit.jpg",13);
 		break;
 	case StartScreen::Quit:
-		Choice = StartScreenchoice::PlayGame;
+		Choice = StartScreenChoice::PlayGame;
 		background->texture = new Texture("data/textures/menu/mainmenu/playgame.jpg",13);
 		break;
-	case StartScreen::Nochoice:
-		Choice = StartScreenchoice::PlayGame;
+	case StartScreen::NoChoice:
+		Choice = StartScreenChoice::PlayGame;
 		background->texture = new Texture("data/textures/menu/mainmenu/playgame.jpg",13);
 		break;
 	default:
@@ -151,7 +151,7 @@ void StartScreen::handel_Enterkey()
 	case StartScreen::Quit:
 		ApplicationManager::exitLoop = true;
 		break;
-	case StartScreen::Nochoice:
+	case StartScreen::NoChoice:
 		break;
 	default:
 		break;

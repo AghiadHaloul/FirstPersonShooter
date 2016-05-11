@@ -1,4 +1,5 @@
 #include "GameScreen.h"
+
 void GameScreen::Initialize()
 {
 	this->GameRenderer = unique_ptr<Renderer>(new Renderer());
@@ -22,9 +23,13 @@ void GameScreen::Update(float deltaTime)
 void GameScreen::HandleKeyboardInput(int key)
 {
 	this->GameRenderer->HandleKeyboardInput(key);
+	PauseScreen*pauseScreen;
 	switch (key)
 	{
-	
+	case GLFW_KEY_ESCAPE:
+		pauseScreen = new PauseScreen();
+		ScreenManger::AddScreen(pauseScreen);
+		break;
 	default:
 		break;
 	}

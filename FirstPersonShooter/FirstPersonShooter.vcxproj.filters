@@ -69,6 +69,9 @@
     <Filter Include="Text">
       <UniqueIdentifier>{9882d552-50e3-4d15-9b66-dcc176f698f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{40bbd37d-46bc-42e9-b4d2-ef46d7cb9cc8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -164,20 +167,20 @@
     <ClCompile Include="CollisionDetection\sensor.cpp">
       <Filter>CollisionDetection</Filter>
     </ClCompile>
-    <ClCompile Include="Screen\GameScreen.cpp">
-      <Filter>Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen\Screen.cpp">
-      <Filter>Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen\ScreenManger.cpp">
-      <Filter>Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen\StartScreen.cpp">
-      <Filter>Screen</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderProgram\SimpleShaderProgram.cpp">
       <Filter>ShaderProgram</Filter>
+    </ClCompile>
+    <ClCompile Include="text2D.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen\CreditsScreen.cpp">
+      <Filter>Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen\GameOverScreen.cpp">
+      <Filter>Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen\GameScreen.cpp">
+      <Filter>Screen</Filter>
     </ClCompile>
     <ClCompile Include="Screen\LoadingScreen.cpp">
       <Filter>Screen</Filter>
@@ -188,13 +191,13 @@
     <ClCompile Include="Screen\PauseScreen.cpp">
       <Filter>Screen</Filter>
     </ClCompile>
-    <ClCompile Include="Screen\CreditsScreen.cpp">
+    <ClCompile Include="Screen\Screen.cpp">
       <Filter>Screen</Filter>
     </ClCompile>
-    <ClCompile Include="text2D.cpp">
-      <Filter>Text</Filter>
+    <ClCompile Include="Screen\ScreenManger.cpp">
+      <Filter>Screen</Filter>
     </ClCompile>
-    <ClCompile Include="Screen\GameOverScreen.cpp">
+    <ClCompile Include="Screen\StartScreen.cpp">
       <Filter>Screen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -292,20 +295,20 @@
     <ClInclude Include="CollisionDetection\sensor.h">
       <Filter>CollisionDetection</Filter>
     </ClInclude>
-    <ClInclude Include="Screen\GameScreen.h">
-      <Filter>Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen\Screen.h">
-      <Filter>Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen\ScreenManger.h">
-      <Filter>Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen\StartScreen.h">
-      <Filter>Screen</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderProgram\SimpleShaderProgram.h">
       <Filter>ShaderProgram</Filter>
+    </ClInclude>
+    <ClInclude Include="text2D.hpp">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen\CreditsScreen.h">
+      <Filter>Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen\GameOverScreen.h">
+      <Filter>Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen\GameScreen.h">
+      <Filter>Screen</Filter>
     </ClInclude>
     <ClInclude Include="Screen\LoadingScreen.h">
       <Filter>Screen</Filter>
@@ -316,13 +319,13 @@
     <ClInclude Include="Screen\PauseScreen.h">
       <Filter>Screen</Filter>
     </ClInclude>
-    <ClInclude Include="Screen\CreditsScreen.h">
+    <ClInclude Include="Screen\Screen.h">
       <Filter>Screen</Filter>
     </ClInclude>
-    <ClInclude Include="text2D.hpp">
-      <Filter>Text</Filter>
+    <ClInclude Include="Screen\ScreenManger.h">
+      <Filter>Screen</Filter>
     </ClInclude>
-    <ClInclude Include="Screen\GameOverScreen.h">
+    <ClInclude Include="Screen\StartScreen.h">
       <Filter>Screen</Filter>
     </ClInclude>
   </ItemGroup>

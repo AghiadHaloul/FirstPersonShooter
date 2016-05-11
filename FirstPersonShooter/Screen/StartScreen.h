@@ -15,9 +15,9 @@ using namespace glm;
 class StartScreen : public Screen
 {
 public:
-	enum StartScreenchoice{PlayGame,Options,Credits,Quit,Nochoice};
+	enum StartScreenChoice{PlayGame,Options,Credits,Quit,NoChoice};
 private:
-	StartScreenchoice Choice;
+	StartScreenChoice Choice;
 	SimpleShaderProgram shader;
 	unique_ptr<TexturedModel> background;
 

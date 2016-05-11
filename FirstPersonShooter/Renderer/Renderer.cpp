@@ -2,6 +2,7 @@
 //#include "Application Manager/ApplicationManager.h"
 #include "ShaderProgram/SimpleShaderProgram.h"
 
+ 
 SimpleShaderProgram simpleshader;
 
 
@@ -20,7 +21,8 @@ Renderer::~Renderer()
 
 void Renderer::Initialize()
 {
-
+	//soundEngine = unique_ptr<SoundEngine>(new SoundEngine());
+	//soundEngine->StartBackMusic("strings2.wav");
     this->GameOver = false;
 	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100.0f)); 
 	Game_SkyBox->Initialize();
