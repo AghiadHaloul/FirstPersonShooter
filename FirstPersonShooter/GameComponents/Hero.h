@@ -24,7 +24,8 @@ class Hero : public CMD2Model , public GameObject
 	void UpdateBoundingbox();
 	void Move();
 	float firehold;
-	int health; 
+	int health;
+	vec3 PreviousPostion;
 public:
 	unique_ptr<EulerCamera> HeroCam;
 	Hero();

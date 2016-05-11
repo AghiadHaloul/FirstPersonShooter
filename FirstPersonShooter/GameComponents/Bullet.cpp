@@ -79,11 +79,13 @@ void Bullet::Collided(ObjectType _ObjectType)
 	   GameObject::SetIsdestroied(true);   
 	}
 	else if (_ObjectType == ObjectType::Hero && CollidableModel::Get_ObjectType()==ObjectType::EnemyBullet)
-	printf("i'm  the enemy bullet and you collided with hero \n");
-
-	else if (_ObjectType == ObjectType::MapObject && CollidableModel::Get_ObjectType()==ObjectType::HeroBullet)
-		printf("i'm  the hero bullet and you collided with map object \n");
-
+	{
+		GameObject::SetIsdestroied(true); 
+	}
+	else if (_ObjectType == ObjectType::MapObject)
+	{
+		GameObject::SetIsdestroied(true); 
+	}
 }
 
 Bullet::~Bullet(void)

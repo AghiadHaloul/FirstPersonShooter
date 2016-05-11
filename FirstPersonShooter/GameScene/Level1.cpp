@@ -47,8 +47,8 @@ void Level1::Update_Enemies(float deltatime)
 	for (int Index = 0; Index < GameScene::Enemies.size() ; Index++)
 	{
 		Enemies[Index]->Update(deltatime);
-
 		//erasing destroyed enemy
+
 		if(Enemies[Index]->GetIsdestroied())
 		{
 			StaticComponent::collisionManager->RemoveCollidableModel((CollidableModel*)Enemies[Index]);

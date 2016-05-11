@@ -106,26 +106,21 @@ void Hero::Collided(ObjectType _ObjectType)
 {
 	if (_ObjectType == ObjectType::EnemyBullet)
 		{
-			this->health-=10;
+			//this->health-=10;
 			if(health == 0)
 				GameObject::SetIsdestroied(true);
 			printf("health decreased by 10\n");
 	    }
 	else if (_ObjectType == ObjectType::Enemy)
 	{
-		vec3 back_direction = -vec3(GetDirection().x,0,GetDirection().z);
-		vec3 stepBack = back_direction*step;
-		vec3 newpos = HeroCam->GetEyePosition()+stepBack;
-		HeroCam->SetEyePosition(newpos);
+		HeroCam->SetEyePosition(this->PreviousPostion);
 		this->Move();
 		printf("i'm your hero and i collided with enemy \n");
 	}
 	else if (_ObjectType == ObjectType::MapObject)
 	{
-		vec3 back_direction = -vec3(GetDirection().x,0,GetDirection().z);
-		vec3 stepBack = back_direction*step;
-		vec3 newpos = HeroCam->GetEyePosition()+stepBack;
-		HeroCam->SetEyePosition(newpos);
+		
+		HeroCam->SetEyePosition(this->PreviousPostion);
 		this->Move();
 		printf("i'm your hero and i collided with Mapobject \n");
 	}
@@ -133,18 +128,21 @@ void Hero::Collided(ObjectType _ObjectType)
 
 void Hero::Walk_Forward()
 {
+   this->PreviousPostion = HeroCam->GetEyePosition();
    this->HeroCam->Walk(step);
    this->Move();
 }
 
 void Hero::Walk_Backward()
 {
+	this->PreviousPostion = HeroCam->GetEyePosition();
 	this->HeroCam->Walk(-step);
 	this->Move();
 }
 
 void Hero::Straf_Right()
 {
+  this->PreviousPostion = HeroCam->GetEyePosition();
   this->HeroCam->Strafe(step);
   this->Move();
 }
@@ -152,6 +150,7 @@ void Hero::Straf_Right()
 
 void Hero::Straf_Left()
 {
+	this->PreviousPostion = HeroCam->GetEyePosition();
 	this->HeroCam->Strafe(-step);
 	this->Move();
 }
