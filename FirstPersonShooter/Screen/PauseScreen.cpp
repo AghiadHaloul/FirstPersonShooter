@@ -138,7 +138,7 @@ void PauseScreen::handel_Enterkey()
 	}
 }
 
-void PauseScreen::HandleMouse(double deltax,double deltay)
+void PauseScreen::HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked)
 {
 
 }

@@ -158,7 +158,7 @@ void StartScreen::handel_Enterkey()
 	}
 }
 
-void StartScreen::HandleMouse(double deltaX,double deltaY)
+void StartScreen::HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked)
 {
 
 }

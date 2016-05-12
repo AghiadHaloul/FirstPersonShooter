@@ -45,7 +45,7 @@ void Hero::Initialize()
 	//calculate AABBboundingbox
 	this->UpdateBoundingbox();
 	Bullet::Set_BulletModel();
-	firehold = 0;
+	//firehold = 0;
 }
 
 void Hero::Render(ShaderProgram * shader,mat4 VP)
@@ -57,18 +57,16 @@ void Hero::Render(ShaderProgram * shader,mat4 VP)
 
 void Hero::Update(float deltaTime)
 {
-	firehold+=deltaTime;
+	//firehold+=deltaTime;
 }
 
 
 void Hero::Fire()
 {
-	if(firehold > 0.5)
-	{
 	Bullet* fired_bullet = new Bullet(HeroCam->GetEyePosition(),HeroCam->Get_mDirection(),ObjectType::HeroBullet); 
     StaticComponent::sceneBullets->AddBullet(fired_bullet);
-	firehold = 0;
-	}
+	
+	//if(firehold > 0.25)	{ firehold = 0;} if there is fire hold
 }
 
 

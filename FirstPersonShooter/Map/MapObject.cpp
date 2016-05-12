@@ -2,7 +2,8 @@
 
 
 Model3D MapObject::BuildingModel;
-TexturedModel* MapObject::TreeModel = nullptr;
+Model3D MapObject::TreeModel;
+
 //TexturedModel* MapObject::MapObjectModel = nullptr;
 
 MapObject::MapObject(vec3 mPosition,vec3 Direction,MapObjectType MapObjectType_):GameObject(mPosition,Direction)
@@ -20,13 +21,13 @@ MapObject::MapObject(vec3 mPosition,vec3 Direction,MapObjectType MapObjectType_)
 		CollidableModel::SetBoundingBox(boundingbox);
 	}
 	else if(MapObjectType_==MapObjectType::tree){
-		GameObject::Set_InitialTransformation(scale(0.01f,0.01f,0.01f));
+		GameObject::Set_InitialTransformation(scale(2.0f,2.0f,2.0f));
 		GameObject::UpdateModelMatrix();
 
 		CollidableModel::Set_ObjectType(ObjectType::MapObject);
-		CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(TreeModel->VertexData));
+		CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(TreeModel.GetVertices()));
 		auto boundingbox = CollidableModel::GetBoundingBox();
-		boundingbox.Scale(0.01f,0.01f,0.01f);
+		boundingbox.Scale(2.0f,2.0f,2.0f);
 		boundingbox.SetCenter(GameObject::GetPosition());
 		CollidableModel::SetBoundingBox(boundingbox);
 	}
@@ -40,25 +41,19 @@ void MapObject::Render(ShaderProgram * Shader, mat4 VP)
 	
 	if(MapObjectType_==MapObjectType::building1){
 		BuildingModel.Render(Shader,GameObject::Get_ModelMatrix(),mat4(1));
-		cout<<"Building Rendered\n";
+		//cout<<"Building Rendered\n";
 	}
 	else if(MapObjectType_==MapObjectType::tree){
-		TreeModel->Draw();
+		TreeModel.Render(Shader,GameObject::Get_ModelMatrix(),mat4(1));
 	}
 }
 
 void MapObject::Set_Model()
 {
-	TreeModel = new TexturedModel("data/models/Tree/Tree.jpg",50);
-	vector<vec3> vertices;
-	vector<vec2> UVData;
-	vector<vec3> normals;
-	loadOBJ("data/models/Tree/Tree.obj",vertices,UVData,normals);
-	TreeModel->VertexData = vertices;
-	TreeModel->UVData = UVData;
-	TreeModel->NormalsData = normals;
-	TreeModel->Initialize();
-	cout<<"tree loaded"<<endl;
+	TreeModel =  Model3D();
+	TreeModel.LoadFromFile("data/models/Tree/PalmTree.3ds",true);
+	TreeModel.Initialize();
+
 	
 	BuildingModel =  Model3D();
 	BuildingModel.LoadFromFile("data/models/house/AranHouse1_3ds.3ds",true);

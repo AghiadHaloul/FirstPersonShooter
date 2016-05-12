@@ -13,8 +13,9 @@
 #include "GameComponents/Hero.h"
 #include "GameScene/Level1.h"
 #include "text2D.hpp"
-//#include "sound/SoundEngine.h"
 
+//#include "sound/SoundEngine.h"
+ 
 using namespace std;
 class Renderer
 {
@@ -45,7 +46,7 @@ public:
 	void DrawText();
 	void Draw_CrossHair();
 	void HandleKeyboardInput(int key);
-	void HandleMouse(double deltaX,double deltaY);
+	void HandleMouse(double deltaX,double deltaY,static bool LeftBtn_clicked);
 	void Update(double deltaTime);
     void Cleanup();
 	

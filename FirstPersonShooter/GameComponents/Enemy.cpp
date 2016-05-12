@@ -152,8 +152,11 @@ void Enemy::Collided(ObjectType _ObjectType)
 	else if (_ObjectType == ObjectType::HeroBullet)
 	{
 		printf("i'm your enemy and i collided with hero bullet and i'm gonna disappeare but still here don't for get me  \n");
-		this->isdead = true;
-		this->deathTime = 0;
+		if(!isdead)
+		{
+			this->isdead = true;
+			this->deathTime = 0;
+		}
 	}
 	
 }

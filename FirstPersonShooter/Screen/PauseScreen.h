@@ -26,7 +26,7 @@ public:
 	virtual void draw();
 	virtual void Update(float deltaTime);
 	virtual void HandleKeyboardInput(int key);
-	virtual void HandleMouse(double deltaX,double deltaY);
+	virtual void HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked);
 	virtual void close();
 	~PauseScreen(void);
 };

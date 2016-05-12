@@ -18,7 +18,9 @@ public:
 private:
 	MapObjectType MapObjectType_;
 	static Model3D BuildingModel;
-	static TexturedModel* TreeModel;
+	static Model3D TreeModel;
+
+	
 
 public:
     MapObject(vec3 Position,vec3 Direction,MapObjectType);

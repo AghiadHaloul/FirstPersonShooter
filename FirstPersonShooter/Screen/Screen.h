@@ -7,7 +7,7 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void close();
 	virtual void HandleKeyboardInput(int key);
-	virtual void HandleMouse(double deltaX,double deltaY);
+	virtual void HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked);
 	Screen(void);
 	~Screen(void);
 };

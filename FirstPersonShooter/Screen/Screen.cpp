@@ -26,7 +26,7 @@ void Screen::HandleKeyboardInput(int key)
 
 }
 
-void Screen::HandleMouse(double deltaX,double deltaY)
+void Screen::HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked)
 {
 
 }

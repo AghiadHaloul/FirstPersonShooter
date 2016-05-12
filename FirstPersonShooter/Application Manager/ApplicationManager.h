@@ -6,6 +6,7 @@
 #include <memory>
 #include "Screen/ScreenManger.h"
 #include "Screen/StartScreen.h"
+
 class ApplicationManager
 {
 
@@ -23,14 +24,14 @@ class ApplicationManager
 	static void SpecialKeyPressed(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void MouseMoved(GLFWwindow* window, double xpos, double ypos);
 	static void WindowResized(GLFWwindow* window, int width, int height);
-
+	static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	static int WindowSizeWidth; 
 	static int WindowSizeHeight;
-
+	static bool LeftBtn_clicked;
 public:
 	static bool exitLoop;
 	static int KeyPressed; //Keep the code of the pressed key
-
+	
 	static double movedDistanceX;
 	static double movedDistanceY;
 	static double MouseXPos; //Keep the x-value of the mouse position

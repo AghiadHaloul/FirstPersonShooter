@@ -72,7 +72,7 @@ void Level1::Render_Enemies(ShaderProgram*StaticShader,KeyFrameAnimationShader *
 
 void Level1::Initialize_MapObjects()
 {
-	/*
+	
 	MapObject* tree1= new MapObject(vec3(-2,-99.9,2),vec3(-1,0,0),MapObject::tree); 
 	MapObjects.push_back(tree1);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) tree1);
@@ -166,31 +166,31 @@ void Level1::Initialize_MapObjects()
 	MapObject* building10 = new MapObject(vec3(-20, -99.9, 20), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building10);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building10);
-	*/
 	
-	// Random
-	MapObject* mapObjectsArray[35];
+	
+	/*// Random
+	MapObject* mapObjectsArray[100];
 	int x, z,m=199,n=1,i;
 
-	for (i = 0; i < 20; i++)
+	for (i = 0; i < 10; i++)
 	{
 		x = (rand() % m - n)-100;
-		z = (rand() % m - n) - 100;
-		if (x&&z == 0)x += 10;
-		mapObjectsArray[i] = new MapObject(vec3(x, -99.9, z), vec3(-1, 0, 0), MapObject::tree);
-		MapObjects.push_back(mapObjectsArray[i]);
-		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)mapObjectsArray[i]);
-	}
-	for (i; i < 35; i++)
-	{
-		x = (rand() % m - n) - 100;
 		z = (rand() % m - n) - 100;
 		if (x&&z == 0)x += 10;
 		mapObjectsArray[i] = new MapObject(vec3(x, -99.9, z), vec3(-1, 0, 0), MapObject::building1);
 		MapObjects.push_back(mapObjectsArray[i]);
 		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)mapObjectsArray[i]);
 	}
-	
+	for (i; i < 20; i++)
+	{
+		x = (rand() % m - n) - 100;
+		z = (rand() % m - n) - 100;
+		if (x&&z == 0)x += 10;
+		mapObjectsArray[i] = new MapObject(vec3(x, -99.9, z), vec3(-1, 0, 0), MapObject::tree);
+		MapObjects.push_back(mapObjectsArray[i]);
+		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)mapObjectsArray[i]);
+	}
+	*/
 }
 
 void Level1::Update_MapObjects()

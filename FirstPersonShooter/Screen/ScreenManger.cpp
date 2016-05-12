@@ -28,9 +28,9 @@ void ScreenManger::HandleKeyboardInput(int key)
 	ScreenManger::Screens.top()->HandleKeyboardInput(key);
 }
 
-void ScreenManger::HandleMouse(double deltaX,double deltaY)
+void ScreenManger::HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked)
 {
-	ScreenManger::Screens.top()->HandleMouse(deltaX,deltaY);
+	ScreenManger::Screens.top()->HandleMouse(deltaX,deltaY, LeftBtn_clicked);
 }
 
 void ScreenManger::StartScreenReturn()

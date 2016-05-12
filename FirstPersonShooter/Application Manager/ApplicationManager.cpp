@@ -8,6 +8,7 @@ int ApplicationManager::WindowSizeWidth = 0;
 int ApplicationManager::WindowSizeHeight = 0;
  double ApplicationManager::movedDistanceX = 0;
  double ApplicationManager::movedDistanceY = 0;
+bool ApplicationManager::LeftBtn_clicked = false;
  bool ApplicationManager::exitLoop = false;
 ApplicationManager::ApplicationManager(int pOpenGLMajorVersion, int pOpenGLMinorVersion)
 {
@@ -67,7 +68,8 @@ bool ApplicationManager::InitalizeApplication(int pWindowSizeWidth, int pWindowS
 	MouseYPos = WindowSizeHeight/2;
 	glfwSetCursorPos(mWindow,MouseXPos,MouseYPos);
 	glfwSetCursorPosCallback(mWindow, &this->MouseMoved);
-	
+
+	glfwSetMouseButtonCallback(mWindow, mouse_button_callback);
 	//////////////////////////////////////////////////////////////////////////
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
@@ -124,9 +126,10 @@ void ApplicationManager::StartMainLoop()
 			movedDistanceX = double(WindowSizeWidth/2 - MouseXPos)*mouseSpeed;
 			movedDistanceY = double(WindowSizeHeight/2 - MouseYPos)*mouseSpeed;
 			// Pass the two distances to the Renderer (our drawings)
-			ScreenManger::HandleMouse( movedDistanceX, movedDistanceY);
+			ScreenManger::HandleMouse( movedDistanceX, movedDistanceY, LeftBtn_clicked);
 			
 			//Force the new position of the mouse to be in the middle of the window
+			LeftBtn_clicked = false;
 			MouseXPos = WindowSizeWidth/2;
 			MouseYPos = WindowSizeHeight/2;
 			glfwSetCursorPos(mWindow,MouseXPos,MouseYPos); 
@@ -185,6 +188,13 @@ void ApplicationManager::WindowResized(GLFWwindow* window, int width, int height
 	glViewport(0,0,width,height);
 }
 
+
+void ApplicationManager::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+		LeftBtn_clicked = true;
+	
+}
 
 void ApplicationManager::Update()
 {

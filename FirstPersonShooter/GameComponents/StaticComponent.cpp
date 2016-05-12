@@ -2,6 +2,7 @@
 
 unique_ptr<CollisionManager>StaticComponent::collisionManager = unique_ptr<CollisionManager>(new CollisionManager());
 unique_ptr<SceneBullets> StaticComponent::sceneBullets = unique_ptr<SceneBullets>(new SceneBullets());
+
 StaticComponent::StaticComponent()
 {
 }

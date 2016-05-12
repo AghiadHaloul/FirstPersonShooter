@@ -36,9 +36,9 @@ void GameScreen::HandleKeyboardInput(int key)
 	
 }
 
-void GameScreen::HandleMouse(double deltaX,double deltaY)
+void GameScreen::HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked)
 {
-	this->GameRenderer->HandleMouse(deltaX,deltaY);
+	this->GameRenderer->HandleMouse(deltaX,deltaY,LeftBtn_clicked);
 }
 
 void GameScreen::close()

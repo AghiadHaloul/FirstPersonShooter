@@ -27,7 +27,7 @@ void Renderer::Initialize()
 	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100.0f)); 
 	Game_SkyBox->Initialize();
 
-	hero = unique_ptr<Hero>(new Hero(vec3(0,-98.7,0),vec3(0,0,-1),Game_SkyBox->Unitsize));
+	hero = unique_ptr<Hero>(new Hero(vec3(3,-98,0),vec3(0,0,-1),Game_SkyBox->Unitsize));
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) hero.get());
 
 	Firstlevel = unique_ptr<Level1>(new Level1());
@@ -181,12 +181,12 @@ void Renderer::HandleKeyboardInput(int key)
 
 		// Moving up
 	case GLFW_KEY_R:
-		hero->HeroCam->Fly(0.1);
+		hero->HeroCam->Fly(3);
 		break;
 
 		// Moving down
 	case GLFW_KEY_F:
-		hero->HeroCam->Fly(-0.1);
+		hero->HeroCam->Fly(-3);
 		break;
 
 	case GLFW_KEY_SPACE:
@@ -201,12 +201,16 @@ void Renderer::HandleKeyboardInput(int key)
     animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 }
 
-void Renderer::HandleMouse(double deltaX,double deltaY)
+void Renderer::HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked)
 {	
 	hero->Yaw(deltaX);
 	hero->Pitch(deltaY);
 	//update the eye position uniform.
 	shader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 	animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
+	if(LeftBtn_clicked){
+		//cout << "mouse clicked"<<endl;
+        hero->Fire();
+	}
 }
 

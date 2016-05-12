@@ -4,7 +4,7 @@
 Bullet::Bullet(vec3 mPosition,vec3 Direction,ObjectType BulletType)
 	:GameObject(mPosition,Direction)
 {
-	Speed = 20.0;
+	Speed = 50.0;
 	Distance = 0;
 
    GameObject::Set_InitialTransformation(scale(0.009f,0.009f,0.009f));

@@ -12,7 +12,7 @@ public:
 	static void Update(float deltaTime);
 	static void Draw();
 	static void HandleKeyboardInput(int key);
-	static void HandleMouse(double deltaX,double deltaY);
+	static void HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked);
 	static void StartScreenReturn();
 	ScreenManger(void);
 	~ScreenManger(void);

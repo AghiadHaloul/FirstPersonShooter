@@ -23,7 +23,7 @@ class Hero : public CMD2Model , public GameObject
 	float step;
 	void UpdateBoundingbox();
 	void Move();
-	float firehold;
+	//float firehold;
 	int health;
 	vec3 PreviousPostion;
 public:

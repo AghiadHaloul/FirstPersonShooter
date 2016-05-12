@@ -25,6 +25,7 @@ public:
 
 	StaticComponent();
 	~StaticComponent();
+	 
 	static unique_ptr<CollisionManager> collisionManager;
 	static unique_ptr<SceneBullets> sceneBullets;
 private:
