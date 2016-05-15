@@ -18,9 +18,12 @@ class Enemy : public GameObject , public CollidableModel
 	float Speed;
 	float MaxDist; // max distance in specific direction 
 	float Distance;
-	bool  FireEnable;
+	int Stamina; 
+	
 	float fireholdTime;
 	float deathTime;
+	float FireFrequancy; 
+	bool  FireEnable;
 	bool isMoving;
 	bool isdead;
 
@@ -33,7 +36,7 @@ class Enemy : public GameObject , public CollidableModel
 	
 
 public:
-	Enemy(vec3 mPosition,vec3 mDirection );
+	Enemy(vec3 mPosition,vec3 mDirection, int stamina, float firefrequancy );
 	void Initialize();
 	void Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *AnimationShader,mat4 VP);
 	void UpdateAnimation(float deltaTime);

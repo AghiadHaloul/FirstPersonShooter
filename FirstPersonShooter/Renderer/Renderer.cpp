@@ -30,8 +30,12 @@ void Renderer::Initialize()
 	
 	hero = unique_ptr<Hero>(new Hero(vec3(3,2,0),vec3(0,0,-1),100));
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) hero.get());
+	
+	if (StaticComponent::Current_Level == StaticComponent::Level1)
+		Firstlevel = unique_ptr<Level1>(new Level1());
+	else if (StaticComponent::Current_Level == StaticComponent::Level2)
+		Secondlevel = unique_ptr<Level2>(new Level2());
 
-	Firstlevel = unique_ptr<Level1>(new Level1());
 	Initialize_CrossHair();
 
 
@@ -108,13 +112,18 @@ void Renderer::Draw()
 		//shader.BindVPMatrix(&VP[0][0]);	
 		
 		Game_SkyBox->Render(&shader,VP);
-		
 		hero->Render(&shader,VP); //render nothing till now	
 		
-		Firstlevel->Render(&shader,&animatedModelShader,VP);
-	    StaticComponent::sceneBullets->Render(&shader,VP);
+		if (StaticComponent::Current_Level == StaticComponent::Level1)
+			Firstlevel->Render(&shader,&animatedModelShader,VP);
+		else if (StaticComponent::Current_Level == StaticComponent::Level2)
+			 Secondlevel->Render(&shader,&animatedModelShader,VP);
+
+		StaticComponent::sceneBullets->Render(&shader,VP);
+		
 		glDisable(GL_DEPTH_TEST);
-        Draw_CrossHair(); 
+        
+		Draw_CrossHair(); 
         DrawText();
 
 }
@@ -152,7 +161,12 @@ void Renderer::Update(double deltaTime)
 	//reset the pressed key.
 	StaticComponent::collisionManager->UpdateCollisions();
 	hero->Update(deltaTime/1000); // update nothing till now
-	Firstlevel->Update(deltaTime/1000);
+	
+	if (StaticComponent::Current_Level == StaticComponent::Level1)
+		Firstlevel->Update(deltaTime/1000);
+	else if (StaticComponent::Current_Level == StaticComponent::Level2)
+		Secondlevel->Update(deltaTime/1000);
+
 	StaticComponent::sceneBullets->Update(deltaTime/1000);
 	this->GameOver = hero->GetIsdestroied();
 }

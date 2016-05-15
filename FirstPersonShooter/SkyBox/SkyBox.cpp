@@ -1,11 +1,8 @@
 #include"SkyBox.h"
 #include <glm\gtx\transform.hpp>
-
+#include "GameComponents/StaticComponent.h"
 SkyBox::SkyBox()
-{
-	this->ground =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/negy.jpg",0)); 
-	Set_Ground();
+{ 
 	Initialize();
 }
 
@@ -27,7 +24,9 @@ void SkyBox::Render(ShaderProgram * Shader, mat4 VP)
 
 void SkyBox::Initialize()
 {
+	
 	SetModel();
+	Set_Ground();
 	vec3 size = vec3(50.0f,50.0f,50.0f);
 	GameObject::Set_InitialTransformation(scale(size));
 	GameObject::UpdateModelMatrix();
@@ -44,7 +43,17 @@ void SkyBox::Initialize()
 
 void SkyBox::SetModel()
 {
+	if (StaticComponent::Current_Level == StaticComponent::Level1)
+	{
+	this->ground =  unique_ptr<TexturedModel> (new TexturedModel("data/models/skybox/negy.jpg",0));
 	Model3D::LoadFromFile("data/models/skybox/Skybox.obj",true);
+	}
+	else if (StaticComponent::Current_Level == StaticComponent::Level2)
+	{
+		this->ground =  unique_ptr<TexturedModel> (new TexturedModel("data/models/skybox2/negy.jpg",0));
+		Model3D::LoadFromFile("data/models/skybox2/Skybox.obj",true);
+	}
+
 	Model3D::Initialize();
 }
 

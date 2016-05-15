@@ -203,6 +203,12 @@
     <ClCompile Include="sound\Sound.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
+    <ClCompile Include="Screen\LevelScreen.cpp">
+      <Filter>Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Level2.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application Manager\ApplicationManager.h">
@@ -336,6 +342,12 @@
     </ClInclude>
     <ClInclude Include="sound\SoundEngine.h">
       <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen\LevelScreen.h">
+      <Filter>Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Level2.h">
+      <Filter>GameScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

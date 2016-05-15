@@ -2,8 +2,10 @@
 #include "Helper.h"
 
 
-Enemy::Enemy(vec3 mPosition,vec3 mDirection):GameObject(mPosition,mDirection)
+Enemy::Enemy(vec3 mPosition,vec3 mDirection, int stamina, float firefrequancy) :GameObject(mPosition,mDirection)
 {
+	this->FireFrequancy = firefrequancy;
+	this->Stamina = stamina;
 	Initialize();
 	enemySensor=unique_ptr<Sensor>(new Sensor(&(GameObject::Position),&(GameObject::Direction),&FireEnable,&isMoving));
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)enemySensor.get());
@@ -99,7 +101,7 @@ void Enemy::Update_Death(float deltaTime)
 		if(AnimationState.type != animType_t::DEATH_FALLBACK)
 		AnimationState = EnemyModel.StartAnimation(animType_t::DEATH_FALLBACK);
 		//GameObject::Set_InitialTransformation(glm::rotate(-90.0f,0.0f,1.0f,0.0f) * glm::scale(0.05f,0.05f,0.05f));
-	    if(deathTime > 0.80)
+	    if(deathTime > 0.82) 
 			{
 				GameObject::SetIsdestroied(true); 
 		        StaticComponent::collisionManager->RemoveCollidableModel((CollidableModel*)enemySensor.get());
@@ -138,7 +140,7 @@ void Enemy::Move(float deltaTime)
 void Enemy::Fire()
 {
 
-	if(fireholdTime > 0.5)
+	if(fireholdTime > FireFrequancy)
 	{
       // StaticComponent::soundEngine->StartBackMusic("music/firesound.wav");
 		Bullet* fired_bullet = new Bullet(GameObject::GetPosition(),GameObject::GetDirection(),ObjectType::EnemyBullet); 
@@ -158,10 +160,14 @@ void Enemy::Collided(ObjectType _ObjectType)
 	else if (_ObjectType == ObjectType::HeroBullet)
 	{
 		printf("i'm your enemy and i collided with hero bullet and i'm gonna disappeare but still here don't for get me  \n");
-		if(!isdead)
+		Stamina-=1;
+		if(Stamina == 0)
 		{
-			this->isdead = true;
-			this->deathTime = 0;
+			if(!isdead)
+			{
+				this->isdead = true;
+				this->deathTime = 0;
+			}
 		}
 	}
 	
@@ -171,7 +177,12 @@ void Enemy::Collided(ObjectType _ObjectType)
 void Enemy::Set_EnemyModel()
 {
 	Sensor::Set_Model();
-	EnemyModel.LoadModel("data/models/enemy/robot.md2");
+
+	if (StaticComponent::Current_Level == StaticComponent::Level1)
+		EnemyModel.LoadModel("data/models/enemy/robot.md2");
+	else if (StaticComponent::Current_Level == StaticComponent::Level2)
+		EnemyModel.LoadModel("data/models/enemy/soldier.md2");
+
 }
 CMD2Model Enemy::EnemyModel;
 Enemy::~Enemy(void)

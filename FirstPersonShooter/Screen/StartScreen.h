@@ -5,7 +5,7 @@
 #include <memory>
 #include "ShaderProgram/SimpleShaderProgram.h"
 #include "Application Manager/ApplicationManager.h"
-#include "LoadingScreen.h"
+#include "LevelScreen.h"
 #include "OptionScreen.h"
 #include "CreditsScreen.h"
 

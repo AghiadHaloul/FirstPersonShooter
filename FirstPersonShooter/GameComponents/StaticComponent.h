@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include "sound/SoundEngine.h"
+
 using namespace std;
 
 class SceneBullets
@@ -23,13 +24,16 @@ public:
 class StaticComponent
 {
 public:
+	enum GameLevel {Level1,Level2}; 
 
 	StaticComponent();
 	~StaticComponent();
-	 static unique_ptr<SoundEngine> soundEngine;
+    static GameLevel Current_Level;
+	static unique_ptr<SoundEngine> soundEngine;
 	static unique_ptr<CollisionManager> collisionManager;
 	static unique_ptr<SceneBullets> sceneBullets;
 	static float RepeatTime;
+	
 private:
 
 };

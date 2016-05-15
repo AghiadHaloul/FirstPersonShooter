@@ -94,6 +94,7 @@
     <ClCompile Include="GameComponents\StaticComponent.cpp" />
     <ClCompile Include="GameScene\GameScene.cpp" />
     <ClCompile Include="GameScene\Level1.cpp" />
+    <ClCompile Include="GameScene\Level2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\MapObject.cpp" />
     <ClCompile Include="MD2Model\md2model.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="Screen\CreditsScreen.cpp" />
     <ClCompile Include="Screen\GameOverScreen.cpp" />
     <ClCompile Include="Screen\GameScreen.cpp" />
+    <ClCompile Include="Screen\LevelScreen.cpp" />
     <ClCompile Include="Screen\LoadingScreen.cpp" />
     <ClCompile Include="Screen\OptionScreen.cpp" />
     <ClCompile Include="Screen\PauseScreen.cpp" />
@@ -139,6 +141,7 @@
     <ClInclude Include="GameComponents\StaticComponent.h" />
     <ClInclude Include="GameScene\GameScene.h" />
     <ClInclude Include="GameScene\Level1.h" />
+    <ClInclude Include="GameScene\Level2.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Map\MapObject.h" />
     <ClInclude Include="MD2Model\md2model.h" />
@@ -152,6 +155,7 @@
     <ClInclude Include="Screen\CreditsScreen.h" />
     <ClInclude Include="Screen\GameOverScreen.h" />
     <ClInclude Include="Screen\GameScreen.h" />
+    <ClInclude Include="Screen\LevelScreen.h" />
     <ClInclude Include="Screen\LoadingScreen.h" />
     <ClInclude Include="Screen\OptionScreen.h" />
     <ClInclude Include="Screen\PauseScreen.h" />

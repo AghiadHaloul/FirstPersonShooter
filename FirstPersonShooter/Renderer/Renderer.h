@@ -12,6 +12,7 @@
 #include "CollisionDetection/CollisionManager.h"
 #include "GameComponents/Hero.h"
 #include "GameScene/Level1.h"
+#include "GameScene/Level2.h"
 #include "text2D.hpp"
 
  
@@ -23,7 +24,7 @@ class Renderer
 	unique_ptr<Hero> hero;
 	std::unique_ptr<SkyBox> Game_SkyBox;
 	unique_ptr<Level1> Firstlevel;
-
+	unique_ptr<Level2> Secondlevel;
     KeyFrameAnimationShader animatedModelShader;
 	ShaderProgram shader;
 	

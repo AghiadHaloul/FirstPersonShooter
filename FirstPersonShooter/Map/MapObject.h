@@ -13,12 +13,14 @@ using namespace glm;
 class MapObject : public GameObject , public CollidableModel
 {
 public:
-	enum MapObjectType{tree, building1, building2};
+	enum MapObjectType{tree, building1, building2,car};
 
 private:
 	MapObjectType MapObjectType_;
 	static Model3D BuildingModel;
 	static Model3D TreeModel;
+	static Model3D BuildingMode2;
+	static Model3D Car;
 
 	
 

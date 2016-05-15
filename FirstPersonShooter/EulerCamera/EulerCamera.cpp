@@ -51,7 +51,8 @@ void EulerCamera::Reset(const glm::vec3 &eye, const glm::vec3 &center, glm::vec3
 bool EulerCamera::validboundry(float dist,glm::vec3 dir)
 {
 	vec3 NextPosition = mPosition+dist*dir;
-	return(abs(NextPosition.x) < Get_CameraBoundry() && abs(NextPosition.y) < Get_CameraBoundry()&&abs(NextPosition.z) < Get_CameraBoundry());   
+	return(abs(NextPosition.x) < Get_CameraBoundry() &&abs(NextPosition.z) < Get_CameraBoundry());   
+//&& abs(NextPosition.y) < Get_CameraBoundry()
 }
 
 glm::mat4 EulerCamera::GetViewMatrix()

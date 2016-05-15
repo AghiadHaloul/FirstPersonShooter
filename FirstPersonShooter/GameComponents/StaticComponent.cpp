@@ -1,5 +1,6 @@
 #include "StaticComponent.h"
 
+StaticComponent::GameLevel StaticComponent::Current_Level = GameLevel::Level1;
 unique_ptr<CollisionManager>StaticComponent::collisionManager = unique_ptr<CollisionManager>(new CollisionManager());
 unique_ptr<SceneBullets> StaticComponent::sceneBullets = unique_ptr<SceneBullets>(new SceneBullets());
 unique_ptr<SoundEngine> StaticComponent::soundEngine =unique_ptr<SoundEngine>(new SoundEngine());

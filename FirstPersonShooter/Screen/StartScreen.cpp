@@ -140,14 +140,14 @@ void StartScreen::handel_Downkey()
 
 void StartScreen::handel_Enterkey()
 {
-	LoadingScreen *loadingScreen;
+	LevelScreen *levelScreen;
 	CreditsScreen *creditsScreen;
 	OptionScreen * optionscreen;
 	switch (Choice)
 	{
 	case StartScreen::PlayGame:
-		loadingScreen = new LoadingScreen();
-		ScreenManger::AddScreen(loadingScreen);
+		levelScreen = new LevelScreen();
+		ScreenManger::AddScreen(levelScreen);
 		break;
 	case StartScreen::Options:
 		optionscreen = new OptionScreen();
