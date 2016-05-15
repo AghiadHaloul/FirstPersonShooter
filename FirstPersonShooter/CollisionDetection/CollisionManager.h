@@ -15,6 +15,7 @@ public:
 	void AddCollidableModel(CollidableModel* model);
 	void RemoveCollidableModel(int modelIndex);
 	void RemoveCollidableModel(CollidableModel* model);
+	void Cleanup();
 };
 
 #endif // CollisionManager_h__

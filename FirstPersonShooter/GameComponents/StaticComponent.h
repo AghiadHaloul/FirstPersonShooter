@@ -3,6 +3,7 @@
 #include "ShaderProgram/ShaderProgram.h"
 #include <vector>
 #include <memory>
+#include "sound/SoundEngine.h"
 using namespace std;
 
 class SceneBullets
@@ -12,7 +13,7 @@ public:
 	void AddBullet(Bullet* Newbullet);
 	void Update(float deltaTime);
 	void Render(ShaderProgram*shader,mat4 VP);
-
+	void Cleanup();
 	SceneBullets(void);
 	~SceneBullets(void);
 };
@@ -25,9 +26,10 @@ public:
 
 	StaticComponent();
 	~StaticComponent();
-	 
+	 static unique_ptr<SoundEngine> soundEngine;
 	static unique_ptr<CollisionManager> collisionManager;
 	static unique_ptr<SceneBullets> sceneBullets;
+	static float RepeatTime;
 private:
 
 };

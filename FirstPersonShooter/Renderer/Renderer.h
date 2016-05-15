@@ -14,7 +14,6 @@
 #include "GameScene/Level1.h"
 #include "text2D.hpp"
 
-//#include "sound/SoundEngine.h"
  
 using namespace std;
 class Renderer
@@ -32,8 +31,11 @@ class Renderer
 	glm::vec3 lightPosition;
 
 	unique_ptr<TexturedModel> CorssModel;
-    //unique_ptr<SoundEngine> soundEngine;
+    unique_ptr<SoundEngine> soundEngine;
+	
 
+	//sound* audio;
+	//unsigned int audioID;
 public:
     bool GameOver;
 

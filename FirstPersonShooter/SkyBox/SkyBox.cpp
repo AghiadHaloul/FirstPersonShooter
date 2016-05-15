@@ -1,262 +1,95 @@
 #include"SkyBox.h"
 #include <glm\gtx\transform.hpp>
 
-SkyBox::SkyBox(GLfloat unitsize)
+SkyBox::SkyBox()
 {
-
-	this->Unitsize = unitsize;
-
-
-	walls = new unique_ptr<TexturedModel>[6];
-
-	//bottom - earth
-	//GLfloat wall_width = 0.05;
-	
-	walls[0] =  unique_ptr<TexturedModel> (
+	this->ground =  unique_ptr<TexturedModel> (
 		new TexturedModel("data/textures/sky/negy.jpg",0)); 
-	    //new TexturedModel("data/textures/sky/Side1.png",0)); 
-	
-
-	//front wall 
-	walls[1] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/posz.jpg",1)); 
-	//new TexturedModel("data/textures/sky/Side2.png",1)); 
-	
-	// right wall
-	walls[2] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/posx.jpg",2)); 
-	//new TexturedModel("data/textures/sky/Side3.png",2)); 
-	
-	// back wall
-	walls[3] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/negz.jpg",3)); 
-	//new TexturedModel("data/textures/sky/Side4.png",3)); 
-
-	// left wall
-	walls[4] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/negx.jpg",4)); 
-	//new TexturedModel("data/textures/sky/Side5.png",4)); 
-	// top - sky
-    walls[5] =  unique_ptr<TexturedModel> (
-		new TexturedModel("data/textures/sky/posy.jpg",5)); 
-	//new TexturedModel("data/textures/sky/Side6.png",5)); 
-	
+	Set_Ground();
+	Initialize();
 }
-
 
 SkyBox::~SkyBox()
 {
+
 }
 
+
+
+void SkyBox::Render(ShaderProgram * Shader, mat4 VP)
+{
+	Shader->UseProgram();
+	Shader->BindVPMatrix(&VP[0][0]);
+	Shader->BindModelMatrix(&GameObject::Get_ModelMatrix()[0][0]);
+	Model3D::Render(Shader,GameObject::Get_ModelMatrix(),mat4(1));
+	ground->Draw();
+}
 
 void SkyBox::Initialize()
 {
-	//float high = -90;
-	// bottom - floor
-	walls[0]->VertexData.push_back(vec3(Unitsize, -Unitsize, Unitsize));
-	walls[0]->VertexData.push_back(vec3(-Unitsize, -Unitsize, Unitsize));
-	walls[0]->VertexData.push_back(vec3( -Unitsize,-Unitsize , -Unitsize));
-	walls[0]->VertexData.push_back(vec3( Unitsize, -Unitsize, -Unitsize));
-	//we want a gray cube cube.
-	walls[0]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[0]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[0]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[0]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.riangle.
-	walls[0]->IndicesData.push_back(0);
-	walls[0]->IndicesData.push_back(1);
-	walls[0]->IndicesData.push_back(3);
-	//secon.triangle.
-	walls[0]->IndicesData.push_back(1);
-	walls[0]->IndicesData.push_back(2);
-	walls[0]->IndicesData.push_back(3);
-	
-	walls[0]->UVData.push_back(glm::vec2(0.0f, 1.0f));
-	walls[0]->UVData.push_back(glm::vec2(1.0f, 1.0f));
-	walls[0]->UVData.push_back(glm::vec2(1.0f, 0.0f));
-	walls[0]->UVData.push_back(glm::vec2(0.0f, 0.0f));
+	SetModel();
+	vec3 size = vec3(50.0f,50.0f,50.0f);
+	GameObject::Set_InitialTransformation(scale(size));
+	GameObject::UpdateModelMatrix();
 
-	walls[0]->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-	walls[0]->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-	walls[0]->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-	walls[0]->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-
-	
-	walls[0]->Initialize();
-	
-	//front
-	walls[1]->VertexData.push_back(vec3(-Unitsize, -Unitsize, Unitsize));
-	walls[1]->VertexData.push_back(vec3(Unitsize, -Unitsize, Unitsize));
-	walls[1]->VertexData.push_back(vec3( Unitsize,  Unitsize, Unitsize));
-	walls[1]->VertexData.push_back(vec3( -Unitsize,  Unitsize, Unitsize));
-	//we want a gray cube cube.
-	walls[1]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[1]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[1]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[1]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.riangle.
-	walls[1]->IndicesData.push_back(0);
-	walls[1]->IndicesData.push_back(1);
-	walls[1]->IndicesData.push_back(3);
-	//secon.triangle.
-	walls[1]->IndicesData.push_back(1);
-	walls[1]->IndicesData.push_back(2);
-	walls[1]->IndicesData.push_back(3);
-	
-	walls[1]->UVData.push_back(glm::vec2(0.0f, 1.0f));
-	walls[1]->UVData.push_back(glm::vec2(1.0f, 1.0f));
-	walls[1]->UVData.push_back(glm::vec2(1.0f, 0.0f));
-	walls[1]->UVData.push_back(glm::vec2(0.0f, 0.0f));
-
-	walls[1]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-	walls[1]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-	walls[1]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-	walls[1]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-
-	walls[1]->Initialize();
-
-	// right
-	walls[2]->VertexData.push_back(vec3(Unitsize, -Unitsize, Unitsize));
-	walls[2]->VertexData.push_back(vec3(Unitsize, -Unitsize, -Unitsize));
-	walls[2]->VertexData.push_back(vec3( Unitsize,  Unitsize, -Unitsize));
-	walls[2]->VertexData.push_back(vec3( Unitsize,  Unitsize, Unitsize));
-	//we want a gray cube cube.
-	walls[2]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[2]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[2]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[2]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.riangle.
-	walls[2]->IndicesData.push_back(0);
-	walls[2]->IndicesData.push_back(1);
-	walls[2]->IndicesData.push_back(3);
-	//secon.triangle.
-	walls[2]->IndicesData.push_back(1);
-	walls[2]->IndicesData.push_back(2);
-	walls[2]->IndicesData.push_back(3);
-	
-	walls[2]->UVData.push_back(glm::vec2(0.0f, 1.0f));
-	walls[2]->UVData.push_back(glm::vec2(1.0f, 1.0f));
-	walls[2]->UVData.push_back(glm::vec2(1.0f, 0.0f));
-	walls[2]->UVData.push_back(glm::vec2(0.0f, 0.0f));
-
-	walls[2]->NormalsData.push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-	walls[2]->NormalsData.push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-	walls[2]->NormalsData.push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-	walls[2]->NormalsData.push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-
-	
-	walls[2]->Initialize();
-
-
-	//back
-
-	walls[3]->VertexData.push_back(vec3(Unitsize, -Unitsize, -Unitsize));
-	walls[3]->VertexData.push_back(vec3(-Unitsize, -Unitsize, -Unitsize));
-	walls[3]->VertexData.push_back(vec3( -Unitsize,  Unitsize,-Unitsize));
-	walls[3]->VertexData.push_back(vec3( Unitsize,  Unitsize, -Unitsize));
-	//we want a gray cube cube.
-	walls[3]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[3]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[3]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[3]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.triangle.
-	walls[3]->IndicesData.push_back(0);
-	walls[3]->IndicesData.push_back(1);
-	walls[3]->IndicesData.push_back(3);
-	//second.triangle.
-	walls[3]->IndicesData.push_back(1);
-	walls[3]->IndicesData.push_back(2);
-	walls[3]->IndicesData.push_back(3);
-	
-	walls[3]->UVData.push_back(glm::vec2(0.0f, 1.0f));
-	walls[3]->UVData.push_back(glm::vec2(1.0f, 1.0f));
-	walls[3]->UVData.push_back(glm::vec2(1.0f, 0.0f));
-	walls[3]->UVData.push_back(glm::vec2(0.0f, 0.0f));
-
-	walls[3]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-	walls[3]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-	walls[3]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-	walls[3]->NormalsData.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-
-	walls[3]->Initialize();
-	
-	//left
-	walls[4]->VertexData.push_back(vec3(-Unitsize, -Unitsize, -Unitsize));
-	walls[4]->VertexData.push_back(vec3(-Unitsize, -Unitsize, Unitsize));
-	walls[4]->VertexData.push_back(vec3( -Unitsize,  Unitsize, Unitsize));
-	walls[4]->VertexData.push_back(vec3( -Unitsize,  Unitsize, -Unitsize));
-	
-	walls[4]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[4]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[4]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[4]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.riangle.
-	walls[4]->IndicesData.push_back(0);
-	walls[4]->IndicesData.push_back(1);
-	walls[4]->IndicesData.push_back(3);
-	//secon.triangle.
-	walls[4]->IndicesData.push_back(1);
-	walls[4]->IndicesData.push_back(2);
-	walls[4]->IndicesData.push_back(3);
-	
-	walls[4]->UVData.push_back(glm::vec2(0.0f, 1.0f));
-	walls[4]->UVData.push_back(glm::vec2(1.0f, 1.0f));
-	walls[4]->UVData.push_back(glm::vec2(1.0f, 0.0f));
-	walls[4]->UVData.push_back(glm::vec2(0.0f, 0.0f));
-
-	walls[4]->NormalsData.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-	walls[4]->NormalsData.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-	walls[4]->NormalsData.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-	walls[4]->NormalsData.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-
-	walls[4]->Initialize();
-
-	//top
-	walls[5]->VertexData.push_back(vec3(-Unitsize, Unitsize, Unitsize));
-	walls[5]->VertexData.push_back(vec3(Unitsize, Unitsize, Unitsize));
-	walls[5]->VertexData.push_back(vec3( Unitsize,  Unitsize, -Unitsize));
-	walls[5]->VertexData.push_back(vec3( -Unitsize,  Unitsize, -Unitsize));
-
-	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	walls[5]->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
-	//first.triangle.
-	walls[5]->IndicesData.push_back(0);
-	walls[5]->IndicesData.push_back(1);
-	walls[5]->IndicesData.push_back(3);
-	//secon.triangle.
-	walls[5]->IndicesData.push_back(1);
-	walls[5]->IndicesData.push_back(2);
-	walls[5]->IndicesData.push_back(3);
-	
-	walls[5]->UVData.push_back(glm::vec2(0.0f, 1.0f));
-	walls[5]->UVData.push_back(glm::vec2(1.0f, 1.0f));
-	walls[5]->UVData.push_back(glm::vec2(1.0f, 0.0f));
-	walls[5]->UVData.push_back(glm::vec2(0.0f, 0.0f));
-
-	walls[5]->NormalsData.push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-	walls[5]->NormalsData.push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-	walls[5]->NormalsData.push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-	walls[5]->NormalsData.push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-
-	
-	walls[5]->Initialize();
-	
+	Model3D::Set_ObjectType(ObjectType::SkyBox);
+	Model3D::SetBoundingBox(Model3D::CalculateBoundingBox(Model3D::GetVertices()));
+	auto boundingbox = Model3D::GetBoundingBox();
+	boundingbox.Scale(size);
+	boundingbox.SetCenter(GameObject::GetPosition());
+	Model3D::SetBoundingBox(boundingbox);
 
 }
 
 
-void SkyBox::Draw(ShaderProgram &shader)
+void SkyBox::SetModel()
 {
-	//mSquare->texture->Bind();
-	mat4 I = mat4();//glm::rotate(90.f,vec3(0.0,0.0,1.0));
-	shader.UseProgram();
-	shader.BindModelMatrix(&I[0][0]);
-	//mSquare->Draw();
-	
-	for (int i = 0; i < 6; i++)
-	{
-		walls[i]->Draw();
-	}
+	Model3D::LoadFromFile("data/models/skybox/Skybox.obj",true);
+	Model3D::Initialize();
+}
+
+
+void SkyBox::Set_Ground()
+{
+	float Unitsize = 100;
+	ground->VertexData.push_back(vec3(Unitsize, -0, Unitsize));
+	ground->VertexData.push_back(vec3(-Unitsize, -0, Unitsize));
+	ground->VertexData.push_back(vec3( -Unitsize,-0 , -Unitsize));
+	ground->VertexData.push_back(vec3( Unitsize, -0, -Unitsize));
+	//we want a gray cube cube.
+	ground->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	ground->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	ground->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	ground->ColorData.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+	//first.riangle.
+	ground->IndicesData.push_back(0);
+	ground->IndicesData.push_back(1);
+	ground->IndicesData.push_back(3);
+	//secon.triangle.
+	ground->IndicesData.push_back(1);
+	ground->IndicesData.push_back(2);
+	ground->IndicesData.push_back(3);
+
+	ground->UVData.push_back(glm::vec2(0.0f, 1.0f));
+	ground->UVData.push_back(glm::vec2(1.0f, 1.0f));
+	ground->UVData.push_back(glm::vec2(1.0f, 0.0f));
+	ground->UVData.push_back(glm::vec2(0.0f, 0.0f));
+
+	ground->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	ground->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	ground->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	ground->NormalsData.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+
+
+	ground->Initialize();
+}
+
+void SkyBox::Cleanup()
+{
+
+}
+
+void SkyBox::Collided(ObjectType _ObjectType)
+{
+
 }

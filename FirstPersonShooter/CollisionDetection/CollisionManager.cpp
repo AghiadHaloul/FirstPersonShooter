@@ -52,3 +52,8 @@ void CollisionManager::RemoveCollidableModel(CollidableModel* model)
 		}
 	}
 }
+
+void CollisionManager::Cleanup()
+{
+	collidableModels.clear();
+}

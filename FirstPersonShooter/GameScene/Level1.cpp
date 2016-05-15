@@ -36,7 +36,7 @@ void Level1::Initialize_Enemies()
 	{
 		vec3 Random_direction = HelperMethods::Get_Random_Direction();
 		cout << "X :" << (float)Random_direction.x<< " Y :" <<Random_direction.y<<" Z :"<<Random_direction.z << endl;
-		Enemy* tmp_enemy= new Enemy(vec3(50,-99,2),Random_direction); 
+		Enemy* tmp_enemy= new Enemy(vec3(50,1,2),Random_direction); 
 		Enemies.push_back(tmp_enemy);
 		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) tmp_enemy);
 	}    
@@ -72,98 +72,99 @@ void Level1::Render_Enemies(ShaderProgram*StaticShader,KeyFrameAnimationShader *
 
 void Level1::Initialize_MapObjects()
 {
-	
-	MapObject* tree1= new MapObject(vec3(-2,-99.9,2),vec3(-1,0,0),MapObject::tree); 
+	float Bground = 0.5;
+    float Tground = 2.5;
+	MapObject* tree1= new MapObject(vec3(-2,Tground,2),vec3(-1,0,0),MapObject::tree); 
 	MapObjects.push_back(tree1);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) tree1);
 
-	MapObject* building1= new MapObject(vec3(-20,-99.9,8),vec3(-1,0,0),MapObject::building1); 
+	MapObject* building1= new MapObject(vec3(-20,Bground,8),vec3(-1,0,0),MapObject::building1); 
 	MapObjects.push_back(building1);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) building1);	
 
-	MapObject* building2= new MapObject(vec3(-40,-99.9,-40),vec3(-1,0,0),MapObject::building1); 
+	MapObject* building2= new MapObject(vec3(-40,Bground,-40),vec3(-1,0,0),MapObject::building1); 
 	MapObjects.push_back(building2);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) building2);	
 
-	MapObject* tree2= new MapObject(vec3(-2,-99.9,-30),vec3(-1,0,0),MapObject::tree); 
+	MapObject* tree2= new MapObject(vec3(-2,Tground,-30),vec3(-1,0,0),MapObject::tree); 
 	MapObjects.push_back(tree2);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) tree2);	
 
-	MapObject* building3= new MapObject(vec3(-26,-99.9,18),vec3(-1,0,0),MapObject::building1); 
+	MapObject* building3= new MapObject(vec3(-26,Bground,18),vec3(-1,0,0),MapObject::building1); 
 	MapObjects.push_back(building3);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) building3);	
 
-	MapObject* tree3= new MapObject(vec3(-32,-99.9,-30),vec3(-1,0,0),MapObject::tree); 
+	MapObject* tree3= new MapObject(vec3(-32,Tground,-30),vec3(-1,0,0),MapObject::tree); 
 	MapObjects.push_back(tree3);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) tree3);
 
-	MapObject* tree4 = new MapObject(vec3(19, -99.9, 5), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree4 = new MapObject(vec3(19, Tground, 5), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree4);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree4);
-	MapObject* tree5 = new MapObject(vec3(95, -99.9, 10), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree5 = new MapObject(vec3(95, Tground, 10), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree5);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree5);
-	MapObject* tree6 = new MapObject(vec3(-53, -99.9, 20), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree6 = new MapObject(vec3(-53, Tground, 20), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree6);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree6);
 
-	MapObject* tree7 = new MapObject(vec3(-60, -99.9, 15), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree7 = new MapObject(vec3(-60, Tground, 15), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree7);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree7);
 
-	MapObject* tree8 = new MapObject(vec3(63, -99.9, 25), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree8 = new MapObject(vec3(63, Tground, 25), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree8);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree8);
-	MapObject* tree9 = new MapObject(vec3(98, -99.9, 51), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree9 = new MapObject(vec3(98, Tground, 51), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree9);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree9);
-	MapObject* tree10 = new MapObject(vec3(-22, -99.9, 31), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree10 = new MapObject(vec3(-22, Tground, 31), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree10);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree10);
 
-	MapObject* tree11 = new MapObject(vec3(46, -99.9, 77), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree11 = new MapObject(vec3(46, Tground, 77), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree11);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree11);
 
-	MapObject* tree12 = new MapObject(vec3(-32, -99.9, -15), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree12 = new MapObject(vec3(-32, Tground, -15), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree12);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree12);
-	MapObject* tree13 = new MapObject(vec3(-80, -99.9, -64), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree13 = new MapObject(vec3(-80, Tground, -64), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree13);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree13);
-	MapObject* tree14 = new MapObject(vec3(52, -99.9, 10), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree14 = new MapObject(vec3(52, Tground, 10), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree14);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree14);
 
-	MapObject* tree15 = new MapObject(vec3(43, -99.9, -23), vec3(-1, 0, 0), MapObject::tree);
+	MapObject* tree15 = new MapObject(vec3(43, Tground, -23), vec3(-1, 0, 0), MapObject::tree);
 	MapObjects.push_back(tree15);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)tree15);
 
-	MapObject* building4 = new MapObject(vec3(-10, -99.9, 18), vec3(-1, 0, 0), MapObject::building1);
+	MapObject* building4 = new MapObject(vec3(-10, Bground, 18), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building4);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building4);
 
-	MapObject* building5 = new MapObject(vec3(30, -99.9, -28), vec3(-1, 0, 0), MapObject::building1);
+	MapObject* building5 = new MapObject(vec3(30, Bground, -28), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building5);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building5);
 
-	MapObject* building6 = new MapObject(vec3(-40, -99.9, 38), vec3(-1, 0, 0), MapObject::building1);
+	MapObject* building6 = new MapObject(vec3(-40, Bground, 38), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building6);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building6);
 
-	MapObject* building7 = new MapObject(vec3(50, -99.9, -48), vec3(-1, 0, 0), MapObject::building1);
+	MapObject* building7 = new MapObject(vec3(50, Bground, -48), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building7);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building7);
 
-	MapObject* building8 = new MapObject(vec3(-60, -99.9, 68), vec3(-1, 0, 0), MapObject::building1);
+	MapObject* building8 = new MapObject(vec3(-60, Bground, 68), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building8);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building8);
 
-	MapObject* building9 = new MapObject(vec3(70, -99.9, -88), vec3(-1, 0, 0), MapObject::building1);
+	MapObject* building9 = new MapObject(vec3(70, Bground, -88), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building9);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building9);
 
-	MapObject* building10 = new MapObject(vec3(-20, -99.9, 20), vec3(-1, 0, 0), MapObject::building1);
+	MapObject* building10 = new MapObject(vec3(-20, Bground, 20), vec3(-1, 0, 0), MapObject::building1);
 	MapObjects.push_back(building10);
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)building10);
 	
@@ -177,7 +178,7 @@ void Level1::Initialize_MapObjects()
 		x = (rand() % m - n)-100;
 		z = (rand() % m - n) - 100;
 		if (x&&z == 0)x += 10;
-		mapObjectsArray[i] = new MapObject(vec3(x, -99.9, z), vec3(-1, 0, 0), MapObject::building1);
+		mapObjectsArray[i] = new MapObject(vec3(x, 1, z), vec3(-1, 0, 0), MapObject::building1);
 		MapObjects.push_back(mapObjectsArray[i]);
 		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)mapObjectsArray[i]);
 	}
@@ -186,7 +187,7 @@ void Level1::Initialize_MapObjects()
 		x = (rand() % m - n) - 100;
 		z = (rand() % m - n) - 100;
 		if (x&&z == 0)x += 10;
-		mapObjectsArray[i] = new MapObject(vec3(x, -99.9, z), vec3(-1, 0, 0), MapObject::tree);
+		mapObjectsArray[i] = new MapObject(vec3(x, 1, z), vec3(-1, 0, 0), MapObject::tree);
 		MapObjects.push_back(mapObjectsArray[i]);
 		StaticComponent::collisionManager->AddCollidableModel((CollidableModel*)mapObjectsArray[i]);
 	}

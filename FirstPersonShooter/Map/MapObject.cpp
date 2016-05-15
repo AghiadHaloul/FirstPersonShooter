@@ -12,7 +12,7 @@ MapObject::MapObject(vec3 mPosition,vec3 Direction,MapObjectType MapObjectType_)
 	if(MapObjectType_==MapObjectType::building1){
 		GameObject::Set_InitialTransformation(scale(0.03f,0.03f,0.03f));
 		GameObject::UpdateModelMatrix();
-
+		
 		CollidableModel::Set_ObjectType(ObjectType::MapObject);
 		CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(BuildingModel.GetVertices()));
 		auto boundingbox = CollidableModel::GetBoundingBox();

@@ -8,6 +8,8 @@ StartScreen::StartScreen(void)
 
 void StartScreen::Initialize()
 {
+	StaticComponent::RepeatTime = 0;
+	//StaticComponent::soundEngine->StartBackMusic("strings2.wav");
 	background = unique_ptr<TexturedModel>(new TexturedModel("data/textures/menu/mainmenu/default.jpg",13));
 
 	background->VertexData.push_back(glm::vec3(-1.0f, -1.0f, 0.0f));
@@ -29,8 +31,7 @@ void StartScreen::Initialize()
 	background->IndicesData.push_back(2);
 	background->IndicesData.push_back(3);
 	background->Initialize();
-	
-	
+		
 	shader.LoadProgram();
 
 	Choice = StartScreenChoice::NoChoice;
@@ -44,7 +45,12 @@ void StartScreen::draw()
 
 void StartScreen::Update(float deltaTime)
 {
-	
+	StaticComponent::RepeatTime +=(deltaTime/1000);
+	if(StaticComponent::RepeatTime > 7)
+	{
+	 // StaticComponent::soundEngine->StartBackMusic("strings2.wav");
+		StaticComponent::RepeatTime = 0;
+	}	
 }
 
 void StartScreen::HandleKeyboardInput(int key)
@@ -54,13 +60,16 @@ void StartScreen::HandleKeyboardInput(int key)
 	{
 	case GLFW_KEY_UP:
 		handel_UPkey();
+		StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		break;
 
 	case GLFW_KEY_DOWN:
 		handel_Downkey();
+StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		break;
 	case GLFW_KEY_ENTER:
 		handel_Enterkey();
+		StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		break;
 
 	default:

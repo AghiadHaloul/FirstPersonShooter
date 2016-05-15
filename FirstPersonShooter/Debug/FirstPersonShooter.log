@@ -1,60 +1,25 @@
-﻿Build started 5/12/2016 5:05:49 AM.
+﻿Build started 5/15/2016 5:29:25 AM.
      1>Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "Application Manager\ApplicationManager.cpp" GameComponents\Bullet.cpp GameComponents\Enemy.cpp GameComponents\Hero.cpp GameComponents\StaticComponent.cpp GameScene\GameScene.cpp GameScene\Level1.cpp Renderer\Renderer.cpp Screen\CreditsScreen.cpp Screen\GameOverScreen.cpp Screen\GameScreen.cpp Screen\LoadingScreen.cpp Screen\OptionScreen.cpp Screen\PauseScreen.cpp Screen\StartScreen.cpp main.cpp
-         Renderer.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(123): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(909) : see declaration of 'itoa'
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(147): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(148): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(149): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         Bullet.cpp
-         Generating Code...
-         Compiling...
-         main.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\ /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Renderer\Renderer.cpp Screen\StartScreen.cpp
          StartScreen.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-         PauseScreen.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-         OptionScreen.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-         LoadingScreen.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-         GameScreen.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\sound\soundengine.h(31): warning C4996: 'mbstowcs': This function or variable may be unsafe. Consider using mbstowcs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(515) : see declaration of 'mbstowcs'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(51): warning C4042: 'LeftBtn_clicked' : has bad storage class
+         Renderer.cpp
      1>c:\program files (x86)\windows kits\8.0\include\shared\minwindef.h(130): warning C4005: 'APIENTRY' : macro redefinition
                  d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\include\gl\glfw3.h(96) : see previous definition of 'APIENTRY'
-         GameOverScreen.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-         CreditsScreen.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-         Level1.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(21): warning C4244: 'argument' : conversion from '__int64' to 'unsigned int', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(22): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(23): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamescene\level1.cpp(47): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamescene\level1.cpp(65): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamescene\level1.cpp(203): warning C4018: '<' : signed/unsigned mismatch
-         GameScene.cpp
-         StaticComponent.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamecomponents\staticcomponent.cpp(28): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamecomponents\staticcomponent.cpp(47): warning C4018: '<' : signed/unsigned mismatch
-         Hero.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamecomponents\hero.cpp(159): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\gamecomponents\hero.cpp(166): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         Enemy.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(21): warning C4244: 'argument' : conversion from '__int64' to 'unsigned int', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(22): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\helper.h(23): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-         ApplicationManager.cpp
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(49): warning C4042: 'LeftBtn_clicked' : has bad storage class
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\application manager\applicationmanager.cpp(146): warning C4805: '==' : unsafe mix of type 'int' and type 'bool' in operation
-     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\application manager\applicationmanager.cpp(205): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\sound\soundengine.h(31): warning C4996: 'mbstowcs': This function or variable may be unsafe. Consider using mbstowcs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(515) : see declaration of 'mbstowcs'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.h(51): warning C4042: 'LeftBtn_clicked' : has bad storage class
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(126): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(909) : see declaration of 'itoa'
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(154): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(155): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\academy\second term\projects\firstpersonshooter\firstpersonshooter\firstpersonshooter\renderer\renderer.cpp(156): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
          Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\lib opengl32.lib glew32.lib glfw3.lib assimp.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.lib" /MACHINE:X86 Debug\ApplicationManager.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\ /LIBPATH:.\lib opengl32.lib glew32.lib glfw3.lib assimp.lib dsound.lib dxguid.lib WinMM.Lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.lib" /MACHINE:X86 Debug\ApplicationManager.obj
          Debug\AABoundingBox.obj
          Debug\CollidableModel.obj
          Debug\CollisionManager.obj
@@ -93,12 +58,16 @@
          Debug\SimpleShaderProgram.obj
          Debug\shader.obj
          Debug\SkyBox.obj
+         Debug\Sound.obj
          Debug\text2D.obj
          Debug\stb_image.obj
          Debug\texture.obj
+         sound\dsound.lib
+         sound\dxguid.lib
+         sound\WinMM.Lib
          FirstPersonShooter.vcxproj -> D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\Debug\FirstPersonShooter.exe
      1>Done Building Project "D:\Academy\second term\projects\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter\FirstPersonShooter.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:23.64
+Time Elapsed 00:00:05.60

@@ -115,18 +115,23 @@ void Enemy::Move(float deltaTime)
 {
 	float step = Speed*deltaTime;
 	vec3 newpos = GameObject::GetPosition()+GameObject::GetDirection()*step; 
-	GameObject::SetPosition(newpos);
-	Distance += step;
-	if (Distance >= MaxDist )
+	if(bounding(newpos))
 	{
-		GameObject::SetDirection(HelperMethods::Get_Random_Direction());
-		Distance = 0;
+		GameObject::SetPosition(newpos);
+		Distance += step;
+		if (Distance >= MaxDist )
+		{
+			GameObject::SetDirection(HelperMethods::Get_Random_Direction());
+			Distance = 0;
+		}
 	}
-	if (stupid_bounding())
+	else
 	{
 		GameObject::SetDirection(-GetDirection());
-		Distance = 0;
-	}
+		/*vec3 newpos = GameObject::GetPosition()+GameObject::GetDirection()*step; 
+		GameObject::SetPosition(newpos);
+		Distance = 0;*/
+	} 
 
 }
 
@@ -135,6 +140,7 @@ void Enemy::Fire()
 
 	if(fireholdTime > 0.5)
 	{
+      // StaticComponent::soundEngine->StartBackMusic("music/firesound.wav");
 		Bullet* fired_bullet = new Bullet(GameObject::GetPosition(),GameObject::GetDirection(),ObjectType::EnemyBullet); 
 		StaticComponent::sceneBullets->AddBullet(fired_bullet);
 		fireholdTime = 0;

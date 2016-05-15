@@ -57,8 +57,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\;.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;assimp.lib;dsound.lib;dxguid.lib;WinMM.Lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -118,6 +118,7 @@
     <ClCompile Include="ShaderProgram\SimpleShaderProgram.cpp" />
     <ClCompile Include="Shaders\shader.cpp" />
     <ClCompile Include="SkyBox\SkyBox.cpp" />
+    <ClCompile Include="sound\Sound.cpp" />
     <ClCompile Include="text2D.cpp" />
     <ClCompile Include="Texture\Texture Loader\stb_image.c" />
     <ClCompile Include="Texture\texture.cpp" />
@@ -162,6 +163,8 @@
     <ClInclude Include="ShaderProgram\SimpleShaderProgram.h" />
     <ClInclude Include="Shaders\shader.hpp" />
     <ClInclude Include="SkyBox\SkyBox.h" />
+    <ClInclude Include="sound\Sound.h" />
+    <ClInclude Include="sound\SoundEngine.h" />
     <ClInclude Include="text2D.hpp" />
     <ClInclude Include="Texture\Texture Loader\stb_image.h" />
     <ClInclude Include="Texture\texture.h" />
@@ -177,6 +180,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Holstein.DDS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="sound\dsound.lib" />
+    <Library Include="sound\dxguid.lib" />
+    <Library Include="sound\WinMM.Lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

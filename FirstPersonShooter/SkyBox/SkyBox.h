@@ -1,17 +1,18 @@
-#include "Cube/Cube.h"
-class SkyBox
+#include "GameComponents/GameObject.h"
+#include "Model3D/Model3D.h"
+#include <memory>
+using namespace std;
+class SkyBox : public GameObject , public Model3D 
 {
-
-private:
-	unique_ptr<TexturedModel>* walls;
-	
+	unique_ptr<TexturedModel> ground;
 public:
-	GLfloat Unitsize;
-	SkyBox(GLfloat unitsize);
-
+	SkyBox();
 	~SkyBox();
-	void Draw(ShaderProgram &shader);
+	void Render(ShaderProgram * Shader, mat4 VP);
 	void Initialize();
+	void SetModel();
+	void Set_Ground();
 	void Cleanup();
+	virtual void Collided(ObjectType _ObjectType);
 };
 

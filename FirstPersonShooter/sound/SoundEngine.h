@@ -17,7 +17,6 @@ public:
 	}
 	void StartBackMusic(char* path)
 	{
-
 		PlaySound(charToWChar(path),NULL, SND_ASYNC );
 	}
 	void PlayShortSound(char* path)

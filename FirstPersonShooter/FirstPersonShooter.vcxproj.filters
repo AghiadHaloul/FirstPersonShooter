@@ -200,6 +200,9 @@
     <ClCompile Include="Screen\StartScreen.cpp">
       <Filter>Screen</Filter>
     </ClCompile>
+    <ClCompile Include="sound\Sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application Manager\ApplicationManager.h">
@@ -328,6 +331,12 @@
     <ClInclude Include="Screen\StartScreen.h">
       <Filter>Screen</Filter>
     </ClInclude>
+    <ClInclude Include="sound\Sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\SoundEngine.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="KeyframeAnimation.vertexshader" />
@@ -346,5 +355,16 @@
     <Image Include="Holstein.DDS">
       <Filter>Text</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="sound\dsound.lib">
+      <Filter>Sound</Filter>
+    </Library>
+    <Library Include="sound\dxguid.lib">
+      <Filter>Sound</Filter>
+    </Library>
+    <Library Include="sound\WinMM.Lib">
+      <Filter>Sound</Filter>
+    </Library>
   </ItemGroup>
 </Project>

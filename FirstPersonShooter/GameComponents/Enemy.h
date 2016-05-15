@@ -44,11 +44,11 @@ public:
 	static void Set_EnemyModel();
 	~Enemy(void);
 	
-	// i'm gonna remove it
-	bool stupid_bounding()
+	// 
+	bool bounding(vec3 newpos)
 	{
-		vec3 NextPosition = GetPosition();
-		return!((abs(NextPosition.x) <= 99 && abs(NextPosition.y) <= 99 &&abs(NextPosition.z) <= 99));  
+		vec3 NextPosition = newpos;
+		return((abs(NextPosition.x) <= 99 && abs(NextPosition.y) <= 99 &&abs(NextPosition.z) <= 99));  
 	}
 };
 

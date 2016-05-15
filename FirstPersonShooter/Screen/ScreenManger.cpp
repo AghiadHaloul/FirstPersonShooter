@@ -37,6 +37,7 @@ void ScreenManger::StartScreenReturn()
 {
 	while (Screens.size() > 1)
 	{
+		Screens.top()->close();
 		delete Screens.top();
 		Screens.pop();
 	}

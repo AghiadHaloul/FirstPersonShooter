@@ -28,12 +28,14 @@ bool SoundClass::Initialize(HWND hwnd,char* path)
 	result = InitializeDirectSound(hwnd);
 	if(!result)
 	{
+		printf("can't init short sound \n");
 		return false;
 	}
  
 	result = LoadWaveFile(path, &m_secondaryBuffer1);
 	if(!result)
 	{
+		printf("can't load short sound \n");
 		return false;
 	}
  
@@ -42,6 +44,7 @@ bool SoundClass::Initialize(HWND hwnd,char* path)
 	if(!result)
 	{
 		return false;
+		printf("can't play short sound \n");
 	}
  
 	return true;
@@ -330,7 +333,7 @@ bool SoundClass::PlayWaveFile()
  
 	// Set volume of the buffer to 100%.
 	//ranges from 0 to -10000
-	result = m_secondaryBuffer1->SetVolume(/*DSBVOLUME_MAX*/-1000);
+	result = m_secondaryBuffer1->SetVolume(DSBVOLUME_MAX);
 	if(FAILED(result))
 	{
 		return false;

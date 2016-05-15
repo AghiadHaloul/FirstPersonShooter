@@ -1,7 +1,6 @@
 #pragma once
 #ifndef Bullet_h__
 #define Bullet_h__
-
 #endif // Bullet_h__
 
 #include "GameComponents/GameObject.h"

@@ -21,13 +21,14 @@ Renderer::~Renderer()
 
 void Renderer::Initialize()
 {
-	//soundEngine = unique_ptr<SoundEngine>(new SoundEngine());
-	//soundEngine->StartBackMusic("strings2.wav");
-    this->GameOver = false;
-	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox(100.0f)); 
-	Game_SkyBox->Initialize();
-
-	hero = unique_ptr<Hero>(new Hero(vec3(3,-98,0),vec3(0,0,-1),Game_SkyBox->Unitsize));
+	
+	
+	this->GameOver = false; 
+	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox()); 
+	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) Game_SkyBox.get());
+	
+	
+	hero = unique_ptr<Hero>(new Hero(vec3(3,2,0),vec3(0,0,-1),100));
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) hero.get());
 
 	Firstlevel = unique_ptr<Level1>(new Level1());
@@ -42,7 +43,7 @@ void Renderer::Initialize()
 	//////////////////////////////////////////////////////////////////////////
 	// Configure the light.
 	//setup the light position.
-	lightPosition = glm::vec3(0,-50,0);
+	lightPosition = glm::vec3(0,100,0);
 	shader.BindLightPosition(&lightPosition[0]);
 	//setup the ambient light component.
 	ambientLight = glm::vec3(0.1,0.1,0.1);
@@ -53,11 +54,11 @@ void Renderer::Initialize()
 
 	//////////////////////////////////////////////////////////////////////////
 	animatedModelShader.UseProgram();
-	lightPosition = glm::vec3(1.0,0.25,0.0);
+	lightPosition = glm::vec3(0,100,0);
 	//setup the ambient light component.
 	animatedModelShader.BindLightPosition(&lightPosition[0]);
 	//setup the ambient light component.
-	ambientLight = glm::vec3(0.5,0.5,0.5);
+	ambientLight = glm::vec3(0.1,0.1,0.1);
 
 	animatedModelShader.BindAmbientLight(&ambientLight[0]);
 	//setup the eye position.
@@ -91,6 +92,7 @@ void Renderer::Initialize_CrossHair()
 	CorssModel->IndicesData.push_back(2);
 	CorssModel->IndicesData.push_back(3);
 	CorssModel->Initialize();
+	
 }
 
 void Renderer::Draw()
@@ -103,8 +105,9 @@ void Renderer::Draw()
 		// Send our transformation to the currently bound shader, 
 		// in the "MVP" uniform
 		glm::mat4 VP = hero->HeroCam->GetProjectionMatrix() * hero->HeroCam->GetViewMatrix();
-		shader.BindVPMatrix(&VP[0][0]);	
-		Game_SkyBox->Draw(shader);
+		//shader.BindVPMatrix(&VP[0][0]);	
+		
+		Game_SkyBox->Render(&shader,VP);
 		
 		hero->Render(&shader,VP); //render nothing till now	
 		
@@ -136,12 +139,16 @@ void Renderer::Draw_CrossHair()
 
 void Renderer::Cleanup()
 {
+	StaticComponent::collisionManager->Cleanup();
+	StaticComponent::sceneBullets->Cleanup();
    shader.CleanUp();
    animatedModelShader.CleanUp();
 }
 
 void Renderer::Update(double deltaTime)
 {
+	
+
 	//reset the pressed key.
 	StaticComponent::collisionManager->UpdateCollisions();
 	hero->Update(deltaTime/1000); // update nothing till now
@@ -190,6 +197,7 @@ void Renderer::HandleKeyboardInput(int key)
 		break;
 
 	case GLFW_KEY_SPACE:
+		//soundEngine2->StartBackMusic("strings2.wav");
 		hero->Fire();
 		break;
 	
@@ -209,7 +217,7 @@ void Renderer::HandleMouse(double deltaX,double deltaY, bool LeftBtn_clicked)
 	shader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 	animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 	if(LeftBtn_clicked){
-		//cout << "mouse clicked"<<endl;
+		StaticComponent::soundEngine->StartBackMusic("music/firesound.wav");
         hero->Fire();
 	}
 }

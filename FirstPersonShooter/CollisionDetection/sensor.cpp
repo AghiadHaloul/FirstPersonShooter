@@ -42,6 +42,7 @@ void Sensor::Collided(ObjectType _ObjectType)
 		vec3 Enemyposxz = vec3((*Position).x,0,(*Position).z);
 		vec3 heading = Sensor::HeroPostion-Enemyposxz ;
 		(*Direction) = normalize(heading);
+		printf("enemysensor collided with hero \n ");
 	}
 }
 void Sensor::Set_Model()

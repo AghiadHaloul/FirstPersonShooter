@@ -2,7 +2,8 @@
 
 unique_ptr<CollisionManager>StaticComponent::collisionManager = unique_ptr<CollisionManager>(new CollisionManager());
 unique_ptr<SceneBullets> StaticComponent::sceneBullets = unique_ptr<SceneBullets>(new SceneBullets());
-
+unique_ptr<SoundEngine> StaticComponent::soundEngine =unique_ptr<SoundEngine>(new SoundEngine());
+float StaticComponent::RepeatTime = 0;
 StaticComponent::StaticComponent()
 {
 }
@@ -50,6 +51,11 @@ void SceneBullets::Render(ShaderProgram*shader,mat4 VP)
 		//cout<<"render bullet"<<endl;
 	}
 
+}
+
+void SceneBullets::Cleanup()
+{
+	AllBullets.clear();
 }
 
 SceneBullets::SceneBullets(void)
