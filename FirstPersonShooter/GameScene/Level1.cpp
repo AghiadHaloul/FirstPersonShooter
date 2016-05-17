@@ -23,8 +23,9 @@ void Level1::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *Animatio
 void Level1::Update(float deltatime)
 {
 	Update_Enemies(deltatime);
-	// vec3 dir =HelperMethods::Get_Random_Direction();
-	//cout << "X :" << (float)dir.x<< " Y :" <<dir.y<<" Z :"<<dir.z << endl;
+
+	if(this->Enemies.empty())
+		StaticComponent::LevelCompleted = true;
 }
 
 

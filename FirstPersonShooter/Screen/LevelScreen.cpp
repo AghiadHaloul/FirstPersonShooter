@@ -62,7 +62,7 @@ void LevelScreen::HandleKeyboardInput(int key)
 	case GLFW_KEY_ENTER:
 		handel_Enterkey();
 		break;
-	case GLFW_KEY_ESCAPE:
+	case GLFW_KEY_BACKSPACE:
 		ScreenManger::RemoveScreen();
 		break;
 		

@@ -5,6 +5,11 @@ unique_ptr<CollisionManager>StaticComponent::collisionManager = unique_ptr<Colli
 unique_ptr<SceneBullets> StaticComponent::sceneBullets = unique_ptr<SceneBullets>(new SceneBullets());
 unique_ptr<SoundEngine> StaticComponent::soundEngine =unique_ptr<SoundEngine>(new SoundEngine());
 float StaticComponent::RepeatTime = 0;
+
+float StaticComponent::PlayingTime = 0;
+
+bool StaticComponent::LevelCompleted = false;
+
 StaticComponent::StaticComponent()
 {
 }

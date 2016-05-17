@@ -18,6 +18,13 @@ void GameScreen::Update(float deltaTime)
 		GameOverScreen *gameoversecreen = new GameOverScreen();
 		ScreenManger::AddScreen(gameoversecreen);
 	}
+	else  if (StaticComponent::LevelCompleted)
+	{
+		LevelCompletedScreen *levelCompletedScreen = new LevelCompletedScreen();
+		ScreenManger::AddScreen(levelCompletedScreen);
+	}
+
+
 }
 
 void GameScreen::HandleKeyboardInput(int key)

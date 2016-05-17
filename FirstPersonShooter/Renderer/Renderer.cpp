@@ -22,8 +22,9 @@ Renderer::~Renderer()
 void Renderer::Initialize()
 {
 	
-	
 	this->GameOver = false; 
+
+
 	Game_SkyBox = unique_ptr<SkyBox> (new SkyBox()); 
 	StaticComponent::collisionManager->AddCollidableModel((CollidableModel*) Game_SkyBox.get());
 	
@@ -68,6 +69,7 @@ void Renderer::Initialize()
 	//setup the eye position.
 	animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);
 
+	StaticComponent::PlayingTime = 0;
    
 }
 
@@ -131,10 +133,15 @@ void Renderer::Draw()
 
 void Renderer::DrawText()
 {
+	printText2D("HP",0,550,40);
 	char health[100];
 	itoa(hero->GetHealth(),health,10);
-	printText2D("HP",0,550,40);
 	printText2D(health,100,550,40);
+	
+	printText2D("time ",600,550,40);
+	char playtime[100];
+	sprintf(playtime, "%f", StaticComponent::PlayingTime);
+	printText2D(playtime,550,500,40);
 }
 
 void Renderer::Draw_CrossHair()
@@ -156,7 +163,7 @@ void Renderer::Cleanup()
 
 void Renderer::Update(double deltaTime)
 {
-	
+	StaticComponent::PlayingTime += (deltaTime/1000);
 
 	//reset the pressed key.
 	StaticComponent::collisionManager->UpdateCollisions();

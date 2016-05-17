@@ -108,6 +108,7 @@
     <ClCompile Include="Screen\CreditsScreen.cpp" />
     <ClCompile Include="Screen\GameOverScreen.cpp" />
     <ClCompile Include="Screen\GameScreen.cpp" />
+    <ClCompile Include="Screen\LevelCompletedScreen.cpp" />
     <ClCompile Include="Screen\LevelScreen.cpp" />
     <ClCompile Include="Screen\LoadingScreen.cpp" />
     <ClCompile Include="Screen\OptionScreen.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Screen\CreditsScreen.h" />
     <ClInclude Include="Screen\GameOverScreen.h" />
     <ClInclude Include="Screen\GameScreen.h" />
+    <ClInclude Include="Screen\LevelCompletedScreen.h" />
     <ClInclude Include="Screen\LevelScreen.h" />
     <ClInclude Include="Screen\LoadingScreen.h" />
     <ClInclude Include="Screen\OptionScreen.h" />

@@ -155,7 +155,13 @@ void Enemy::Collided(ObjectType _ObjectType)
 	{
 		vec3 newpos = GameObject::GetPosition()+(-GameObject::GetDirection()); 
 		GameObject::SetPosition(newpos);
-		GameObject::SetDirection(-GameObject::GetDirection());
+		GameObject::SetDirection(HelperMethods::Get_Random_Direction());
+	}
+	if (_ObjectType == ObjectType::Enemy)
+	{
+		vec3 newpos = GameObject::GetPosition()+(-GameObject::GetDirection()); 
+		GameObject::SetPosition(newpos);
+		GameObject::SetDirection(HelperMethods::Get_Random_Direction());
 	}
 	else if (_ObjectType == ObjectType::HeroBullet)
 	{

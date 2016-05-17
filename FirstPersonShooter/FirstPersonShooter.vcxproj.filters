@@ -209,6 +209,9 @@
     <ClCompile Include="GameScene\Level2.cpp">
       <Filter>GameScene</Filter>
     </ClCompile>
+    <ClCompile Include="Screen\LevelCompletedScreen.cpp">
+      <Filter>Screen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application Manager\ApplicationManager.h">
@@ -348,6 +351,9 @@
     </ClInclude>
     <ClInclude Include="GameScene\Level2.h">
       <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen\LevelCompletedScreen.h">
+      <Filter>Screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

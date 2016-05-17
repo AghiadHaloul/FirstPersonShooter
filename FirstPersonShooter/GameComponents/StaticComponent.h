@@ -33,7 +33,9 @@ public:
 	static unique_ptr<CollisionManager> collisionManager;
 	static unique_ptr<SceneBullets> sceneBullets;
 	static float RepeatTime;
-	
+	static float PlayingTime;
+	static bool LevelCompleted;
+
 private:
 
 };

@@ -22,8 +22,8 @@ void main()
 
 	vec3 textureColor = texture( myTextureSampler, TexCoord ).rgb;
 	vec3 lightingColor = CalculateLight();
-
-	color = textureColor*lightingColor;
+	//vec3 light_source_color = vec3(1,0.7433,0.539); // sun or moon
+	color = textureColor*lightingColor;//*light_source_color;
 }
 
 vec3 CalculateLight()

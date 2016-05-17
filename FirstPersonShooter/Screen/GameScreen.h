@@ -3,6 +3,7 @@
 #include "Renderer/Renderer.h"
 #include "Screen/StartScreen.h"
 #include "GameOverScreen.h"
+#include "LevelCompletedScreen.h"
 #include "text2D.hpp"
 #include "PauseScreen.h"
 class GameScreen : public Screen

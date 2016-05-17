@@ -44,6 +44,16 @@ void Sensor::Collided(ObjectType _ObjectType)
 		(*Direction) = normalize(heading);
 		printf("enemysensor collided with hero \n ");
 	}
+	else if(_ObjectType==ObjectType::HeroBullet)
+	{
+		//cout<<"iam a sensor colided with hero"<<endl;
+		(*EnableFire)=true;
+		vec3 Enemyposxz = vec3((*Position).x,0,(*Position).z);
+		vec3 heading = Sensor::HeroPostion-Enemyposxz ;
+		(*Direction) = normalize(heading);
+		printf("enemysensor collided with hero \n ");
+	}
+
 }
 void Sensor::Set_Model()
 {
