@@ -19,6 +19,8 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void close();
 	virtual void HandleKeyboardInput(int key);
+	void InputLogic();
+
 	OptionScreen(void);
 	~OptionScreen(void);
 };

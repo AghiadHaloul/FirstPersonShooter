@@ -3,10 +3,15 @@
 
 #include <gl/glew.h>
 #include "Shaders/shader.hpp"
-
-
+#include <string>
+#include <glm\glm.hpp>
+#include <vector>
+#include <iostream>
+using namespace std;
+using namespace glm;
 class ShaderProgram
 {
+#define  maxlights 4
 	public:
 	GLuint programID;
 
@@ -14,7 +19,9 @@ class ShaderProgram
 	GLuint vpMatrixID;
 
 	GLuint AmbientLightID;
-	GLuint LightPositionID;
+	GLuint LightPositionID[maxlights];
+	GLuint LightcolorID[maxlights];
+
 	GLuint EyePositionID;
 
 	ShaderProgram();
@@ -25,7 +32,8 @@ class ShaderProgram
 	
 	void BindEyePosition(GLfloat* value);
 	void BindAmbientLight(GLfloat* value);
-	void BindLightPosition(GLfloat* value);
+	void BindLightPositions(vector<vec3>lightPostions);
+	void BindLightColors(vector<vec3> lightColors);
 
 	//calls glUseProgram.
 	void UseProgram();

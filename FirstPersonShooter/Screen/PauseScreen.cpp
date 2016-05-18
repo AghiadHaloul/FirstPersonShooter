@@ -53,16 +53,21 @@ void PauseScreen::HandleKeyboardInput(int key)
 	switch (key)
 	{
 	case GLFW_KEY_UP:
+		StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		handel_UPkey();
 		break;
 
 	case GLFW_KEY_DOWN:
+		StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		handel_Downkey();
 		break;
 	case GLFW_KEY_ENTER:
+		StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		handel_Enterkey();
 		break;
 	case GLFW_KEY_ESCAPE:
+	case GLFW_KEY_BACKSPACE:
+	    StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		ScreenManger::RemoveScreen();
 		break;
 		

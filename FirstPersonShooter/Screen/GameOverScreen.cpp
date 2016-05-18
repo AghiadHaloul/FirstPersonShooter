@@ -50,6 +50,7 @@ void GameOverScreen::HandleKeyboardInput(int key)
 	switch (key)
 	{
 	case GLFW_KEY_ESCAPE:
+	StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		ScreenManger::StartScreenReturn();
 		break;
 	default:

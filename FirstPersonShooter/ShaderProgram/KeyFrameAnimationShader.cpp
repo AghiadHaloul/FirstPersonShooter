@@ -20,8 +20,15 @@ void KeyFrameAnimationShader::LoadProgram()
 
 	interpolationID = glGetUniformLocation(programID, "Interpolation");
 
-	LightPositionID = glGetUniformLocation(programID,"LightPosition_worldspace");
-
+	for (int i = 0; i < maxlights; i++)
+	{
+		string s = to_string(i);
+		string lightref =  "LightPosition_worldspace["+s+"]";
+		string colorref =  "LightColor["+s+"]";
+		cout <<  colorref <<endl; cout <<  lightref <<endl;
+		LightPositionID[i] = glGetUniformLocation(programID,lightref.c_str());
+		LightcolorID[i] = glGetUniformLocation(programID,colorref.c_str()) ;
+	}
 	AmbientLightID = glGetUniformLocation(programID,"ambientLight");
 
 	EyePositionID = glGetUniformLocation(programID,"EyePosition_worldspace");

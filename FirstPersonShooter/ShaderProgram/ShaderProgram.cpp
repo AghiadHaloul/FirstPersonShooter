@@ -16,9 +16,17 @@ void ShaderProgram::LoadProgram()
 
 	vpMatrixID = glGetUniformLocation(programID, "VP");
 
-
-	LightPositionID = glGetUniformLocation(programID,"LightPosition_worldspace");
-
+	for (int i = 0; i < maxlights; i++)
+	{
+	 string s = to_string(i);
+	 string lightref =  "LightPosition_worldspace["+s+"]";
+	 string colorref =  "LightColor["+s+"]";
+	
+	 cout <<  colorref <<endl;
+	 cout <<  lightref <<endl;
+	 LightPositionID[i] = glGetUniformLocation(programID,lightref.c_str());
+	 LightcolorID[i] = glGetUniformLocation(programID,colorref.c_str()) ;
+	}
 	AmbientLightID = glGetUniformLocation(programID,"ambientLight");
 	
 	EyePositionID = glGetUniformLocation(programID,"EyePosition_worldspace");
@@ -50,9 +58,23 @@ void ShaderProgram::BindAmbientLight(GLfloat* value)
 }
 
 
-void ShaderProgram::BindLightPosition(GLfloat* value)
+
+
+void ShaderProgram::BindLightPositions(vector<vec3>lightPostions)
 {
-	glUniform3fv(LightPositionID,1, value);
+	for (int i = 0; i < maxlights; i++)
+	{
+		glUniform3fv(LightPositionID[i],1, &lightPostions[i][0]);
+	}
+}
+
+
+void ShaderProgram::BindLightColors(vector<vec3> lightColors)
+{
+	for (int i = 0; i < maxlights; i++)
+	{
+		glUniform3fv(LightcolorID[i],1, &lightColors[i][0]);
+	}
 }
 
 void ShaderProgram::UseProgram()

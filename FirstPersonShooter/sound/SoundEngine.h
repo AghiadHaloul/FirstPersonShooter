@@ -7,8 +7,10 @@ class SoundEngine
 	SoundClass *sound;
 	HWND hwnd;
 public:
+	bool On;
 	SoundEngine()
 	{
+		On = true;
 		sound = new SoundClass();
 	}
 	void SetWindowHandler(HWND hwnd)
@@ -17,10 +19,12 @@ public:
 	}
 	void StartBackMusic(char* path)
 	{
+		if(On)
 		PlaySound(charToWChar(path),NULL, SND_ASYNC );
 	}
 	void PlayShortSound(char* path)
 	{
+		 if(On)
 			sound->Initialize(hwnd,path);
 	}
 private:

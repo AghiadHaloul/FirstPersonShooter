@@ -57,6 +57,7 @@ void Hero::Render(ShaderProgram * shader,mat4 VP)
 
 void Hero::Update(float deltaTime)
 {
+	cout << "X " << GameObject::GetPosition().x<< " Z " << GameObject::GetPosition().z <<endl;
 	//firehold+=deltaTime;
 }
 

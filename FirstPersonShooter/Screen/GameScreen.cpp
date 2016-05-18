@@ -34,6 +34,7 @@ void GameScreen::HandleKeyboardInput(int key)
 	switch (key)
 	{
 	case GLFW_KEY_ESCAPE:
+		StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		pauseScreen = new PauseScreen();
 		ScreenManger::AddScreen(pauseScreen);
 		break;

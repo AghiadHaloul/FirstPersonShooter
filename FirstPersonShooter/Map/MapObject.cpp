@@ -14,29 +14,29 @@ MapObject::MapObject(vec3 mPosition,vec3 Direction,MapObjectType MapObjectType_)
 {
 	this->MapObjectType_ = MapObjectType_;
 	if(MapObjectType_==MapObjectType::building1){
-		GameObject::Set_InitialTransformation(scale(0.03f,0.03f,0.03f));
+		GameObject::Set_InitialTransformation(scale(0.05f,0.05f,0.05f));
 		GameObject::UpdateModelMatrix();
 		
 		CollidableModel::Set_ObjectType(ObjectType::MapObject);
 		CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(BuildingModel.GetVertices()));
 		auto boundingbox = CollidableModel::GetBoundingBox();
-		boundingbox.Scale(0.03f,0.03f,0.03f);
+		boundingbox.Scale(0.05f,0.05f,0.05f);
 		boundingbox.SetCenter(GameObject::GetPosition());
 		CollidableModel::SetBoundingBox(boundingbox);
 	}
 	else if(MapObjectType_==MapObjectType::building2){
-		GameObject::Set_InitialTransformation(scale(0.1f,0.1f,0.1f));
+		GameObject::Set_InitialTransformation(scale(0.3f,0.3f,0.3f));
 		GameObject::UpdateModelMatrix();
 
 		CollidableModel::Set_ObjectType(ObjectType::MapObject);
 		CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(BuildingMode2.GetVertices()));
 		auto boundingbox = CollidableModel::GetBoundingBox();
-		boundingbox.Scale(0.1f,0.1f,0.1f);
-		boundingbox.SetCenter(GameObject::GetPosition());
+		boundingbox.Scale(0.3f,0.3f,0.3f);
+		boundingbox.SetCenter(GameObject::GetPosition()+vec3(0,0,3));
 		CollidableModel::SetBoundingBox(boundingbox);
 	}
 	else if(MapObjectType_==MapObjectType::tree){
-		GameObject::Set_InitialTransformation(scale(2.0f,2.0f,2.0f));
+		GameObject::Set_InitialTransformation(scale(3.0f,3.0f,3.0f));
 		GameObject::UpdateModelMatrix();
 
 		CollidableModel::Set_ObjectType(ObjectType::MapObject);
@@ -48,14 +48,14 @@ MapObject::MapObject(vec3 mPosition,vec3 Direction,MapObjectType MapObjectType_)
 	}
 
 	else if(MapObjectType_==MapObjectType::car){
-		GameObject::Set_InitialTransformation(scale(0.1f,0.1f,0.1f));
+		GameObject::Set_InitialTransformation(scale(0.3f,0.3f,0.3f));
 		GameObject::UpdateModelMatrix();
 
 		CollidableModel::Set_ObjectType(ObjectType::MapObject);
 		CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(Car.GetVertices()));
 		auto boundingbox = CollidableModel::GetBoundingBox();
-		boundingbox.Scale(0.1f,0.1f,0.1f);
-		boundingbox.SetCenter(GameObject::GetPosition());
+		boundingbox.Scale(0.3f,0.3f,0.3f);
+		boundingbox.SetCenter(GameObject::GetPosition()+vec3(0,0,1.5));
 		CollidableModel::SetBoundingBox(boundingbox);
 	}
 }
@@ -94,7 +94,7 @@ void MapObject::Set_Model()
 	BuildingModel.Initialize();
 
 	BuildingMode2 =  Model3D();
-	BuildingMode2.LoadFromFile("data/models/house/LPBuildX12_3ds.3ds",true);
+	BuildingMode2.LoadFromFile("data/models/house/polHouse1.3ds",true);
 	BuildingMode2.Initialize();
 
 	Car =  Model3D();

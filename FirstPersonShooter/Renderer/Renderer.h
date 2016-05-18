@@ -29,8 +29,8 @@ class Renderer
 	ShaderProgram shader;
 	
 	glm::vec3 ambientLight;
-	glm::vec3 lightPosition;
-
+	vector<vec3> lightPositions;
+	vector<vec3> lightcolors;
 	unique_ptr<TexturedModel> CorssModel;
     unique_ptr<SoundEngine> soundEngine;
 	

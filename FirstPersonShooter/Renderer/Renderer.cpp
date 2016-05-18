@@ -44,12 +44,24 @@ void Renderer::Initialize()
 	shader.LoadProgram();
 	animatedModelShader.LoadProgram();
 	simpleshader.LoadProgram();
-	shader.UseProgram();
 	//////////////////////////////////////////////////////////////////////////
 	// Configure the light.
+	
+	float val = 150;
+	lightPositions.push_back(vec3(-val,val,-val));
+	lightPositions.push_back(vec3(val,val,-val));
+	lightPositions.push_back(vec3(val,val,val));
+	lightPositions.push_back(vec3(-val,val,val));
+
+	lightcolors.push_back(vec3(0,1,0));
+	lightcolors.push_back(vec3(1,0,0));
+	lightcolors.push_back(vec3(0,1,1));
+	lightcolors.push_back(vec3(0,0,1));
+
 	//setup the light position.
-	lightPosition = glm::vec3(0,100,0);
-	shader.BindLightPosition(&lightPosition[0]);
+	shader.UseProgram();
+	shader.BindLightColors(lightcolors);
+	shader.BindLightPositions(lightPositions);
 	//setup the ambient light component.
 	ambientLight = glm::vec3(0.1,0.1,0.1);
 	shader.BindAmbientLight(&ambientLight[0]);
@@ -59,12 +71,11 @@ void Renderer::Initialize()
 
 	//////////////////////////////////////////////////////////////////////////
 	animatedModelShader.UseProgram();
-	lightPosition = glm::vec3(0,100,0);
 	//setup the ambient light component.
-	animatedModelShader.BindLightPosition(&lightPosition[0]);
+	shader.BindLightColors(lightcolors);
+	animatedModelShader.BindLightPositions(lightPositions);
 	//setup the ambient light component.
 	ambientLight = glm::vec3(0.1,0.1,0.1);
-
 	animatedModelShader.BindAmbientLight(&ambientLight[0]);
 	//setup the eye position.
 	animatedModelShader.BindEyePosition(&hero->HeroCam->GetEyePosition()[0]);

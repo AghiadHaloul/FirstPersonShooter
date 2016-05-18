@@ -49,7 +49,9 @@ void CreditsScreen::HandleKeyboardInput(int key)
 {
 	switch (key)
 	{
+	case GLFW_KEY_ESCAPE:
 	case GLFW_KEY_BACKSPACE:
+	    StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		ScreenManger::StartScreenReturn();
 		break;
 	default:
