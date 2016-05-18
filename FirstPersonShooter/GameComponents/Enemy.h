@@ -29,13 +29,14 @@ class Enemy : public GameObject , public CollidableModel
 
 	animState_t AnimationState;
 	void UpdateBoundingbox();
-	static CMD2Model  EnemyModel;
 	unique_ptr<Sensor> enemySensor; ///enemy collider
     void Move(float deltaTime);
 	void InitializeBoundingbox();
 	
 
 public:
+	static unique_ptr<CMD2Model>  EnemyModel;
+
 	Enemy(vec3 mPosition,vec3 mDirection, int stamina, float firefrequancy );
 	void Initialize();
 	void Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *AnimationShader,mat4 VP);

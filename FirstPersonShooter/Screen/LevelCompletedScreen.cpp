@@ -56,7 +56,8 @@ void LevelCompletedScreen::HandleKeyboardInput(int key)
 	switch (key)
 	{
 	case GLFW_KEY_ESCAPE:
-	StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
+	    StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
+		StaticComponent::LevelCompleted = false;
 		ScreenManger::StartScreenReturn();
 		break;
 	default:

@@ -53,7 +53,6 @@ void Sensor::Collided(ObjectType _ObjectType)
 		(*Direction) = normalize(heading);
 		printf("enemysensor collided with hero \n ");
 	}
-
 }
 void Sensor::Set_Model()
 {

@@ -3,7 +3,7 @@
 Hero::Hero():GameObject()
 {
 	
-	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,1.0f,0.0f,0.0f) * glm::scale(0.01f,0.01f,0.01f));
+	GameObject::Set_InitialTransformation( glm::scale(0.05f,0.05f,0.05f));
 	CMD2Model::Set_ObjectType(ObjectType::Hero); 
 	//cam initialization
 	this->HeroCam = unique_ptr<EulerCamera>(new EulerCamera());
@@ -17,7 +17,7 @@ Hero::Hero():GameObject()
 Hero::Hero(vec3 mPosition,vec3 mDirection,float boundry):GameObject(mPosition,mDirection)
 {
 	
-	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,0.0f,1.0f,0.0f) * glm::scale(0.01f,0.01f,0.01f));
+	GameObject::Set_InitialTransformation(glm::scale(0.05f,0.05f,0.05f));
 	this->Initialize();
 	CMD2Model::Set_ObjectType(ObjectType::Hero); 
 	//cam initialization
@@ -73,12 +73,9 @@ void Hero::Fire()
 
 void Hero::UpdateBoundingbox()
 {
-
 	CMD2Model::SetBoundingBox(CollidableModel::CalculateBoundingBox(CMD2Model::GetVertices()));
 	auto tmpboundingbox = CMD2Model::GetBoundingBox();
-	tmpboundingbox.Scale(0.01f,0.01f,0.01f);
-	tmpboundingbox.Rotate(-90.0f,1.0f,0.0f,0.0f);
-	tmpboundingbox.Rotate(GameObject::Get_XZ_DirectionAngle(),0.0f,1.0f,0.0f);
+	tmpboundingbox.Scale(0.05f,0.05f,0.05f);
 	tmpboundingbox.Translate(GameObject::GetPosition());
 	CMD2Model::SetBoundingBox(tmpboundingbox);
 }
@@ -105,7 +102,7 @@ void Hero::Collided(ObjectType _ObjectType)
 {
 	if (_ObjectType == ObjectType::EnemyBullet)
 		{
-			//this->health-=10;
+			this->health-=2;
 			if(health == 0)
 				GameObject::SetIsdestroied(true);
 			printf("health decreased by 10\n");
@@ -171,7 +168,7 @@ void Hero::Pitch(double deltaY)
 
 vec3 Hero::get_heropos()
 {
-	return HeroCam->GetEyePosition()+vec3(0,-0.3,0);
+	return HeroCam->GetEyePosition()+vec3(0,-1,0);
 }
 
 Hero::~Hero(void)

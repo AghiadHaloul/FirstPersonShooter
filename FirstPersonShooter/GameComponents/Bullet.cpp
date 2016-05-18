@@ -16,7 +16,6 @@ Bullet::Bullet(vec3 mPosition,vec3 Direction,ObjectType BulletType)
    tmpboundingbox.Scale(0.009f,0.009f,0.009f);
    tmpboundingbox.SetCenter(GameObject::GetPosition());
    CollidableModel::SetBoundingBox(tmpboundingbox); 
-
 }
 
 

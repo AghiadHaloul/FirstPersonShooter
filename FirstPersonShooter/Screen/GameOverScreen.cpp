@@ -4,7 +4,7 @@
 void GameOverScreen::Initialize()
 {
 	initText2D("Holstein.DDS");
-	background = unique_ptr<TexturedModel>(new TexturedModel("data/textures/menu/gameover.png",0));
+	background = unique_ptr<TexturedModel>(new TexturedModel("data/textures/menu/gameover.jpg",0));
 
 	background->VertexData.push_back(glm::vec3(-1.0f, -1.0f, 0.0f));
 	background->VertexData.push_back(glm::vec3(1.0f, -1.0f, 0.0f));

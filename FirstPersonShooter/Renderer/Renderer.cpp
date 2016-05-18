@@ -21,7 +21,7 @@ Renderer::~Renderer()
 
 void Renderer::Initialize()
 {
-	
+	Enemy::EnemyModel = unique_ptr<CMD2Model>(new CMD2Model());
 	this->GameOver = false; 
 
 
@@ -52,12 +52,22 @@ void Renderer::Initialize()
 	lightPositions.push_back(vec3(val,val,-val));
 	lightPositions.push_back(vec3(val,val,val));
 	lightPositions.push_back(vec3(-val,val,val));
-
-	lightcolors.push_back(vec3(0,1,0));
-	lightcolors.push_back(vec3(1,0,0));
-	lightcolors.push_back(vec3(0,1,1));
-	lightcolors.push_back(vec3(0,0,1));
-
+	vec3 scenecolor;
+	if (StaticComponent::Current_Level == StaticComponent::Level1){
+	 scenecolor = vec3(1,0.839,0.6666);
+	lightcolors.push_back(scenecolor);
+	lightcolors.push_back(scenecolor);
+	lightcolors.push_back(scenecolor);
+	lightcolors.push_back(scenecolor);
+	}
+	if (StaticComponent::Current_Level == StaticComponent::Level2){
+		//scenecolor = vec3(0.2509,0.58823,1);
+		scenecolor = vec3(0.83,0.92,1);
+		lightcolors.push_back(scenecolor);
+		lightcolors.push_back(scenecolor);
+		lightcolors.push_back(scenecolor);
+		lightcolors.push_back(scenecolor);
+	}
 	//setup the light position.
 	shader.UseProgram();
 	shader.BindLightColors(lightcolors);
@@ -220,16 +230,16 @@ void Renderer::HandleKeyboardInput(int key)
 
 		// Moving up
 	case GLFW_KEY_R:
-		hero->HeroCam->Fly(3);
+		//hero->HeroCam->Fly(3);
 		break;
 
 		// Moving down
 	case GLFW_KEY_F:
-		hero->HeroCam->Fly(-3);
+		//hero->HeroCam->Fly(-3);
 		break;
 
 	case GLFW_KEY_SPACE:
-		//soundEngine2->StartBackMusic("strings2.wav");
+		StaticComponent::soundEngine->StartBackMusic("music/switch.wav");
 		hero->Fire();
 		break;
 	

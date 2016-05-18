@@ -25,14 +25,14 @@ void Enemy::Initialize()
 	this->deathTime = 0;
 	GameObject::Set_InitialTransformation(glm::rotate(-90.0f,1.0f,0.0f,0.0f) * glm::scale(0.05f,0.05f,0.05f));
 	CollidableModel::Set_ObjectType(ObjectType::Enemy);
-	AnimationState = EnemyModel.StartAnimation(animType_t::RUN);
+	AnimationState = EnemyModel->StartAnimation(animType_t::RUN);
 	GameObject::UpdateModelMatrix();
 	this->InitializeBoundingbox();
 }
 
 void Enemy::InitializeBoundingbox()
 {
-	CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(EnemyModel.GetVertices()));
+	CollidableModel::SetBoundingBox(CollidableModel::CalculateBoundingBox(EnemyModel->GetVertices()));
 	auto tmpboundingbox = CollidableModel::GetBoundingBox();
 	tmpboundingbox.Scale(0.05f,0.05f,0.05f);
 	tmpboundingbox.Rotate(-90.0f,1.0f,0.0f,0.0f);
@@ -56,7 +56,7 @@ void Enemy::Render(ShaderProgram*StaticShader,KeyFrameAnimationShader *Animation
 	AnimationShader->UseProgram();
 	AnimationShader->BindVPMatrix(&VP[0][0]);
 	AnimationShader->BindModelMatrix(&GameObject::Get_ModelMatrix()[0][0]);
-	EnemyModel.RenderModel(&AnimationState,AnimationShader);
+	EnemyModel->RenderModel(&AnimationState,AnimationShader);
 
 }
 
@@ -70,12 +70,12 @@ void Enemy::Update(float deltaTime)
 		{
 			Move(deltaTime);
 			if(AnimationState.type != animType_t::RUN)
-				AnimationState = EnemyModel.StartAnimation(animType_t::RUN);
+				AnimationState = EnemyModel->StartAnimation(animType_t::RUN);
 		}
 		else
 		{
 			if(AnimationState.type != animType_t::ATTACK)
-				AnimationState = EnemyModel.StartAnimation(animType_t::ATTACK);
+				AnimationState = EnemyModel->StartAnimation(animType_t::ATTACK);
 		}
 
 		if(FireEnable)
@@ -99,7 +99,7 @@ void Enemy::Update_Death(float deltaTime)
 { 
 	    deathTime+=deltaTime;
 		if(AnimationState.type != animType_t::DEATH_FALLBACK)
-		AnimationState = EnemyModel.StartAnimation(animType_t::DEATH_FALLBACK);
+		AnimationState = EnemyModel->StartAnimation(animType_t::DEATH_FALLBACK);
 		//GameObject::Set_InitialTransformation(glm::rotate(-90.0f,0.0f,1.0f,0.0f) * glm::scale(0.05f,0.05f,0.05f));
 	    if(deathTime > 0.82) 
 			{
@@ -110,7 +110,7 @@ void Enemy::Update_Death(float deltaTime)
 
 void Enemy::UpdateAnimation(float deltaTime)
 {
-	EnemyModel.UpdateAnimation(&AnimationState,deltaTime);
+	EnemyModel->UpdateAnimation(&AnimationState,deltaTime);
 }
 
 void Enemy::Move(float deltaTime)
@@ -185,12 +185,12 @@ void Enemy::Set_EnemyModel()
 	Sensor::Set_Model();
 
 	if (StaticComponent::Current_Level == StaticComponent::Level1)
-		EnemyModel.LoadModel("data/models/enemy/robot.md2");
+		EnemyModel->LoadModel("data/models/enemy/robot.md2");
 	else if (StaticComponent::Current_Level == StaticComponent::Level2)
-		EnemyModel.LoadModel("data/models/enemy/soldier.md2");
+		EnemyModel->LoadModel("data/models/enemy/soldier.md2");
 
 }
-CMD2Model Enemy::EnemyModel;
+unique_ptr<CMD2Model> Enemy::EnemyModel = unique_ptr<CMD2Model>(new CMD2Model());
 Enemy::~Enemy(void)
 {
 
